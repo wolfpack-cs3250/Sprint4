@@ -4,3 +4,4 @@ Scrum Master:Jason Gambino
 Product Owner : Amber Davis
 Developers:
   - Sal Camara #1 awesome
+  - Giang Dinh #betterthanawesome
