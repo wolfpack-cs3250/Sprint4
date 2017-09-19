@@ -6,3 +6,4 @@ Developers:
   - Sal Camara #1 awesome
   - Giang Dinh #betterthanawesome
   - Ben Connell #∞awesome
+  - James Essad #Alpha_Wolf
