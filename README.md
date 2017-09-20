@@ -7,3 +7,4 @@ Developers:
   - Giang Dinh #betterthanawesome
   - Ben Connell #∞awesome
   - James Essad #Alpha_Wolf
+  - Derek Dinh #WishIWasCool o.o
