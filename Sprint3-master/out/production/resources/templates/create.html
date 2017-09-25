@@ -1,0 +1,13 @@
+{{>header}}
+   <h1>Create a New Account</h1>
+    <div class="container">
+        <form action="/user" method="post">
+            <label for="firstname">First name: </label>
+            <input type="text" name="firstname" />
+
+            <label for="lastname">Last name: </label>
+            <input type="text" name="lastname" />
+            <button type="submit" >Submit</button>
+        </form>
+    </div>
+{{>footer}}
