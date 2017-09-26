@@ -16,6 +16,7 @@ public class IndexController {
     String create() {
         return "create";
     }
+
     @RequestMapping("/delete")
     String delete() {
         return "delete";
