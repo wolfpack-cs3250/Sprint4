@@ -27,7 +27,9 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-mustache')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-starter-data-rest')
-	compile("com.h2database:h2")
+	compile('com.h2database:h2')
 	runtime('org.springframework.boot:spring-boot-devtools')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile('org.mockito:mockito-core:2.+')
+    testCompile('junit:junit:4.12')
 }

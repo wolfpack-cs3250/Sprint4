@@ -1,5 +1,6 @@
-# sprint2
-Sprint 2
+# Sprint 3
+
+![alt text](https://travis-ci.org/wolfpack-cs3250/Sprint3.svg?branch=master)
 
 Notes:
 
