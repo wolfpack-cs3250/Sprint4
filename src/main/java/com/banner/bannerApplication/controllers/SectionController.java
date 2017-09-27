@@ -24,7 +24,7 @@ public class SectionController {
         Section n = new Section();
         n.setSectionNumber(sectionNumber);
         sectionRepository.save(n);
-        return new ModelAndView("redirect:/professor");
+        return new ModelAndView("redirect:/section");
     }
 
     // Delete
@@ -39,8 +39,8 @@ public class SectionController {
     // Read All
     @GetMapping(path="")
     public String showall(Model model) {
-        Iterable<Section> allusers = sectionRepository.findAll();
-        model.addAttribute("allusers", allusers);
+        Iterable<Section> allsections = sectionRepository.findAll();
+        model.addAttribute("allsections", allsections);
         return "sectionpage";
     }
 
