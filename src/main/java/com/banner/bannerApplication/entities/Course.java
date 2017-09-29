@@ -10,7 +10,7 @@ public class Course {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String courseId;
+    private String id;
     private String courseName;
     private String department;
     private String number;
@@ -82,18 +82,6 @@ public class Course {
         this.department = department;
     }
 
-    public String getCourseId() {
-
-        return courseId;
-    }
-
-    public void setCourseId(String courseId) {
-        this.courseId = courseId;
-    }
-
-    public void setId(String courseId) {
-        this.courseId = courseId;
-    }
 
     public String getCourseName() {
         return courseName;

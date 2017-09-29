@@ -12,33 +12,38 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("")
+@RequestMapping("faculty")
 public class FacultyCourse {
     @Autowired
     private CourseRepository courseRepository;
 
-    // Create
+    // Create - w POST REQUEST
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView addNewCourse (@RequestParam String department, @RequestParam String coursename, @RequestParam String number, @RequestParam int credits,
-                                      @RequestParam String description,@RequestParam String learningObjective, @RequestParam String prereqs, @RequestParam String Coreqs) {
+    public ModelAndView addNewCourse (@RequestParam String department, @RequestParam String courseName, @RequestParam String number, @RequestParam int credits,
+                                      @RequestParam String description,@RequestParam String learningObjective, @RequestParam String prereqs, @RequestParam String coreqs) {
         Course n = new Course();
         n.setDepartment(department);
-        n.setCourseName(coursename);
+        n.setCourseName(courseName);
         n.setNumber(number);
         n.setCredits(credits);
         n.setDescription(description);
         n.setLearningObjective(learningObjective);
         n.setPrereqs(prereqs);
-        n.setCoreq(Coreqs);
+        n.setCoreq(coreqs);
         courseRepository.save(n);
-        return new ModelAndView("redirect:/course");
+        return new ModelAndView("redirect:/faculty");
+    }
+
+    // Create - w GET REQUEST
+    @GetMapping(path="/create")
+    String newCourse (){
+        return "create-course";
     }
 
     // Delete
     @GetMapping(path="/delete")
     public ModelAndView RemoveCourse(@RequestParam String id) {
         Course n = new Course();
-        n.setId(id);
         courseRepository.delete(id);
         return new ModelAndView("redirect:/course");
     }
@@ -48,7 +53,7 @@ public class FacultyCourse {
     public String showall(Model model) {
         Iterable<Course> allcourses = courseRepository.findAll();
         model.addAttribute("allcourses", allcourses);
-        return "coursepage";
+        return "faculty";
     }
 
 
