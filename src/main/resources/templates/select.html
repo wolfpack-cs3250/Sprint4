@@ -1,0 +1,20 @@
+{{>header}}
+<h1>Select Your Account Type</h1>
+
+
+<div class="container">
+    <form action="/professor-choices" method="get">
+        <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+        <button type="submit" class="btn btn-danger">Professor</button>
+    </form>
+</div>
+<br>
+
+<div class="container">
+    <form action="/student-choices" method="get">
+        <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+        <button type="submit" class="btn btn-danger">Student</button>
+    </form>
+</div>
+<br>
+{{>footer}}

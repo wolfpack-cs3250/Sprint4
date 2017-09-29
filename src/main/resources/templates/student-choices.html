@@ -1,0 +1,21 @@
+{{>header}}
+<h1>Select an Option</h1>
+
+
+<div class="container">
+    <form action="/edit-student" method="get">
+        <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+        <button type="submit" class="btn btn-danger">Edit Student</button>
+    </form>
+</div>
+<br>
+
+<div class="container">
+    <form action="/pick-student" method="get">
+        <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+        <button type="submit" class="btn btn-danger">Pick a Course</button>
+    </form>
+</div>
+<br>
+
+{{>footer}}
