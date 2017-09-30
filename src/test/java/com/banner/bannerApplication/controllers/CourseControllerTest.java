@@ -4,19 +4,19 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 class CourseControllerTest {
     @Test
-    void addNewCourse() {
+    public void addNewCourse() {
     }
 
     @Test
-    void removeCourse() {
+    public void removeCourse() {
     }
 
     @Test
-    void showall() {
+    public void showall() {
     }
 
     @Test
-    void updateCourse() {
+    public void updateCourse() {
     }
 
 }

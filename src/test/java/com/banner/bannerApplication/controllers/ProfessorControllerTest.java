@@ -5,19 +5,19 @@ import static org.junit.Assert.*;
 
 class ProfessorControllerTest {
     @Test
-    void addNewProfessor() {
+    public void addNewProfessor() {
     }
 
     @Test
-    void removeProfessor() {
+    public void removeProfessor() {
     }
 
     @Test
-    void showall() {
+    public void showall() {
     }
 
     @Test
-    void updateProfessor() {
+   public void updateProfessor() {
     }
 
 }

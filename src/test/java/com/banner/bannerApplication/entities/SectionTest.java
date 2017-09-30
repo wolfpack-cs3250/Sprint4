@@ -5,23 +5,23 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 class SectionTest {
     @Test
-    void getCourseId() {
+    public void getCourseId() {
     }
 
     @Test
-    void getCourseName() {
+    public void getCourseName() {
     }
 
     @Test
-    void setCourseName() {
+    public void setCourseName() {
     }
 
     @Test
-    void getSectionNumber() {
+    public void getSectionNumber() {
     }
 
     @Test
-    void setSectionNumber() {
+    public void setSectionNumber() {
     }
 
 }

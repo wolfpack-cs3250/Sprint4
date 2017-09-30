@@ -5,23 +5,25 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 class ProfessorTest {
     @Test
-    void setId() {
+    public void setId() {
     }
 
     @Test
-    void getFirstName() {
+    public void getFirstName() {
     }
 
     @Test
-    void setFirstName() {
+    public void setFirstName() {
     }
 
     @Test
-    void getLastName() {
+    public void getLastName() {
     }
 
     @Test
-    void setLastName() {
+    public void setLastName() {
+
+
     }
 
 }

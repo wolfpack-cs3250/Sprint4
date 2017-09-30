@@ -5,19 +5,19 @@ import static org.junit.Assert.*;
 
 class SectionControllerTest {
     @Test
-    void addNewSection() {
+    public void addNewSection() {
     }
 
     @Test
-    void removeSection() {
+    public void removeSection() {
     }
 
     @Test
-    void showall() {
+    public void showall() {
     }
 
     @Test
-    void updateSection() {
+    public void updateSection() {
     }
 
 }

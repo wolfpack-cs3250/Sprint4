@@ -5,59 +5,59 @@ import static org.junit.Assert.*;
 
 class IndexControllerTest {
     @Test
-    void index() {
+    public void index() {
     }
 
     @Test
-    void select() {
+   public void select() {
     }
 
     @Test
-    void delete() {
+    public void delete() {
     }
 
     @Test
-    void create() {
+    public void create() {
     }
 
     @Test
-    void update() {
+    public void update() {
     }
 
     @Test
-    void deleteProfessor() {
+    public void deleteProfessor() {
     }
 
     @Test
-    void createProfessor() {
+    public void createProfessor() {
     }
 
     @Test
-    void updateProfessor() {
+    public void updateProfessor() {
     }
 
     @Test
-    void professorChoices() {
+    public void professorChoices() {
     }
 
     @Test
-    void studentChoices() {
+    public void studentChoices() {
     }
 
     @Test
-    void editStudent() {
+    public void editStudent() {
     }
 
     @Test
-    void pickStudent() {
+    public void pickStudent() {
     }
 
     @Test
-    void editProfessor() {
+    public void editProfessor() {
     }
 
     @Test
-    void pickProfessor() {
+    public void pickProfessor() {
     }
 
 }
