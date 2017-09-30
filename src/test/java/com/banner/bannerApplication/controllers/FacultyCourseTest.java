@@ -1,6 +1,7 @@
 package com.banner.bannerApplication.controllers;
 
 import org.junit.Test;
+import static org.junit.Assert.*;
 class FacultyCourseTest {
     @Test
     void addNewCourse() {

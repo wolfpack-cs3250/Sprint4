@@ -2,7 +2,7 @@ package com.banner.bannerApplication.entities;
 
 import org.junit.Test;
 
-
+import static org.junit.Assert.*;
 class CourseTest {
     @Test
     void getCoreq() {
