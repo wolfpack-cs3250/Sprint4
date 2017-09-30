@@ -33,31 +33,31 @@ class IndexControllerTest {
     }
 
     @Test
-    public void updateProfessor() {
+    public void updateProfessor()throws Exception {
     }
 
     @Test
-    public void professorChoices() {
+    public void professorChoices()throws Exception {
     }
 
     @Test
-    public void studentChoices() {
+    public void studentChoices() throws Exception{
     }
 
     @Test
-    public void editStudent() {
+    public void editStudent()throws Exception {
     }
 
     @Test
-    public void pickStudent() {
+    public void pickStudent() throws Exception{
     }
 
     @Test
-    public void editProfessor() {
+    public void editProfessor() throws Exception{
     }
 
     @Test
-    public void pickProfessor() {
+    public void pickProfessor() throws Exception{
     }
 
 }

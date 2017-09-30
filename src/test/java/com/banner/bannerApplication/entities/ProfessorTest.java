@@ -9,19 +9,19 @@ class ProfessorTest {
     }
 
     @Test
-    public void getFirstName() {
+    public void getFirstName() throws Exception{
     }
 
     @Test
-    public void setFirstName() {
+    public void setFirstName() throws Exception{
     }
 
     @Test
-    public void getLastName() {
+    public void getLastName() throws Exception{
     }
 
     @Test
-    public void setLastName() {
+    public void setLastName() throws Exception{
 
 
     }

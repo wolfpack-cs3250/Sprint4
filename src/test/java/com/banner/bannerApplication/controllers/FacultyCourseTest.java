@@ -4,23 +4,23 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 class FacultyCourseTest {
     @Test
-    public void addNewCourse() {
+    public void addNewCourse() throws Exception{
     }
 
     @Test
-    public void newCourse() {
+    public void newCourse() throws Exception{
     }
 
     @Test
-    public void removeCourse() {
+    public void removeCourse()throws Exception {
     }
 
     @Test
-    public void showall() {
+    public void showall()throws Exception {
     }
 
     @Test
-    public void updateCourse() {
+    public void updateCourse() throws Exception{
     }
 
 }

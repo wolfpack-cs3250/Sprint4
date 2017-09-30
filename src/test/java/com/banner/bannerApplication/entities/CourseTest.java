@@ -5,67 +5,67 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 class CourseTest {
     @Test
-    public void getCoreq() {
+    public void getCoreq() throws Exception{
     }
 
     @Test
-    public void setCoreq() {
+    public void setCoreq() throws Exception {
     }
 
     @Test
-    public void getPrereqs() {
+    public void getPrereqs()throws Exception {
     }
 
     @Test
-    public void setPrereqs() {
+    public void setPrereqs() throws Exception{
     }
 
     @Test
-    public void getLearningObjective() {
+    public void getLearningObjective() throws Exception{
     }
 
     @Test
-    public void setLearningObjective() {
+    public void setLearningObjective() throws Exception{
     }
 
     @Test
-    public void getDescription() {
+    public void getDescription() throws Exception{
     }
 
     @Test
-    public void setDescription() {
+    public void setDescription() throws Exception{
     }
 
     @Test
-    public void getCredits() {
+    public void getCredits() throws Exception{
     }
 
     @Test
-    public void setCredits() {
+    public void setCredits() throws Exception{
     }
 
     @Test
-    public void getNumber() {
+    public void getNumber() throws Exception{
     }
 
     @Test
-    public void setNumber() {
+    public void setNumber() throws Exception{
     }
 
     @Test
-    public void getDepartment() {
+    public void getDepartment() throws Exception {
     }
 
     @Test
-    public void setDepartment() {
+    public void setDepartment() throws Exception{
     }
 
     @Test
-    public void getCourseName() {
+    public void getCourseName() throws Exception{
     }
 
     @Test
-    public void setCourseName() {
+    public void setCourseName() throws Exception{
     }
 
 }
