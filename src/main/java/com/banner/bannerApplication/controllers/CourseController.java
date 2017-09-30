@@ -37,7 +37,6 @@ public class CourseController {
     @GetMapping(path="/delete")
     public ModelAndView RemoveCourse(@RequestParam String id) {
         Course n = new Course();
-        n.setId(id);
         courseRepository.delete(id);
         return new ModelAndView("redirect:/course");
     }
