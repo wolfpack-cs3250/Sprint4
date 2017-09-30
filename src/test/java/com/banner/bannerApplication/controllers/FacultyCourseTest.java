@@ -2,7 +2,7 @@ package com.banner.bannerApplication.controllers;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
-class FacultyCourseTest {
+public class FacultyCourseTest {
     @Test
     public void addNewCourse() throws Exception{
     }

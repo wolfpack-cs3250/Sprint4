@@ -3,7 +3,7 @@ package com.banner.bannerApplication.entities;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
-class CourseTest {
+public class CourseTest {
     @Test
     public void getCoreq() throws Exception{
     }

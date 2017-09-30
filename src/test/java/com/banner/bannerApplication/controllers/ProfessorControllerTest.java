@@ -3,7 +3,7 @@ package com.banner.bannerApplication.controllers;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-class ProfessorControllerTest {
+public class ProfessorControllerTest {
     @Test
     public void addNewProfessor() throws Exception{
     }

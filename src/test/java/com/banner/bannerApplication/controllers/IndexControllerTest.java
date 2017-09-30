@@ -3,7 +3,7 @@ package com.banner.bannerApplication.controllers;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-class IndexControllerTest {
+public class IndexControllerTest {
     @Test
     public void index() {
     }

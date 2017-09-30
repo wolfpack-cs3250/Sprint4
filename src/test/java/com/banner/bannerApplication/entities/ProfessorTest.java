@@ -3,7 +3,7 @@ package com.banner.bannerApplication.entities;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
-class ProfessorTest {
+public class ProfessorTest {
     @Test
     public void setId() {
     }
