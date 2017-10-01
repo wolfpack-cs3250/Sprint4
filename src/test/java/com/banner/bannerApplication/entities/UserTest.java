@@ -3,7 +3,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import com.banner.bannerApplication.repositories.UserRepository;
-import org.junit.After;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,24 +12,12 @@ import static org.junit.Assert.*;
 public class UserTest {
 
     private static User user1;
-    private static User user2;
-    private static UserRepository userRepo1;
-    private static UserRepository userRepo2;
 
     @Before
     public void setUp() throws Exception {
-        user1 = mock(User.class);
-        userRepo1 = mock(UserRepository.class);
-    }
-
-    @After
-    public void tearDown() throws Exception {
-    }
-
-    @Test
-    public void testMockCreation(){
+        //user1 = mock(User.class);
+        user1 = new User();
         assertNotNull(user1);
-        assertNotNull(userRepo1);
     }
 
     @Test
@@ -38,19 +26,25 @@ public class UserTest {
     }
 
     @Test
-    public void getFirstName() throws Exception {
-    }
-
-    @Test
     public void setFirstName() throws Exception {
-    }
-
-    @Test
-    public void getLastName() throws Exception {
+        user1.setFirstName("bob");
+        assertEquals("bob", user1.getLastName());
     }
 
     @Test
     public void setLastName() throws Exception {
+        user1.setLastName("taylor");
+        assertEquals("taylor", user1.getLastName());
+    }
+
+    @Test
+    public void getFirstName() throws Exception {
+        assertEquals("bob", user1.getLastName());
+    }
+
+    @Test
+    public void getLastName() throws Exception {
+        assertEquals("taylor", user1.getLastName());
     }
 
 }

@@ -18,20 +18,20 @@ public class User {
     public void setId(String id){
      this.id=id;
     }
-    public String getFirstName() {
-        return firstName;
-    }
+    public String getId(String id) { return id;}
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-
-    public String getLastName() {
-        return lastName;
+    public String getFirstName() {
+        return firstName;
     }
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+    public String getLastName() {
+        return lastName;
     }
 
 }
