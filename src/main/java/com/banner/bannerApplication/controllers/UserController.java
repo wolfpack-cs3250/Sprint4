@@ -35,9 +35,9 @@ public class UserController {
 
     // Delete
     @GetMapping(path="/delete")
-    public ModelAndView RemoveUser(@RequestParam String id) {
+    public ModelAndView RemoveUser(@RequestParam Long id) {
         User n = new User();
-        n.setId(id);
+        n.setStudentId(id);
         userRepository.delete(id);
         return new ModelAndView("redirect:/user");
     }
@@ -56,7 +56,7 @@ public class UserController {
 
     // UPDATE
     @GetMapping(path="/update")
-    public ModelAndView updateUser(@RequestParam String id,
+    public ModelAndView updateUser(@RequestParam Long id,
                                            @RequestParam String firstname,
                                            @RequestParam String lastname) {
         // Needs Error Checking!!

@@ -4,21 +4,45 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Course {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    @Column(name = "id", unique = true)
+    private Long courseId;
+
+    @Column(unique = true)
     private String courseName;
+
+    @Column(unique = true)
     private String department;
+
+    @Column(unique = true)
     private String number;
+
+    @Column(unique = true)
     private int credits;
+
+    @Column(unique = true)
     private String description;
+
+    @Column(unique = true)
     private String learningObjective;
+
+    @Column(unique = true)
     private String prereqs;
+
+    @Column(unique = true)
     private String coreq;
+
+    public Long getCourseId() { return courseId; }
+
+    public void setCourseId(Long courseId) { this.courseId = courseId; }
 
     public String getCoreq() {
         return coreq;
@@ -91,4 +115,15 @@ public class Course {
         this.courseName = courseName;
     }
 
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id")
+    private List<User> students = new ArrayList<User>();
+
+    public void setStudents(List<User> students) {
+        this.students = students;
+    }
+
+    public List<User> getStudents() {
+        return students;
+    }
 }
