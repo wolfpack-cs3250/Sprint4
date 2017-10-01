@@ -1,7 +1,7 @@
 package com.banner.bannerApplication.entities;
-
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 import org.junit.Test;
-
 import static org.junit.Assert.*;
 
 public class GlobalTest {
