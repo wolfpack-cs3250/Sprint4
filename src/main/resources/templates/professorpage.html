@@ -6,13 +6,23 @@
         <th>Id</th>
         <th>First Name</th>
         <th>Last Name</th>
+        <th> edit</th>
     </tr>
     {{#allusers}}
     <tr>
         <td>{{id}}</td>
         <td>{{firstName}}</td>
         <td>{{lastName}}</td>
+        <td>
+            <a href="/professor/update"</a>
+            <form action="/user/update/{{id}}" method="get">
+                <button type="submit" class="btn btn-danger">Edit</button>
+            </form>
+        </td>
+
+
     </tr>
     {{/allusers}}
 </table>
+<a href="/create-professor"> Create Professor</a>
 {{>footer}}

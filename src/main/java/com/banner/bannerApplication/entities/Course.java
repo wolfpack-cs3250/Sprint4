@@ -13,36 +13,41 @@ public class Course {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", unique = true)
-    private Long courseId;
+    @Column(name = "id_course", unique = true)
+    private Long id;
 
-    @Column(unique = true)
+    @OneToMany
+    @JoinColumn(name = "course", referencedColumnName = "id_course")
+    private List<User> students = new ArrayList<User>();
+
+    // private List<Section> sections;
+
+
+    @Column(unique = false)
     private String courseName;
 
-    @Column(unique = true)
+    @Column(unique = false)
     private String department;
 
-    @Column(unique = true)
+    @Column(unique = false)
     private String number;
 
-    @Column(unique = true)
+    @Column(unique = false)
     private int credits;
 
-    @Column(unique = true)
+    @Column(unique = false)
     private String description;
 
-    @Column(unique = true)
+    @Column(unique = false)
     private String learningObjective;
 
-    @Column(unique = true)
+    @Column(unique = false)
     private String prereqs;
 
-    @Column(unique = true)
+    @Column(unique = false)
     private String coreq;
 
-    public Long getCourseId() { return courseId; }
-
-    public void setCourseId(Long courseId) { this.courseId = courseId; }
+    public Long getCourseId() { return id; }
 
     public String getCoreq() {
         return coreq;
@@ -115,10 +120,8 @@ public class Course {
         this.courseName = courseName;
     }
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
-    private List<User> students = new ArrayList<User>();
 
+    // Students getters and setters
     public void setStudents(List<User> students) {
         this.students = students;
     }

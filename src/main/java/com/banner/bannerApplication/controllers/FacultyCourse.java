@@ -42,7 +42,7 @@ public class FacultyCourse {
 
     // Delete
     @GetMapping(path="/delete")
-    public ModelAndView RemoveCourse(@RequestParam String id) {
+    public ModelAndView RemoveCourse(@RequestParam Long id) {
         Course n = new Course();
         courseRepository.delete(id);
         return new ModelAndView("redirect:/course");
@@ -56,7 +56,6 @@ public class FacultyCourse {
         return "faculty";
     }
 
-
     // Read by id
 //    @GetMapping(path="/{id}")
 
@@ -64,9 +63,9 @@ public class FacultyCourse {
     //find by number
     @GetMapping(path="/update")
     public ModelAndView updateCourse(@RequestParam String department, @RequestParam String coursename, @RequestParam String number, @RequestParam int credits,
-                                     @RequestParam String description,@RequestParam String learningObjective, @RequestParam String prereqs, @RequestParam String Coreqs) {
+                                     @RequestParam String description,@RequestParam String learningObjective, @RequestParam String prereqs, @RequestParam String Coreqs, @RequestParam Long id) {
         // Needs Error Checking!!
-        Course course = courseRepository.findOne(number);
+        Course course = courseRepository.findOne(id);
         course.setDepartment(department);
         course.setCourseName(coursename);
         course.setNumber(number);

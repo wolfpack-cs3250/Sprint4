@@ -11,8 +11,12 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", unique = true)
-    private Long studentId;
+    @Column(name = "student_id", unique = true)
+    private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "COURSE_ID")
+    private Course course;
 
     @Column(unique = true)
     private String firstName;
@@ -21,11 +25,7 @@ public class User {
     private String lastName;
 
     public Long getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(Long studentId){
-     this.studentId=studentId;
+        return id;
     }
 
     public String getFirstName() {
@@ -44,10 +44,7 @@ public class User {
         this.lastName = lastName;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "courseId")
-    private Course course;
-
+    // Course Getters and setters
     public Course getCourse() {
         return course;
     }

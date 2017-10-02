@@ -20,6 +20,9 @@ public class Section {
 
     private String courseName;
     private String sectionNumber;
+    // private Professor professor;
+    // private List<Students>;
+    // private Course course;
 
     public Section() {
 
