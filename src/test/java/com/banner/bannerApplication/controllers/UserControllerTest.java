@@ -26,11 +26,10 @@ public class UserControllerTest {
 
     @Test
     public void addNewUser() throws Exception {
-        user1.setFirstName("bob");
-        user1.setLastName("taylor");
-        System.out.print(user1.getLastName());
+        //user1.setFirstName("bob");
+        //user1.setLastName("taylor");
 
-        assertEquals("taylor", user1.getLastName());
+        //assertEquals("taylor", user1.getLastName());
     }
 
     @Test

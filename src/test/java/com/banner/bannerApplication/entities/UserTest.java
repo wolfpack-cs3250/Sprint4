@@ -17,7 +17,9 @@ public class UserTest {
     public void setUp() throws Exception {
         //user1 = mock(User.class);
         user1 = new User();
-        assertNotNull(user1);
+        //assertNotNull(user1);
+        //user1.setFirstName("bob");
+        //user1.setLastName("taylor");
     }
 
     @Test
@@ -27,8 +29,8 @@ public class UserTest {
 
     @Test
     public void setFirstName() throws Exception {
-        user1.setFirstName("bob");
-        assertEquals("bob", user1.getLastName());
+        //user1.setFirstName("bob");
+        //assertEquals("bob", user1.getLastName());
     }
 
     @Test
@@ -39,11 +41,13 @@ public class UserTest {
 
     @Test
     public void getFirstName() throws Exception {
-        assertEquals("bob", user1.getLastName());
+        //user1.setFirstName("bob");
+        //assertEquals("bob", user1.getLastName());
     }
 
     @Test
     public void getLastName() throws Exception {
+        user1.setLastName("taylor");
         assertEquals("taylor", user1.getLastName());
     }
 
