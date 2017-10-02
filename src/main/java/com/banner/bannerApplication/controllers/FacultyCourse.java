@@ -63,7 +63,7 @@ public class FacultyCourse {
     //find by number
     @GetMapping(path="/update")
     public ModelAndView updateCourse(@RequestParam String department, @RequestParam String coursename, @RequestParam String number, @RequestParam int credits,
-                                     @RequestParam String description,@RequestParam String learningObjective, @RequestParam String prereqs, @RequestParam String Coreqs, @RequestParam Long id) {
+                                     @RequestParam String description,@RequestParam String learningObjective, @RequestParam String prereqs, @RequestParam String Coreqs, @RequestParam long id) {
         // Needs Error Checking!!
         Course course = courseRepository.findOne(id);
         course.setDepartment(department);

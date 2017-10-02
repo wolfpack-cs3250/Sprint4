@@ -1,7 +1,7 @@
 package com.banner.bannerApplication.repositories;
 
-import java.util.List;
 
+import java.util.List;
 import com.banner.bannerApplication.entities.User;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
