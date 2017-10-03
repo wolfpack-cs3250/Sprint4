@@ -5,28 +5,24 @@
 
 package com.banner.bannerApplication.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
-public class Section {
-
-    @Id
+public class Section extends Professor{
+    //@id
     @GeneratedValue(strategy = GenerationType.AUTO)
 
     private String courseId;
+//    @Column(unique = true)
+//    private String courseName;
+    @Column(unique = true)
+    private int sectionNumber;
+    @Column(unique = true)
 
-    private String courseName;
-    private String sectionNumber;
     // private Professor professor;
     // private List<Students>;
     // private Course course;
 
-    public Section() {
-
-    }
 
 
     public void getCourseId (String id) {
@@ -34,19 +30,19 @@ public class Section {
     }
 
 
-    public String getCourseName  (String courseName) {
-        return courseName;
-    }
+//    public String getCourseName  (String courseName) {
+//        return courseName;
+//    }
+//
+//    public void setCourseName (String courseName) {
+//        this.courseName = courseName;
+//    }
 
-    public void setCourseName (String courseName) {
-        this.courseName = courseName;
-    }
-
-    public String getSectionNumber (String sectionNumber) {
+    public int getSectionNumber (int sectionNumber) {
         return sectionNumber;
     }
 
-    public void setSectionNumber (String sectionNumber) {
+    public void setSectionNumber (int sectionNumber) {
         this.sectionNumber = sectionNumber;
     }
 

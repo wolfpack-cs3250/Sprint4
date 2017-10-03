@@ -1,6 +1,7 @@
 package com.banner.bannerApplication.controllers;
 
 import com.banner.bannerApplication.entities.Course;
+import com.banner.bannerApplication.entities.Section;
 import com.banner.bannerApplication.repositories.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -79,5 +80,6 @@ public class FacultyCourse {
 
 
     }
+
 
 }
