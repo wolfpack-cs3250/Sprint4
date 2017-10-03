@@ -5,8 +5,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.*;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import com.banner.bannerApplication.entities.User;
 
 @Entity
 public class Course {
@@ -16,8 +19,7 @@ public class Course {
     @Column(name = "id_course", unique = true)
     private Long id;
 
-    @OneToMany
-    @JoinColumn(name = "course", referencedColumnName = "id_course")
+    @OneToMany(mappedBy = "studentCourse")
     private List<User> students = new ArrayList<User>();
 
     // private List<Section> sections;

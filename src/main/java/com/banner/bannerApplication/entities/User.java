@@ -6,6 +6,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.*;
 
+import java.util.List;
+
+import com.banner.bannerApplication.entities.Course;
+
 @Entity
 public class User {
 
@@ -14,9 +18,8 @@ public class User {
     @Column(name = "student_id", unique = true)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "COURSE_ID")
-    private Course course;
+    @ManyToOne
+    private Course studentCourse;
 
     @Column(unique = true)
     private String firstName;
@@ -46,11 +49,10 @@ public class User {
 
     // Course Getters and setters
     public Course getCourse() {
-        return course;
+        return studentCourse;
     }
-
     public void setCourse(Course course) {
-        this.course = course;
+        this.studentCourse = course;
     }
 
 }

@@ -16,25 +16,24 @@ public class Section {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 
-    private String courseId;
-
+    private Long id;
     private String courseName;
     private String sectionNumber;
-    // private Professor professor;
+    private Long professorId;
+    private Long courseId;
+
     // private List<Students>;
-    // private Course course;
 
     public Section() {
 
     }
 
 
-    public void getCourseId (String id) {
-        this.courseId = courseId;
+    public Long getCourseId () {
+        return id;
     }
 
-
-    public String getCourseName  (String courseName) {
+    public String getCourseName (String courseName) {
         return courseName;
     }
 
