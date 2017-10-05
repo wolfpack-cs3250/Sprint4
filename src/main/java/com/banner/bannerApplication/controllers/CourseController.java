@@ -66,7 +66,6 @@ public class CourseController {
     public ModelAndView RemoveCourse(@RequestParam String coursename,@RequestParam long id) {
         User user= userRepository.findOne(id);
         user.removeInprgoress(coursename);
-
         return new ModelAndView("redirect:/course");
     }
 
@@ -82,4 +81,17 @@ public class CourseController {
     // Read by id
 //    @GetMapping(path="/{id}")
 
+
+    // UPDATE
+    @GetMapping(path="/update")
+    public ModelAndView updateCourse(@RequestParam Long id,
+                                           @RequestParam String coursename) {
+        // Needs Error Checking!!
+        Course course = courseRepository.findOne(id);
+
+        course.setCourseName(coursename);
+        courseRepository.save(course);
+        return new ModelAndView("redirect:/course");
+
+    }
 }

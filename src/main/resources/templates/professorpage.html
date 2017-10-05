@@ -14,13 +14,20 @@
         <td>{{firstName}}</td>
         <td>{{lastName}}</td>
         <td>
-            <a href="/professor/update"</a>
-            <form action="/user/update/{{id}}" method="get">
+            <form action="/professor/update/{{id}}" method="get">
                 <button type="submit" class="btn btn-danger">Edit</button>
             </form>
         </td>
-
-
+        <td>
+            <form action="/professor/delete/{{id}}" method="get">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </td>
+        <td>
+            <form action="/professor/register/{{id}}" method="get">
+                <button type="submit" class="btn btn-danger">Register</button>
+            </form>
+        </td>
     </tr>
     {{/allusers}}
 </table>

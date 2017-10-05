@@ -10,6 +10,8 @@ import javax.persistence.*;
 import java.util.Arrays;
 import java.util.List;
 
+import com.banner.bannerApplication.entities.Course;
+
 @Entity
 public class User {
 
@@ -17,10 +19,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "student_id", unique = true)
     private Long id;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "COURSE_ID")
-    private Course course;
+  
+    @ManyToOne
+    private Course studentCourse;
 
     @Column(unique = true)
     private String firstName;
@@ -51,12 +52,11 @@ public class User {
         return id;
     }
 
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
     public String getFirstName() {
         return firstName;
+    }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public void setLastName(String lastName) {

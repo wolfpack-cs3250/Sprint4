@@ -12,21 +12,16 @@ public class Section extends Professor{
     //@id
     @GeneratedValue(strategy = GenerationType.AUTO)
 
-    private String courseId;
-//    @Column(unique = true)
-//    private String courseName;
-    @Column(unique = true)
-    private int sectionNumber;
-    @Column(unique = true)
-
-    // private Professor professor;
-    // private List<Students>;
-    // private Course course;
+    private Long id;
+    // private String courseName;
+    private String sectionNumber;
+    //private Long professorId;
+    // private Long courseId;
 
 
 
-    public void getCourseId (String id) {
-        this.courseId = courseId;
+    public Long getCourseId () {
+        return id;
     }
 
 

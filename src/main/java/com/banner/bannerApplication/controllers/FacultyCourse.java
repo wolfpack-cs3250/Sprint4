@@ -57,14 +57,12 @@ public class FacultyCourse {
         return "faculty";
     }
 
-    // Read by id
-//    @GetMapping(path="/{id}")
 
     // UPDATE
     //find by number
     @GetMapping(path="/update")
     public ModelAndView updateCourse(@RequestParam String department, @RequestParam String coursename, @RequestParam String number, @RequestParam int credits,
-                                     @RequestParam String description,@RequestParam String learningObjective, @RequestParam String prereqs, @RequestParam String Coreqs, @RequestParam long id) {
+                                     @RequestParam String description,@RequestParam String learningObjective, @RequestParam String prereqs, @RequestParam String Coreqs, @RequestParam Long id) {
         // Needs Error Checking!!
         Course course = courseRepository.findOne(id);
         course.setDepartment(department);

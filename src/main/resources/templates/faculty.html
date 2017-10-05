@@ -18,6 +18,22 @@
         <td>{{description}}</td>
         <td>{{credits}}</td>
         <td>{{prereqs}}</td>
+        <td>
+            <form action="/section/add/{{id}}" method="get">
+                <button type="submit" class="btn btn-danger">Add Section</button>
+            </form>
+        </td>
+
+        <td>
+            <form action="/course/delete/{{id}}" method="get">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </td>
+        <td>
+            <form action="/course/update/{{id}}" method="get">
+                <button type="submit" class="btn btn-danger">Update</button>
+            </form>
+        </td>
     </tr>
     {{/allcourses}}
 </table>

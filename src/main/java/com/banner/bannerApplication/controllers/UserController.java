@@ -37,6 +37,7 @@ public class UserController {
         User n = new User();
         n.setFirstName(firstname);
         n.setLastName(lastname);
+        n.setCourse(null);
         userRepository.save(n);
         return new ModelAndView("redirect:/user");
     }
@@ -44,7 +45,6 @@ public class UserController {
     // Delete
     @GetMapping(path="/delete/{id}")
     public ModelAndView RemoveUser(@PathVariable Long id) {
-        User n = new User();
         userRepository.delete(id);
         return new ModelAndView("redirect:/user");
     }
@@ -65,6 +65,17 @@ public class UserController {
                                            Model model) {
         // Needs Error Checking!!
 //        Long id = Long.parseLong(idString);
+        User user = userRepository.findOne(id);
+        model.addAttribute("student", user);
+        return "update";
+    }
+
+    // UPDATE
+    @GetMapping(path="/update")
+    public ModelAndView updateStudent(@RequestParam Long id,
+                                   @RequestParam String firstname,
+                                   @RequestParam String lastname) {
+        // Needs Error Checking
         User user = userRepository.findOne(id);
         model.addAttribute("student", user);
         return "update";
