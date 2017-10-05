@@ -12,7 +12,24 @@
         <td>{{id}}</td>
         <td>{{firstName}}</td>
         <td>{{lastName}}</td>
+        <td>
+            <form action="/professor/update/{{id}}" method="get">
+                <button type="submit" class="btn btn-danger">Edit</button>
+            </form>
+        </td>
+        <td>
+            <form action="/professor/delete/{{id}}" method="get">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </td>
+        <td>
+            <form action="/professor/register/{{id}}" method="get">
+                <button type="submit" class="btn btn-danger">Register</button>
+            </form>
+        </td>
+
     </tr>
     {{/allusers}}
 </table>
+<a href="/create-professor"> Create Professor</a>
 {{>footer}}

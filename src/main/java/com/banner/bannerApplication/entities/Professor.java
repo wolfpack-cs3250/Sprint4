@@ -10,14 +10,11 @@ public class Professor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
 
     private String firstName;
     private String lastName;
 
-    public void setId(String id){
-        this.id=id;
-    }
     public String getFirstName() {
         return firstName;
     }

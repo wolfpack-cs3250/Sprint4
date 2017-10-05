@@ -8,6 +8,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import java.util.List;
 
 @RepositoryRestResource(collectionResourceRel = "professors", path = "professors")
-public interface ProfessorRepository extends PagingAndSortingRepository<Professor, String> {
+public interface ProfessorRepository extends PagingAndSortingRepository<Professor, Long> {
     List<Professor> findByLastName(@Param("name") String name);
 }

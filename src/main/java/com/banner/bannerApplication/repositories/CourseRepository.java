@@ -9,7 +9,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import java.util.List;
 
 @RepositoryRestResource(collectionResourceRel = "courses", path = "courses")
-public interface CourseRepository extends PagingAndSortingRepository<Course, String> {
+public interface CourseRepository extends PagingAndSortingRepository<Course, Long> {
     List<Course> findByCourseName(@Param("name") String name);
 
 }

@@ -4,21 +4,52 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.banner.bannerApplication.entities.User;
 
 @Entity
 public class Course {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    @Column(name = "id_course", unique = true)
+    private Long id;
+
+    @OneToMany(mappedBy = "studentCourse")
+    private List<User> students = new ArrayList<User>();
+
+    // private List<Section> sections;
+
+
+    @Column(unique = false)
     private String courseName;
+
+    @Column(unique = false)
     private String department;
+
+    @Column(unique = false)
     private String number;
+
+    @Column(unique = false)
     private int credits;
+
+    @Column(unique = false)
     private String description;
+
+    @Column(unique = false)
     private String learningObjective;
+
+    @Column(unique = false)
     private String prereqs;
+
+    @Column(unique = false)
     private String coreq;
+
+    public Long getCourseId() { return id; }
 
     public String getCoreq() {
         return coreq;
@@ -91,4 +122,13 @@ public class Course {
         this.courseName = courseName;
     }
 
+
+    // Students getters and setters
+    public void setStudents(List<User> students) {
+        this.students = students;
+    }
+
+    public List<User> getStudents() {
+        return students;
+    }
 }

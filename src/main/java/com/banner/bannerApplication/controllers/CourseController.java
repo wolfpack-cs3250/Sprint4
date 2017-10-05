@@ -35,7 +35,7 @@ public class CourseController {
 
     // Delete
     @GetMapping(path="/delete")
-    public ModelAndView RemoveCourse(@RequestParam String id) {
+    public ModelAndView RemoveCourse(@RequestParam Long id) {
         Course n = new Course();
         courseRepository.delete(id);
         return new ModelAndView("redirect:/course");
@@ -55,7 +55,7 @@ public class CourseController {
 
     // UPDATE
     @GetMapping(path="/update")
-    public ModelAndView updateCourse(@RequestParam String id,
+    public ModelAndView updateCourse(@RequestParam Long id,
                                            @RequestParam String coursename) {
         // Needs Error Checking!!
         Course course = courseRepository.findOne(id);
