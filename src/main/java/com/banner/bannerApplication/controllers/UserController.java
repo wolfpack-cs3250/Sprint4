@@ -64,6 +64,18 @@ public class UserController {
     public String updateUser(@PathVariable Long id,
                                            Model model) {
         // Needs Error Checking!!
+//        Long id = Long.parseLong(idString);
+        User user = userRepository.findOne(id);
+        model.addAttribute("student", user);
+        return "update";
+    }
+
+    // UPDATE
+    @GetMapping(path="/update")
+    public ModelAndView updateStudent(@RequestParam Long id,
+                                   @RequestParam String firstname,
+                                   @RequestParam String lastname) {
+        // Needs Error Checking
         User user = userRepository.findOne(id);
         model.addAttribute("student", user);
         return "update";
