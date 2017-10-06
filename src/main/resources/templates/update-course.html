@@ -1,0 +1,36 @@
+{{>header}}
+<h1>Update a Course</h1>
+<div class="container">
+    <form action="/faculty/update">
+
+        <input type="hidden" name="id" value="{{course.id}}"/>
+
+        <label for="Department">Department: </label>
+        <input type="text" name="department" value="{{course.department}}" />
+
+        <label for="coursename">Course Name: </label>
+        <input type="text" name="coursename"  value="{{course.courseName}}"/>
+
+        <label for="number">Course Number: </label>
+        <input type="text" name="number" value="{{course.number}}" />
+
+        <label for="credits">Number of Credits: </label>
+        <input type="number" name="credits" value="{{course.credits}}" />
+
+        <label for="description">Description: </label>
+        <input type="text" name="description" value="{{course.description}}" />
+
+        <label for="learningObjective">Learning Objective: </label>
+        <input type="text" name="learningObjective" value="{{course.learningObjective}}"/>
+
+        <label for="prereqs">pre-requs: </label>
+        <input type="text" name="prereqs" value="{{course.prereqs}}"/>
+
+        <label for="coreqs">Co-reqs: </label>
+        <input type="text" name="coreqs" value="{{course.coreq}}"/>
+
+        <button type="submit" >Update</button>
+
+    </form>
+</div>
+{{>footer}}
