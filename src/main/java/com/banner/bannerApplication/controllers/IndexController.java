@@ -33,6 +33,9 @@ public class IndexController {
         return "update";
     }
 
+    @RequestMapping("/school-information")
+    String schoolInformation() {return "school-information";}
+
 
     // Professor Crud Links
     @RequestMapping("/delete-professor")
