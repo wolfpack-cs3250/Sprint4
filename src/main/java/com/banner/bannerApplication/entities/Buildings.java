@@ -13,10 +13,10 @@ public class Buildings {
     private String buildingName;
 
     @Column(unique = true)
-    private String roomNumber;
+    private String address;
 
     @Column(unique = true)
-    private String roomSize;
+    private String acronym;
 
     public void setId(String id){
 
@@ -32,22 +32,22 @@ public class Buildings {
         this.buildingName = buildingName;
     }
 
-    public String getRoomNumber() {
+    public String getAddress() {
 
-        return roomNumber;
+        return address;
     }
 
-    public void setRoomNumber(String roomNumber) {
+    public void setAddress(String address) {
 
-        this.roomNumber = roomNumber;
+        this.address = address;
     }
 
-    public String getRoomSize() {
-        return roomSize;
+    public String getAcronym() {
+        return acronym;
     }
 
-    public void setRoomSize(String roomSize) {
-        this.roomSize = roomSize;
+    public void setAcronym(String acronym) {
+        this.acronym = acronym;
     }
 
 }

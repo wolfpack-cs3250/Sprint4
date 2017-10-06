@@ -22,12 +22,12 @@ public class BuildingsController {
     // Create
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView addNewBuilding (@RequestParam String buildingName,
-                                        @RequestParam String roomSize,
-                                        @RequestParam String roomNumber) {
+                                        @RequestParam String address,
+                                        @RequestParam String acronym) {
         Buildings n = new Buildings();
         n.setBuildingName(buildingName);
-        n.setRoomSize(roomSize);
-        n.setRoomNumber(roomNumber);
+        n.setAddress(address);
+        n.setAcronym(acronym);
         buildingRepository.save(n);
         return new ModelAndView("redirect:/buildings");
     }
@@ -44,21 +44,21 @@ public class BuildingsController {
     // Read All
     @GetMapping(path="")
     public String showall(Model model) {
-        Iterable<Buildings> allusers = buildingRepository.findAll();
-        model.addAttribute("allusers", allusers);
+        Iterable<Buildings> allBuildings = buildingRepository.findAll();
+        model.addAttribute("allBuildings", allBuildings);
         return "buildingspage";
     }
 
     // UPDATE
     @GetMapping(path="/update")
     public ModelAndView updateBuildings(@RequestParam String buildingName,
-                                        @RequestParam String roomSize,
-                                        @RequestParam String roomNumber) {
+                                        @RequestParam String address,
+                                        @RequestParam String acronym) {
         Buildings buildings = buildingRepository.findOne(buildingName);
 
         buildings.setBuildingName(buildingName);;
-        buildings.setRoomNumber(roomNumber);
-        buildings.setRoomSize(roomSize);
+        buildings.setAddress(address);
+        buildings.setAcronym(acronym);
         buildingRepository.save(buildings);
         return new ModelAndView("redirect:/buildings");
 
