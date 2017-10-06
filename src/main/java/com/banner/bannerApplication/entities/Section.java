@@ -14,7 +14,7 @@ public class Section extends Professor{
 
     private Long id;
     // private String courseName;
-    private String sectionNumber;
+    private int sectionNumber;
     //private Long professorId;
     // private Long courseId;
 

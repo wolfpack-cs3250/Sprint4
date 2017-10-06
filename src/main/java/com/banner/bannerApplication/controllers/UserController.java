@@ -77,17 +77,6 @@ public class UserController {
                                    @RequestParam String lastname) {
         // Needs Error Checking
         User user = userRepository.findOne(id);
-        model.addAttribute("student", user);
-        return "update";
-    }
-
-    // UPDATE
-    @GetMapping(path="/update")
-    public ModelAndView updateStudent(@RequestParam Long id,
-                                   @RequestParam String firstname,
-                                   @RequestParam String lastname) {
-        // Needs Error Checking
-        User user = userRepository.findOne(id);
 
         user.setFirstName(firstname);
         user.setLastName(lastname);
