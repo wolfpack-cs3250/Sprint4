@@ -10,9 +10,10 @@ public class Professor {
 
     @Column(unique=true)
     private Long id;
-  
+
+    @Column(unique = false)
     private String firstName;
-    @Column(unique = true)
+    @Column(unique = false)
     private String lastName;
 
     public String getFirstName() {
