@@ -68,11 +68,11 @@ public class User {
 
     // Course Getters and setters
     public Course getCourse() {
-        return course;
+        return studentCourse;
     }
 
     public void setCourse(Course course) {
-        this.course = course;
+        this.studentCourse = course;
     }
 
 }
