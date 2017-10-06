@@ -63,8 +63,6 @@ public class UserController {
     @GetMapping(path="/update/{id}")
     public String updateUser(@PathVariable Long id,
                                            Model model) {
-        // Needs Error Checking!!
-//        Long id = Long.parseLong(idString);
         User user = userRepository.findOne(id);
         model.addAttribute("student", user);
         return "update";

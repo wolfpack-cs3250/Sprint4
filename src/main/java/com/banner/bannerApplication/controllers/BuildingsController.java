@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -31,13 +32,11 @@ public class BuildingsController {
         buildingRepository.save(n);
         return new ModelAndView("redirect:/buildings");
     }
-    // why do the building n and the .set when you jsut do a .delete with the building name given into the parameter.
+
     // Delete
-    @GetMapping(path="/delete")
-    public ModelAndView RemoveBuildings(@RequestParam String buildingName) {
-//        Buildings n = new Buildings();
-//        n.setId(buildingName);
-        buildingRepository.delete(buildingName);
+    @GetMapping(path="/delete/{id}")
+    public ModelAndView RemoveUser(@PathVariable Long id) {
+        buildingRepository.delete(id);
         return new ModelAndView("redirect:/buildings");
     }
 
@@ -50,19 +49,25 @@ public class BuildingsController {
     }
 
     // UPDATE
-    @GetMapping(path="/update")
-    public ModelAndView updateBuildings(@RequestParam String buildingName,
-                                        @RequestParam String address,
-                                        @RequestParam String acronym) {
-        Buildings buildings = buildingRepository.findOne(buildingName);
+    @GetMapping(path="/update/{id}")
+    public String updateUser(@PathVariable Long id,
+                             Model model) {
+        Buildings building = buildingRepository.findOne(id);
+        model.addAttribute("building", building);
+        return "update-building";
+    }
 
+    // UPDATE
+    @GetMapping(path="/update")
+    public ModelAndView updateStudent(@RequestParam Long id, @RequestParam String acronym,
+                                      @RequestParam String buildingName,
+                                      @RequestParam String address) {
+        Buildings buildings = buildingRepository.findOne(id);
         buildings.setBuildingName(buildingName);;
         buildings.setAddress(address);
         buildings.setAcronym(acronym);
         buildingRepository.save(buildings);
         return new ModelAndView("redirect:/buildings");
-
-
     }
 
 }

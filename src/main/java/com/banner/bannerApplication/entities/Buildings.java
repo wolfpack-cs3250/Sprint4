@@ -7,7 +7,7 @@ public class Buildings {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
 
     @Column(unique=true)
     private String buildingName;
@@ -18,9 +18,9 @@ public class Buildings {
     @Column(unique = true)
     private String acronym;
 
-    public void setId(String id){
 
-        this.id=id;
+    public Long getId(){
+        return id;
     }
 
     public String getbuildingName() {
