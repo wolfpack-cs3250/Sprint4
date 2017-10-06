@@ -16,17 +16,17 @@ import com.banner.bannerApplication.entities.Course;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "student_id", unique = true)
     private Long id;
   
     @ManyToOne
     private Course studentCourse;
 
-    @Column(unique = true)
+    @Column(unique = false)
     private String firstName;
 
-    @Column(unique = true)
+    @Column(unique = false)
     private String lastName;
 
     @Column(unique = true)

@@ -31,12 +31,12 @@ public class BuildingsController {
         buildingRepository.save(n);
         return new ModelAndView("redirect:/buildings");
     }
-
+    // why do the building n and the .set when you jsut do a .delete with the building name given into the parameter.
     // Delete
     @GetMapping(path="/delete")
     public ModelAndView RemoveBuildings(@RequestParam String buildingName) {
-        Buildings n = new Buildings();
-        n.setId(buildingName);
+//        Buildings n = new Buildings();
+//        n.setId(buildingName);
         buildingRepository.delete(buildingName);
         return new ModelAndView("redirect:/buildings");
     }
