@@ -8,6 +8,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import java.util.List;
 
 @RepositoryRestResource(collectionResourceRel = "buildings", path = "buildings")
-public interface BuildingRepository extends PagingAndSortingRepository<Buildings, String> {
+public interface BuildingRepository extends PagingAndSortingRepository<Buildings, Long> {
     List<Buildings> findByBuildingName(@Param("name") String name);
 }
