@@ -1,6 +1,7 @@
 package com.banner.bannerApplication.controllers;
 
 import com.banner.bannerApplication.entities.Course;
+import com.banner.bannerApplication.entities.Section;
 import com.banner.bannerApplication.repositories.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,7 +43,7 @@ public class FacultyCourse {
 
     // Delete
     @GetMapping(path="/delete")
-    public ModelAndView RemoveCourse(@RequestParam String id) {
+    public ModelAndView RemoveCourse(@RequestParam Long id) {
         Course n = new Course();
         courseRepository.delete(id);
         return new ModelAndView("redirect:/course");
@@ -57,16 +58,13 @@ public class FacultyCourse {
     }
 
 
-    // Read by id
-//    @GetMapping(path="/{id}")
-
     // UPDATE
     //find by number
     @GetMapping(path="/update")
     public ModelAndView updateCourse(@RequestParam String department, @RequestParam String coursename, @RequestParam String number, @RequestParam int credits,
-                                     @RequestParam String description,@RequestParam String learningObjective, @RequestParam String prereqs, @RequestParam String Coreqs) {
+                                     @RequestParam String description,@RequestParam String learningObjective, @RequestParam String prereqs, @RequestParam String Coreqs, @RequestParam Long id) {
         // Needs Error Checking!!
-        Course course = courseRepository.findOne(number);
+        Course course = courseRepository.findOne(id);
         course.setDepartment(department);
         course.setCourseName(coursename);
         course.setNumber(number);
@@ -80,5 +78,6 @@ public class FacultyCourse {
 
 
     }
+
 
 }

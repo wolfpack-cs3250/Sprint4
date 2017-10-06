@@ -1,0 +1,11 @@
+{{>header}}
+<h1> Select Courses</h1>
+<form action="/user/addcourse/{{studentid}}" >
+    {{#allcourses}}
+    <label for="courseName">{{courseName}}</label>
+    <input type="checkbox" name="course" value="{{id}}">
+    <br>
+    {{/allcourses}}
+    <button type="submit" class="btn btn-danger">Register</button>
+</form>
+{{>footer}}
