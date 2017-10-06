@@ -57,13 +57,20 @@ public class UserController {
         return "userpage";
     }
 
-
+    // View One User
+    @GetMapping(path="/view/{id}")
+    public String showOne(@PathVariable Long id, Model model) {
+        User user = userRepository.findOne(id);
+        Course course = courseRepository.findOne(user.getCourse().getCourseId());
+        model.addAttribute("student", user);
+        model.addAttribute("course", course);
+        return "student-view";
+    }
 
     // UPDATE page
     @GetMapping(path="/update/{id}")
     public String updateUser(@PathVariable Long id,
                                            Model model) {
-        // Needs Error Checking!!
         User user = userRepository.findOne(id);
         model.addAttribute("student", user);
         return "update";

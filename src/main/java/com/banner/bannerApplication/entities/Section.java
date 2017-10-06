@@ -13,10 +13,9 @@ public class Section extends Professor{
     @GeneratedValue(strategy = GenerationType.AUTO)
 
     private Long id;
-    private int sectionNumber;
-
     // private String courseName;
-    // private Long professorId;
+    private int sectionNumber;
+    //private Long professorId;
     // private Long courseId;
 
 
@@ -24,12 +23,6 @@ public class Section extends Professor{
     public Long getCourseId () {
         return id;
     }
-
-    public int getSectionNumber (int sectionNumber) {
-        return sectionNumber;
-    }
-
-    public void setSectionNumber (int sectionNumber) {
 
 
 //    public String getCourseName  (String courseName) {
@@ -39,5 +32,13 @@ public class Section extends Professor{
 //    public void setCourseName (String courseName) {
 //        this.courseName = courseName;
 //    }
+
+    public int getSectionNumber (int sectionNumber) {
+        return sectionNumber;
     }
+
+    public void setSectionNumber (int sectionNumber) {
+        this.sectionNumber = sectionNumber;
+    }
+
 }
