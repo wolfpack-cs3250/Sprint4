@@ -24,7 +24,8 @@ public class SectionController {
     // Create
     // Section Controllers
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView AddSection(@RequestParam long courseID,@RequestParam String Coursename, @RequestParam String ProfessorFirstname,@RequestParam String ProfessorLastname,@RequestParam int sectionnumber){
+    public ModelAndView AddSection(@RequestParam long courseID, @RequestParam String ProfessorFirstname,
+                                   @RequestParam String ProfessorLastname, @RequestParam int sectionnumber){
         Course course = courseRepository.findOne(courseID);
         Section n= new Section();
         n.setFirstName(ProfessorFirstname);
