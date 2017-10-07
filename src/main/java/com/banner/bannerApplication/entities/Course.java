@@ -19,7 +19,6 @@ public class Course {
     @Column(name = "id_course", unique = true)
     private Long id;
 
-
     @OneToMany(mappedBy = "studentCourse")
     private List<User> students = new ArrayList<User>();
 

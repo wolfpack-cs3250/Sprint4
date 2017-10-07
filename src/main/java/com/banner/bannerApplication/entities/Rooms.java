@@ -7,16 +7,15 @@ public class Rooms {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
 
     private String roomSize;
 
     @Column(unique = true)
     private String roomNumber;
 
-    public void setId(String id) {
-
-        this.id = id;
+    public Long getId(){
+        return id;
     }
 
     public String getRoomSize() {

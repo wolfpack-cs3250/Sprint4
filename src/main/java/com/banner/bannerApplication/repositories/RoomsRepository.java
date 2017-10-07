@@ -8,6 +8,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import java.util.List;
 
 @RepositoryRestResource(collectionResourceRel = "rooms", path = "rooms")
-public interface RoomsRepository extends PagingAndSortingRepository<Rooms, String> {
+public interface RoomsRepository extends PagingAndSortingRepository<Rooms, Long> {
     List<Rooms> findByRoomNumber(@Param("room_number") String roomNumber);
 }

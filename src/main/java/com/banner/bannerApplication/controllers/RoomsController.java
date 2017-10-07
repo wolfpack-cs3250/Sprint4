@@ -5,10 +5,7 @@ import com.banner.bannerApplication.repositories.RoomsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -31,11 +28,9 @@ public class RoomsController {
     }
 
     // Delete
-    @GetMapping(path="/delete")
-    public ModelAndView RemoveRooms(@RequestParam String roomNumber) {
-        Rooms n = new Rooms();
-        n.setId(roomNumber);
-        roomsRepository.delete(roomNumber);
+    @GetMapping(path="/delete/{id}")
+    public ModelAndView RemoveRooms(@PathVariable Long roomId) {
+        roomsRepository.delete(roomId);
         return new ModelAndView("redirect:/rooms");
     }
 
@@ -49,10 +44,11 @@ public class RoomsController {
 
     // UPDATE
     @GetMapping(path="/update")
-    public ModelAndView updateRooms(@RequestParam String roomSize,
-                                    @RequestParam String roomNumber) {
-        Rooms rooms = roomsRepository.findOne(roomNumber);
+    public ModelAndView updateRooms(@RequestParam String roomNumber,
+                                    @RequestParam String roomSize,
+                                    @RequestParam Long roomId) {
 
+        Rooms rooms = roomsRepository.findOne(roomId);
         rooms.setRoomSize(roomSize);
         rooms.setRoomNumber(roomNumber);
         roomsRepository.save(rooms);
