@@ -61,9 +61,19 @@ public class UserController {
     @GetMapping(path="/view/{id}")
     public String showOne(@PathVariable Long id, Model model) {
         User user = userRepository.findOne(id);
-        Course course = courseRepository.findOne(user.getCourse().getCourseId());
-        model.addAttribute("student", user);
-        model.addAttribute("course", course);
+
+        try {
+            Course course = courseRepository.findOne(user.getCourse().getCourseId());
+            String courseName = course.getCourseName();
+            model.addAttribute("course", courseName);
+            model.addAttribute("student", user);
+        } catch (NullPointerException e) {
+
+            String noCourse = "none";
+            model.addAttribute("course", noCourse);
+            model.addAttribute("student", user);
+        }
+
         return "student-view";
     }
 
