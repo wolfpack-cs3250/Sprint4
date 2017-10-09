@@ -1,0 +1,42 @@
+{{>header}}
+<h1>List of Buildings:</h1>
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Acronym</th>
+        <th>Building Name</th>
+        <th>Address</th>
+    </tr>
+    {{#allBuildings}}
+    <tr>
+        <td>{{id}}</td>
+        <td>{{acronym}}</td>
+        <td>{{buildingName}}</td>
+        <td>{{address}}</td>
+        <td>
+            <form action="/buildings/view/{{id}}" method="get">
+                <button type="submit" class="btn btn-danger">View</button>
+            </form>
+        </td>
+
+        <td>
+            <form action="/buildings/update/{{id}}" method="get">
+                <button type="submit" class="btn btn-danger">Edit</button>
+            </form>
+        </td>
+        <td>
+            <form action="/buildings/delete/{{id}}" method="get">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </td>
+        <td>
+            <form action="/buildings/register/{{id}}" method="get">
+                <button type="submit" class="btn btn-danger">Register</button>
+            </form>
+        </td>
+    </tr>
+    {{/allBuildings}}
+</table>
+<a href="/create-building"> Create Building</a>
+{{>footer}}

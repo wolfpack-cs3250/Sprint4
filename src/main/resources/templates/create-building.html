@@ -1,0 +1,16 @@
+{{>header}}
+   <h1>Create a New Building</h1>
+    <div class="container">
+        <form action="/buildings" method="post">
+            <label for="buildingname">Building name: </label>
+            <input type="text" name="buildingname" />
+
+            <label for="address">Address: </label>
+            <input type="text" name="address" />
+
+            <label for="acronym">Acronym: </label>
+            <input type="text" name="acronym" />
+            <button type="submit" >Submit</button>
+        </form>
+    </div>
+{{>footer}}

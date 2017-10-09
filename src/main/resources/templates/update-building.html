@@ -1,0 +1,21 @@
+{{>header}}
+<h1>Update an Account</h1>
+<div class="container">
+    <form action="/buildings/update">
+
+        <input type="hidden" name="id" value="{{buildings.id}}"/>
+
+        <label type="buildingname">put updated building name here:</label>
+        <input type="text" name="buildingname" value="{{buildings.buildingName}}" />
+
+        <label type="address">put updated address here:</label>
+        <input type="text" name="address" value="{{buildings.address}}">
+
+        <label type="acronym">put updated acronym here:</label>
+        <input type="text" name="acronym" value="{{buildings.acronym}}">
+
+        <button type="submit" >Update</button>
+    </form>
+</div>
+  </form>
+{{>footer}}

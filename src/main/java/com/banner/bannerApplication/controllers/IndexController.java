@@ -83,4 +83,14 @@ public class IndexController {
         return "pick-professor";
     }
 
+    //Building Crud Link
+    @RequestMapping("/create-building")
+    String createBuilding() { return "create-building"; }
+
+    @RequestMapping("/update-building")
+    String updateBuilding() { return "update-building"; }
+
+    @RequestMapping("/delete-building")
+    String deleteBuilding() { return "delete-building"; }
+
 }
