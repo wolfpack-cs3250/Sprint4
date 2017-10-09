@@ -53,6 +53,15 @@ public class FacultyCourse {
         return "faculty";
     }
 
+    // View One Course
+    @GetMapping(path="/view/{id}")
+    public String showOne(@PathVariable Long id, Model model) {
+        Course course = courseRepository.findOne(id);
+
+        model.addAttribute("course", course);
+        return "course-view";
+    }
+
     // UPDATE page
     @GetMapping(path="/update/{id}")
     public String updateCourse(@PathVariable Long id,

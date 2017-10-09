@@ -30,6 +30,12 @@ public class UserController {
     @Autowired
     private CourseRepository courseRepository;
 
+    // Create student html page
+    @RequestMapping("/create-student")
+    String createStudent() {
+        return "create";
+    }
+
     // Create
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView addNewUser (@RequestParam String firstname,

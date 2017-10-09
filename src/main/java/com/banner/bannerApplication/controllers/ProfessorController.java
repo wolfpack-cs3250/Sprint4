@@ -26,6 +26,13 @@ public class ProfessorController {
     @Autowired
     private CourseRepository courseRepository;
 
+
+    // Create Professer html page
+    @RequestMapping("/create-professor")
+    String createProfessor() {
+        return "create-professor";
+    }
+
     // Create
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView addNewProfessor (@RequestParam String firstname,
@@ -50,6 +57,15 @@ public class ProfessorController {
         Iterable<Professor> allusers = professorRepository.findAll();
         model.addAttribute("allusers", allusers);
         return "professorpage";
+    }
+
+    // View One Professor
+    @GetMapping(path="/view/{id}")
+    public String showOne(@PathVariable Long id, Model model) {
+        Professor professor = professorRepository.findOne(id);
+
+        model.addAttribute("professor", professor);
+        return "professor-view";
     }
 
     // UPDATE

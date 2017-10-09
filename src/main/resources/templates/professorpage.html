@@ -14,6 +14,11 @@
         <td>{{firstName}}</td>
         <td>{{lastName}}</td>
         <td>
+            <form action="/professor/view/{{id}}" method="get">
+                <button type="submit" class="btn btn-danger">View</button>
+            </form>
+        </td>
+        <td>
             <form action="/professor/update/{{id}}" method="get">
                 <button type="submit" class="btn btn-danger">Edit</button>
             </form>
@@ -31,5 +36,5 @@
     </tr>
     {{/allusers}}
 </table>
-<a href="/create-professor"> Create Professor</a>
+<a href="/professor/create-professor"> Create Professor</a>
 {{>footer}}
