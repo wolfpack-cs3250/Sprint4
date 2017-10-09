@@ -11,16 +11,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import java.util.List;
 
 import com.banner.bannerApplication.entities.User;
 import com.banner.bannerApplication.repositories.UserRepository;
-import org.springframework.web.servlet.ModelAndView;
+
+import com.banner.bannerApplication.entities.Course;
+import com.banner.bannerApplication.repositories.CourseRepository;
+
+import javax.persistence.GeneratedValue;
 
 @Controller
 @RequestMapping("user")
 public class UserController {
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private CourseRepository courseRepository;
 
     // Create
     @RequestMapping(method = RequestMethod.POST)
@@ -29,15 +37,14 @@ public class UserController {
         User n = new User();
         n.setFirstName(firstname);
         n.setLastName(lastname);
+        n.setCourse(null);
         userRepository.save(n);
         return new ModelAndView("redirect:/user");
     }
 
     // Delete
-    @GetMapping(path="/delete")
-    public ModelAndView RemoveUser(@RequestParam String id) {
-        User n = new User();
-        n.setId(id);
+    @GetMapping(path="/delete/{id}")
+    public ModelAndView RemoveUser(@PathVariable Long id) {
         userRepository.delete(id);
         return new ModelAndView("redirect:/user");
     }
@@ -50,24 +57,53 @@ public class UserController {
         return "userpage";
     }
 
+    // View One User
+    @GetMapping(path="/view/{id}")
+    public String showOne(@PathVariable Long id, Model model) {
+        User user = userRepository.findOne(id);
+        Course course = courseRepository.findOne(user.getCourse().getCourseId());
+        model.addAttribute("student", user);
+        model.addAttribute("course", course);
+        return "student-view";
+    }
 
-    // Read by id
-//    @GetMapping(path="/{id}")
+    // UPDATE page
+    @GetMapping(path="/update/{id}")
+    public String updateUser(@PathVariable Long id,
+                                           Model model) {
+        User user = userRepository.findOne(id);
+        model.addAttribute("student", user);
+        return "update";
+    }
 
-    // UPDATE
+    // UPDATE User
     @GetMapping(path="/update")
-    public ModelAndView updateUser(@RequestParam String id,
-                                           @RequestParam String firstname,
-                                           @RequestParam String lastname) {
-        // Needs Error Checking!!
+    public ModelAndView updateStudent(@RequestParam Long id,
+                                   @RequestParam String firstname,
+                                   @RequestParam String lastname) {
+        // Needs Error Checking
         User user = userRepository.findOne(id);
 
         user.setFirstName(firstname);
         user.setLastName(lastname);
         userRepository.save(user);
         return new ModelAndView("redirect:/user");
+    }
+    @GetMapping(path="/register/{id}")
+    public String registerStudent(@PathVariable Long id, Model model) {
+        Iterable<Course> allcourses = courseRepository.findAll();
+        model.addAttribute("allcourses", allcourses);
+        model.addAttribute("studentid", id);
+        return "pick-student";
+    }
 
-
+    @GetMapping(path="/addcourse/{id}")
+    public ModelAndView registerStudent(@PathVariable Long id, @RequestParam Long course) {
+        User user = userRepository.findOne(id);
+        Course studentSelectedCourse = courseRepository.findOne(course);
+        user.setCourse(studentSelectedCourse);
+        userRepository.save(user);
+        return new ModelAndView("redirect:/user");
     }
 
 }

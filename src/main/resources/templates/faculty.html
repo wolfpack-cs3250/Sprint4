@@ -1,0 +1,42 @@
+{{>header}}
+<h1>List of Courses:</h1>
+
+<table>
+    <tr>
+        <th>Unique Id</th>
+        <th>Course Number</th>
+        <th>Course Name</th>
+        <th>Course Description</th>
+        <th>Credits</th>
+        <th>Pre Reqs</th>
+    </tr>
+    {{#allcourses}}
+    <tr>
+        <td>{{id}}</td>
+        <td>{{number}}</td>
+        <td>{{courseName}}</td>
+        <td>{{description}}</td>
+        <td>{{credits}}</td>
+        <td>{{prereqs}}</td>
+        <td>
+            <form action="/section/add/{{id}}" method="get">
+                <button type="submit" class="btn btn-danger">Add Section</button>
+            </form>
+        </td>
+
+        <td>
+            <form action="/faculty/delete/{{id}}" method="get">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </td>
+        <td>
+            <form action="/faculty/update/{{id}}" method="get">
+                <button type="submit" class="btn btn-danger">Update</button>
+            </form>
+        </td>
+    </tr>
+    {{/allcourses}}
+</table>
+<a href="/faculty/create"> Create Course</a>
+
+{{>footer}}

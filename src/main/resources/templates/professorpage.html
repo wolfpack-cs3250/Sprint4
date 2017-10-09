@@ -1,11 +1,12 @@
 {{>header}}
-<h1>List of Users:</h1>
+<h1>List of Professors:</h1>
 
 <table>
     <tr>
         <th>Id</th>
         <th>First Name</th>
         <th>Last Name</th>
+        <th> edit</th>
     </tr>
     {{#allusers}}
     <tr>
@@ -13,28 +14,22 @@
         <td>{{firstName}}</td>
         <td>{{lastName}}</td>
         <td>
-            <form action="/user/view/{{id}}" method="get">
-                <button type="submit" class="btn btn-danger">View</button>
-            </form>
-        </td>
-
-        <td>
-            <form action="/user/update/{{id}}" method="get">
+            <form action="/professor/update/{{id}}" method="get">
                 <button type="submit" class="btn btn-danger">Edit</button>
             </form>
         </td>
         <td>
-            <form action="/user/delete/{{id}}" method="get">
+            <form action="/professor/delete/{{id}}" method="get">
                 <button type="submit" class="btn btn-danger">Delete</button>
             </form>
         </td>
         <td>
-            <form action="/user/register/{{id}}" method="get">
+            <form action="/professor/register/{{id}}" method="get">
                 <button type="submit" class="btn btn-danger">Register</button>
             </form>
         </td>
     </tr>
     {{/allusers}}
 </table>
-<a href="/create"> Create User</a>
+<a href="/create-professor"> Create Professor</a>
 {{>footer}}

@@ -5,45 +5,39 @@
 
 package com.banner.bannerApplication.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
-public class Section {
-
-    @Id
+public class Section extends Professor{
+    //@id
     @GeneratedValue(strategy = GenerationType.AUTO)
 
-    private String courseId;
+    private Long id;
+    // private String courseName;
+    private int sectionNumber;
+    //private Long professorId;
+    // private Long courseId;
 
-    private String courseName;
-    private String sectionNumber;
 
-    public Section() {
 
+    public Long getCourseId () {
+        return id;
     }
 
 
-    public void getCourseId (String id) {
-        this.courseId = courseId;
-    }
+//    public String getCourseName  (String courseName) {
+//        return courseName;
+//    }
+//
+//    public void setCourseName (String courseName) {
+//        this.courseName = courseName;
+//    }
 
-
-    public String getCourseName  (String courseName) {
-        return courseName;
-    }
-
-    public void setCourseName (String courseName) {
-        this.courseName = courseName;
-    }
-
-    public String getSectionNumber (String sectionNumber) {
+    public int getSectionNumber (int sectionNumber) {
         return sectionNumber;
     }
 
-    public void setSectionNumber (String sectionNumber) {
+    public void setSectionNumber (int sectionNumber) {
         this.sectionNumber = sectionNumber;
     }
 
