@@ -57,22 +57,10 @@ public class FacultyCourse {
         return "faculty";
     }
 
-    // View One Course
-    /*
     @GetMapping(path="/view/{id}")
     public String showOne(@PathVariable Long id, Model model) {
         Course course = courseRepository.findOne(id);
-        Collection<Section> sections = sectionRepository.findByCourseCourseName(course.getCourseName());
-        model.addAttribute("course", course);
-        model.addAttribute("sections", sections);
-        return "course-view";
-    }
-    */
-
-    @GetMapping(path="/view/{id}")
-    public String showOne(@PathVariable Long id, Model model) {
-        Course course = courseRepository.findOne(id);
-        Collection<Section> sections = course.getSections();
+        Collection<Section> sections = sectionRepository.findByCourseNumber(course.getNumber());
         model.addAttribute("course", course);
         model.addAttribute("sections", sections);
         return "course-view";

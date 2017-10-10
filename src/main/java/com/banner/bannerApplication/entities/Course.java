@@ -53,10 +53,6 @@ public class Course {
     public Set<Section> getSections(){
         return sections;
     }
-    public void setSections(Section section){
-        this.sections.add(section);
-    }
-
     public Long getCourseId() {
         return id;
     }
