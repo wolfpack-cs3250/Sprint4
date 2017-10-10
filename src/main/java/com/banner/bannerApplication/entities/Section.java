@@ -13,32 +13,29 @@ public class Section extends Professor{
     @GeneratedValue(strategy = GenerationType.AUTO)
 
     private Long id;
-    // private String courseName;
     private int sectionNumber;
-    //private Long professorId;
-    // private Long courseId;
 
+    @ManyToOne
+    private Course course;
 
+    public Section() {}
+
+    public Section(Course course, int sectionNumber){
+        this.sectionNumber = sectionNumber;
+        this.course = course;
+    }
 
     public Long getCourseId () {
         return id;
     }
-
-
-//    public String getCourseName  (String courseName) {
-//        return courseName;
-//    }
-//
-//    public void setCourseName (String courseName) {
-//        this.courseName = courseName;
-//    }
-
     public int getSectionNumber (int sectionNumber) {
         return sectionNumber;
     }
-
     public void setSectionNumber (int sectionNumber) {
         this.sectionNumber = sectionNumber;
+    }
+    public Course getCourse(){
+        return course;
     }
 
 }

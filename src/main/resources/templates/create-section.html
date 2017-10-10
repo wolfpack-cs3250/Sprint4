@@ -1,18 +1,20 @@
 {{>header}}
 <h1> Create a Section</h1>
 <div class="container">
-    <form action="/section/add/1?" method="post">
+    <form action="/section" method="post">
         <label for="courseID">CourseID:</label>
-        <input type="text" name="courseId">
+        <input type="hidden" name="courseId" value="{{courseId}}">
 
+        <!--
         <label for="ProfessorFirstName"></label>
         <input type="text" name="">
 
         <label for="ProfessorLastName"></label>
         <input type="text" name="">
+        -->
 
         <label for="SectionNumber">SectionNumber:</label>
-        <input type="number" name="SectionNumber">
+        <input type="number" name="sectionNumber">
 
        <button type="submit"> Submit</button>
     </form>

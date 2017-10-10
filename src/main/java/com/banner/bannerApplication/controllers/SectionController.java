@@ -19,30 +19,31 @@ public class SectionController {
 
     @Autowired
     private SectionRepository sectionRepository;
+    @Autowired
     private CourseRepository courseRepository;
 
     // Create
     // Section Controllers
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView AddSection(@RequestParam long courseID, @RequestParam String ProfessorFirstname,
-                                   @RequestParam String ProfessorLastname, @RequestParam int sectionnumber){
-        Course course = courseRepository.findOne(courseID);
-        Section n= new Section();
-        n.setFirstName(ProfessorFirstname);
-        n.setLastName(ProfessorLastname);
-        n.setSectionNumber(sectionnumber);
-        sectionRepository.save(n);
-        return new ModelAndView("redirect:/section");
+    public ModelAndView AddSection(@RequestParam Long courseId, @RequestParam int sectionNumber){
 
+        Course course = courseRepository.findOne(courseId);
+        Section section = sectionRepository.save(new Section(course, sectionNumber));
+        sectionRepository.save(section);
+        return new ModelAndView("redirect:/faculty/view/" + courseId);
+    }
+
+    @GetMapping(path="/add/{id}")
+    public String createSection(@PathVariable Long id, Model model) {
+       model.addAttribute("courseId", id);
+       return "create-section";
     }
 
     // Delete
     //needs to be fixed
-    @GetMapping(path="/delete")
-    public ModelAndView RemoveSection(@RequestParam int sectionNumber) {
-
-        Section n = new Section();
-        sectionRepository.delete(sectionNumber);
+    @GetMapping(path="/delete/{id]")
+    public ModelAndView RemoveSection(@PathVariable Long id) {
+        sectionRepository.delete(id);
         return new ModelAndView("redirect:/section");
     }
 
@@ -55,6 +56,7 @@ public class SectionController {
     }
 
     // UPDATE
+/*
     @GetMapping(path="/update")
     public ModelAndView updateSection(@RequestParam int sectionNumber,@RequestParam String Firstname,@RequestParam String Lastname) {
 
@@ -68,5 +70,6 @@ public class SectionController {
 
 
     }
+    */
 
 }

@@ -3,17 +3,21 @@ package com.banner.bannerApplication.controllers;
 import com.banner.bannerApplication.entities.Course;
 import com.banner.bannerApplication.entities.Section;
 import com.banner.bannerApplication.repositories.CourseRepository;
+import com.banner.bannerApplication.repositories.SectionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import java.util.Collection;
 
 @Controller
 @RequestMapping("faculty")
 public class FacultyCourse {
     @Autowired
     private CourseRepository courseRepository;
+    @Autowired
+    private SectionRepository sectionRepository;
 
     // Create - w GET REQUEST
     @GetMapping(path="/create")
@@ -54,11 +58,23 @@ public class FacultyCourse {
     }
 
     // View One Course
+    /*
     @GetMapping(path="/view/{id}")
     public String showOne(@PathVariable Long id, Model model) {
         Course course = courseRepository.findOne(id);
-
+        Collection<Section> sections = sectionRepository.findByCourseCourseName(course.getCourseName());
         model.addAttribute("course", course);
+        model.addAttribute("sections", sections);
+        return "course-view";
+    }
+    */
+
+    @GetMapping(path="/view/{id}")
+    public String showOne(@PathVariable Long id, Model model) {
+        Course course = courseRepository.findOne(id);
+        Collection<Section> sections = course.getSections();
+        model.addAttribute("course", course);
+        model.addAttribute("sections", sections);
         return "course-view";
     }
 

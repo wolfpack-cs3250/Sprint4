@@ -1,13 +1,11 @@
 package com.banner.bannerApplication.repositories;
 
-import java.util.List;
+import java.util.Collection;
 
 import com.banner.bannerApplication.entities.Section;
-import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.data.repository.query.Param;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-@RepositoryRestResource(collectionResourceRel = "section", path = "section")
-public interface SectionRepository extends PagingAndSortingRepository<Section, Integer> {
-    List<Section> findBySectionNumber (@Param("section") String sectionNumber);
+public interface SectionRepository extends JpaRepository<Section, Long> {
+    Collection<Section> findByCourseNumber (String name);
 }
