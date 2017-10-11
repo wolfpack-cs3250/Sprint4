@@ -13,9 +13,44 @@
     <h4>Co-Reqs: {{course.coreq}}</h4>
 </div>
 <h1> Sections: </h1>
-{{#sections}}
-    <p>{{sectionNumber}}</p>
-{{/sections}}
+<table>
+    <tr>
+        <th>id</th>
+        <th>Sections Number</th>
+        <th>Building</th>
+        <th>Room</th>
+        <th>Professor</th>
+    </tr>
+    {{#sections}}
+    <tr>
+        <td>{{id}}</td>
+        <td>{{sectionNumber}}</td>
+        <td><p>x</p></td>
+        <td><p>x</p></td>
+        <td><p>x</p></td>
+        <td>
+            <form action="/section/update/{{id}}" method="get">
+                <button type="submit" class="btn btn-danger">Edit</button>
+            </form>
+        </td>
+        <td>
+            <form action="/section/delete/{{id}}" method="get">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </td>
+        <td>
+            <form action="/section/add/professor/{{id}}" method="get">
+                <button type="submit" class="btn btn-danger">Add Professor</button>
+            </form>
+        </td>
+        <td>
+            <form action="/section/add/location/{{id}}" method="get">
+                <button type="submit" class="btn btn-danger">Add Location</button>
+            </form>
+        </td>
+    </tr>
+    {{/sections}}
+</table>
 
 
 {{>footer}}

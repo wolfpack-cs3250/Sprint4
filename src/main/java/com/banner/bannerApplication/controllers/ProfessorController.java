@@ -26,7 +26,6 @@ public class ProfessorController {
     @Autowired
     private CourseRepository courseRepository;
 
-
     // Create Professer html page
     @RequestMapping("/create-professor")
     String createProfessor() {
@@ -54,8 +53,8 @@ public class ProfessorController {
     // Read All
     @GetMapping(path="")
     public String showall(Model model) {
-        Iterable<Professor> allusers = professorRepository.findAll();
-        model.addAttribute("allusers", allusers);
+        Iterable<Professor> professors = professorRepository.findAll();
+        model.addAttribute("professors", professors);
         return "professorpage";
     }
 

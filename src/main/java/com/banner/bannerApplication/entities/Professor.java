@@ -7,12 +7,12 @@ public class Professor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
     @Column(unique=true)
     private Long id;
 
     @Column(unique = false)
     private String firstName;
+
     @Column(unique = false)
     private String lastName;
 

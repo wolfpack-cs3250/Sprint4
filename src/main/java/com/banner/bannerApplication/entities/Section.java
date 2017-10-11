@@ -8,19 +8,19 @@ package com.banner.bannerApplication.entities;
 import javax.persistence.*;
 
 @Entity
-public class Section extends Professor{
+public class Section{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private int sectionNumber;
+    private Long sectionNumber;
 
     @ManyToOne
     private Course course;
 
     public Section() {}
 
-    public Section(Course course, int sectionNumber){
+    public Section(Course course, Long sectionNumber){
         this.sectionNumber = sectionNumber;
         this.course = course;
     }
@@ -28,14 +28,17 @@ public class Section extends Professor{
     public Long getCourseId () {
         return id;
     }
-    public int getSectionNumber (int sectionNumber) {
+    public Long getSectionNumber (Long sectionNumber) {
         return sectionNumber;
     }
-    public void setSectionNumber (int sectionNumber) {
+    public void setSectionNumber (Long sectionNumber) {
         this.sectionNumber = sectionNumber;
     }
     public Course getCourse(){
         return course;
+    }
+    public void setCourse(Course course){
+        this.course = course;
     }
 
 }

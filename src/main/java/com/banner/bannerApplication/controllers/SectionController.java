@@ -4,7 +4,6 @@ import com.banner.bannerApplication.entities.Course;
 import com.banner.bannerApplication.entities.Section;
 import com.banner.bannerApplication.repositories.CourseRepository;
 import com.banner.bannerApplication.repositories.SectionRepository;
-import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,11 +24,13 @@ public class SectionController {
     // Create
     // Section Controllers
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView AddSection(@RequestParam Long courseId, @RequestParam int sectionNumber){
+    public ModelAndView addSection(@RequestParam Long courseId, @RequestParam Long sectionNumber){
 
         Course course = courseRepository.findOne(courseId);
-        Section section = sectionRepository.save(new Section(course, sectionNumber));
-        sectionRepository.save(section);
+        Section n = new Section();
+        n.setSectionNumber(sectionNumber);
+        n.setCourse(course);
+        sectionRepository.save(n);
         return new ModelAndView("redirect:/faculty/view/" + courseId);
     }
 
@@ -44,7 +45,7 @@ public class SectionController {
     @GetMapping(path="/delete/{id]")
     public ModelAndView RemoveSection(@PathVariable Long id) {
         sectionRepository.delete(id);
-        return new ModelAndView("redirect:/section");
+        return new ModelAndView("redirect:/faculty");
     }
 
     // Read All
@@ -58,7 +59,7 @@ public class SectionController {
     // UPDATE
 /*
     @GetMapping(path="/update")
-    public ModelAndView updateSection(@RequestParam int sectionNumber,@RequestParam String Firstname,@RequestParam String Lastname) {
+    public ModelAndView updateSection(@RequestParam Long sectionNumber,@RequestParam String Firstname,@RequestParam String Lastname) {
 
         // Needs Error Checking
         Section section = sectionRepository.findOne(sectionNumber);

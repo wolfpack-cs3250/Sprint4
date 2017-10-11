@@ -11,7 +11,6 @@ public class IndexController {
     String index() {
         return "index";
     }
-
     @RequestMapping("/select")
     String select() {
         return "select";
