@@ -56,7 +56,8 @@ public class SectionController {
 
     // UPDATE
     @GetMapping(path="/update")
-    public ModelAndView updateSection(@RequestParam int sectionNumber,@RequestParam String Firstname,@RequestParam String Lastname) {
+    public ModelAndView updateSection(@RequestParam int sectionNumber,@RequestParam String Firstname,
+                                      @RequestParam String Lastname) {
 
         // Needs Error Checking
         Section section = sectionRepository.findOne(sectionNumber);
