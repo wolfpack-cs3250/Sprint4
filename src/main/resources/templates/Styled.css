@@ -1,0 +1,23 @@
+body{
+    padding: 5px 0;
+    font-family: cursive,Verdana,sans-serif;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    
+}
+
+#wrapper{
+    width: 1000px;
+    padding: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+footer{
+    margin-top:8px;
+    margin-top:0.5rem;
+    background-size: cover;
+    background-position: center top;
+}
