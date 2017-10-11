@@ -1,10 +1,9 @@
 package com.banner.bannerApplication.repositories;
 
 import com.banner.bannerApplication.entities.Professor;
-import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.Optional;
 
-import java.util.List;
-
-public interface ProfessorRepository extends PagingAndSortingRepository<Professor, Long> {
-    List<Professor> findByLastName(String name);
+public interface ProfessorRepository extends JpaRepository<Professor, Long> {
+    Optional<Professor> findByFirstName(String firstName);
 }

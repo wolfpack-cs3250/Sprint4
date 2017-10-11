@@ -1,0 +1,14 @@
+{{>header}}
+<h1> Choose a Professor to teach this section</h1>
+
+<form action="/section/add/professor/">
+    <input type="hidden" name ="sectionId" value="{{sectionId}}">
+    {{#professors}}
+    <label for="name">{{firstName}} {{lastName}}</label>
+    <input type="radio" name="professorId" value="{{id}}">
+    <br>
+    {{/professors}}
+    <button type="submit" class="btn btn-danger">Submit</button>
+</form>
+
+{{>footer}}

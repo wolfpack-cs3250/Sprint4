@@ -18,15 +18,22 @@ public class Section{
     @ManyToOne
     private Course course;
 
-    public Section() {}
+    @ManyToOne
+    private Professor professor;
 
+    public Section() {}
     public Section(Course course, Long sectionNumber){
         this.sectionNumber = sectionNumber;
         this.course = course;
     }
-
     public Long getCourseId () {
         return id;
+    }
+    public void setProfessor(Professor professor){
+        this.professor = professor;
+    }
+    public Professor getProfessor(){
+        return professor;
     }
     public Long getSectionNumber (Long sectionNumber) {
         return sectionNumber;

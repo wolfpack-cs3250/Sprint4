@@ -1,8 +1,10 @@
 package com.banner.bannerApplication.controllers;
 
 import com.banner.bannerApplication.entities.Course;
+import com.banner.bannerApplication.entities.Professor;
 import com.banner.bannerApplication.entities.Section;
 import com.banner.bannerApplication.repositories.CourseRepository;
+import com.banner.bannerApplication.repositories.ProfessorRepository;
 import com.banner.bannerApplication.repositories.SectionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,8 @@ public class SectionController {
     private SectionRepository sectionRepository;
     @Autowired
     private CourseRepository courseRepository;
+    @Autowired
+    private ProfessorRepository professorRepository;
 
     // Create
     // Section Controllers
@@ -38,6 +42,22 @@ public class SectionController {
     public String createSection(@PathVariable Long id, Model model) {
        model.addAttribute("courseId", id);
        return "create-section";
+    }
+
+    @GetMapping(path="/add/professor/{id}")
+    public String addProfessorToSectionView(@PathVariable Long id, Model model) {
+        Iterable<Professor> professors = professorRepository.findAll();
+        model.addAttribute("sectionId", id);
+        model.addAttribute("professors", professors);
+        return "add-professor-to-section";
+    }
+    @GetMapping(path="/add/professor/")
+    public ModelAndView addProfessorToSection(@RequestParam Long professorId, @RequestParam Long sectionId){
+        Professor professor = professorRepository.findOne(professorId);
+        Section section = sectionRepository.findOne(sectionId);
+        section.setProfessor(professor);
+        sectionRepository.save(section);
+        return new ModelAndView("redirect:/faculty");
     }
 
     // Delete

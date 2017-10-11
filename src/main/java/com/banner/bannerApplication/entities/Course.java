@@ -49,6 +49,7 @@ public class Course {
     public Set<Section> getSections(){
         return sections;
     }
+
     public Long getCourseId() {
         return id;
     }
