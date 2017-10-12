@@ -1,10 +1,11 @@
 package com.banner.bannerApplication.controllers;
 
 import com.banner.bannerApplication.entities.Course;
+import com.banner.bannerApplication.entities.Professor;
 import com.banner.bannerApplication.entities.Section;
 import com.banner.bannerApplication.repositories.CourseRepository;
+import com.banner.bannerApplication.repositories.ProfessorRepository;
 import com.banner.bannerApplication.repositories.SectionRepository;
-import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,31 +20,52 @@ public class SectionController {
 
     @Autowired
     private SectionRepository sectionRepository;
+    @Autowired
     private CourseRepository courseRepository;
+    @Autowired
+    private ProfessorRepository professorRepository;
 
     // Create
     // Section Controllers
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView AddSection(@RequestParam long courseID, @RequestParam String ProfessorFirstname,
-                                   @RequestParam String ProfessorLastname, @RequestParam int sectionnumber){
-        Course course = courseRepository.findOne(courseID);
-        Section n= new Section();
-        n.setFirstName(ProfessorFirstname);
-        n.setLastName(ProfessorLastname);
-        n.setSectionNumber(sectionnumber);
-        sectionRepository.save(n);
-        return new ModelAndView("redirect:/section");
+    public ModelAndView addSection(@RequestParam Long courseId, @RequestParam Long sectionNumber){
 
+        Course course = courseRepository.findOne(courseId);
+        Section n = new Section();
+        n.setSectionNumber(sectionNumber);
+        n.setCourse(course);
+        sectionRepository.save(n);
+        return new ModelAndView("redirect:/faculty/view/" + courseId);
+    }
+
+    @GetMapping(path="/add/{id}")
+    public String createSection(@PathVariable Long id, Model model) {
+       model.addAttribute("courseId", id);
+       return "create-section";
+    }
+
+    @GetMapping(path="/add/professor/{id}")
+    public String addProfessorToSectionView(@PathVariable Long id, Model model) {
+        Iterable<Professor> professors = professorRepository.findAll();
+        model.addAttribute("sectionId", id);
+        model.addAttribute("professors", professors);
+        return "add-professor-to-section";
+    }
+    @GetMapping(path="/add/professor/")
+    public ModelAndView addProfessorToSection(@RequestParam Long professorId, @RequestParam Long sectionId){
+        Professor professor = professorRepository.findOne(professorId);
+        Section section = sectionRepository.findOne(sectionId);
+        section.setProfessor(professor);
+        sectionRepository.save(section);
+        return new ModelAndView("redirect:/faculty");
     }
 
     // Delete
     //needs to be fixed
-    @GetMapping(path="/delete")
-    public ModelAndView RemoveSection(@RequestParam int sectionNumber) {
-
-        Section n = new Section();
-        sectionRepository.delete(sectionNumber);
-        return new ModelAndView("redirect:/section");
+    @GetMapping(path="/delete/{id]")
+    public ModelAndView RemoveSection(@PathVariable Long id) {
+        sectionRepository.delete(id);
+        return new ModelAndView("redirect:/faculty");
     }
 
     // Read All
@@ -55,8 +77,9 @@ public class SectionController {
     }
 
     // UPDATE
+/*
     @GetMapping(path="/update")
-    public ModelAndView updateSection(@RequestParam int sectionNumber,@RequestParam String Firstname,@RequestParam String Lastname) {
+    public ModelAndView updateSection(@RequestParam Long sectionNumber,@RequestParam String Firstname,@RequestParam String Lastname) {
 
         // Needs Error Checking
         Section section = sectionRepository.findOne(sectionNumber);
@@ -68,5 +91,6 @@ public class SectionController {
 
 
     }
+    */
 
 }

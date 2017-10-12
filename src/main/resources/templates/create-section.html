@@ -1,0 +1,14 @@
+{{>header}}
+<h1> Create a Section</h1>
+<div class="container">
+    <form action="/section" method="post">
+
+        <input type="hidden" name="courseId" value="{{courseId}}">
+
+        <label for="SectionNumber">SectionNumber:</label>
+        <input type="number" name="sectionNumber">
+
+       <button type="submit"> Submit</button>
+    </form>
+</div>
+{{>footer}}
