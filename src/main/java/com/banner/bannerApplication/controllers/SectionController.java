@@ -96,7 +96,7 @@ public class SectionController {
         return "update-section";
     }
 
-    // UPDATE course
+    // UPDATE section
     @GetMapping(path="/update")
     public ModelAndView updateCourse(@RequestParam Long sectionId, @RequestParam Long sectionNumber,
                                      @RequestParam Long professorId){
@@ -108,22 +108,5 @@ public class SectionController {
         sectionRepository.save(n);
         return new ModelAndView("redirect:/faculty/view/" + n.getCourse().getCourseId());
     }
-
-    // UPDATE
-/*
-    @GetMapping(path="/update")
-    public ModelAndView updateSection(@RequestParam Long sectionNumber,@RequestParam String Firstname,@RequestParam String Lastname) {
-
-        // Needs Error Checking
-        Section section = sectionRepository.findOne(sectionNumber);
-        section.setSectionNumber(sectionNumber);
-        section.setFirstName(Firstname);
-        section.setLastName(Lastname);
-        sectionRepository.save(section);
-        return new ModelAndView("redirect:/section");
-
-
-    }
-    */
 
 }

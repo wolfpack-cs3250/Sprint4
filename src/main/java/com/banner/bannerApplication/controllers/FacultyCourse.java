@@ -64,21 +64,7 @@ public class FacultyCourse {
     public String showOne(@PathVariable Long id, Model model) {
         Course course = courseRepository.findOne(id);
         Collection<Section> sections = sectionRepository.findByCourseNumber(course.getNumber());
-        Collection<Professor> professors = new HashSet<>();
 
-        Professor temp;
-        for (Section s : sections) {
-            temp = s.getProfessor();
-            if (temp == null) {
-                temp = new Professor(" ", " ");
-                professors.add(temp);
-            }
-            else{
-                professors.add(temp);
-            }
-        }
-
-        model.addAttribute("professors", professors);
         model.addAttribute("course", course);
         model.addAttribute("sections", sections);
 

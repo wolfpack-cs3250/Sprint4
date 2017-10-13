@@ -44,4 +44,35 @@
 </table>
 <a href="/faculty/create"> Create Course</a>
 
+<br>
+
+<h1>List of Buildings:</h1>
+
+<table>
+    <tr>
+        <th>Building Name</th>
+        <th>Acronym</th>
+        <th>Address</th>
+    </tr>
+    <tr>
+        <td>x</td>
+        <td>x</td>
+        <td>x</td>
+        <td>
+            <form action="/building/view/" method="get">
+                <button type="submit" class="btn btn-danger">View</button>
+            </form>
+        </td>
+        <td>
+            <form action="/building/delete/" method="get">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </td>
+        <td>
+            <form action="/faculty/update/" method="get">
+                <button type="submit" class="btn btn-danger">Update</button>
+            </form>
+        </td>
+    </tr>
+</table>
 {{>footer}}
