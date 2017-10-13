@@ -16,8 +16,10 @@ body{
     text-align: left;
 }
 footer{
-    margin-top:8px;
-    margin-top:0.5rem;
-    background-size: cover;
-    background-position: center top;
+    display: block;
+    min-height: 20px;
+    padding: 20px;
+    background: #aeb1b3;
+    margin-left: 0;
+    margin-right: 0;
 }
