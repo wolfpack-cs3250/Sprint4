@@ -1,22 +1,31 @@
 package com.banner.bannerApplication.controllers;
 
 import com.banner.bannerApplication.entities.Course;
+import com.banner.bannerApplication.entities.Professor;
 import com.banner.bannerApplication.entities.Section;
 import com.banner.bannerApplication.repositories.CourseRepository;
+import com.banner.bannerApplication.repositories.SectionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import java.util.Collection;
+import java.util.HashSet;
 
 @Controller
 @RequestMapping("faculty")
 public class FacultyCourse {
     @Autowired
     private CourseRepository courseRepository;
+    @Autowired
+    private SectionRepository sectionRepository;
+
+    // Create - w GET REQUEST
+    @GetMapping(path="/create")
+    String newCourse (){
+        return "create-course";
+    }
 
     // Create - w POST REQUEST
     @RequestMapping(method = RequestMethod.POST)
@@ -35,18 +44,11 @@ public class FacultyCourse {
         return new ModelAndView("redirect:/faculty");
     }
 
-    // Create - w GET REQUEST
-    @GetMapping(path="/create")
-    String newCourse (){
-        return "create-course";
-    }
-
     // Delete
-    @GetMapping(path="/delete")
-    public ModelAndView RemoveCourse(@RequestParam Long id) {
-        Course n = new Course();
+    @GetMapping(path="/delete/{id}")
+    public ModelAndView RemoveCourse(@PathVariable Long id) {
         courseRepository.delete(id);
-        return new ModelAndView("redirect:/course");
+        return new ModelAndView("redirect:/faculty");
     }
 
     // Read All
@@ -57,13 +59,33 @@ public class FacultyCourse {
         return "faculty";
     }
 
+    // View One Course
+    @GetMapping(path="/view/{id}")
+    public String showOne(@PathVariable Long id, Model model) {
+        Course course = courseRepository.findOne(id);
+        Collection<Section> sections = sectionRepository.findByCourseNumber(course.getNumber());
 
-    // UPDATE
-    //find by number
+        model.addAttribute("course", course);
+        model.addAttribute("sections", sections);
+
+        return "course-view";
+    }
+
+    // UPDATE page
+    @GetMapping(path="/update/{id}")
+    public String updateCourse(@PathVariable Long id,
+                             Model model) {
+
+        Course course = courseRepository.findOne(id);
+        model.addAttribute("course", course);
+        return "update-course";
+    }
+
+    // UPDATE course
     @GetMapping(path="/update")
     public ModelAndView updateCourse(@RequestParam String department, @RequestParam String coursename, @RequestParam String number, @RequestParam int credits,
-                                     @RequestParam String description,@RequestParam String learningObjective, @RequestParam String prereqs, @RequestParam String Coreqs, @RequestParam Long id) {
-        // Needs Error Checking!!
+                                     @RequestParam String description,@RequestParam String learningObjective, @RequestParam String prereqs, @RequestParam String coreqs, @RequestParam Long id) {
+
         Course course = courseRepository.findOne(id);
         course.setDepartment(department);
         course.setCourseName(coursename);
@@ -72,12 +94,8 @@ public class FacultyCourse {
         course.setDescription(description);
         course.setLearningObjective(learningObjective);
         course.setPrereqs(prereqs);
-        course.setCoreq(Coreqs);
+        course.setCoreq(coreqs);
         courseRepository.save(course);
-        return new ModelAndView("redirect:/course");
-
-
+        return new ModelAndView("redirect:/faculty");
     }
-
-
 }

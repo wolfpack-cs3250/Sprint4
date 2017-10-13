@@ -19,18 +19,23 @@
         <td>{{credits}}</td>
         <td>{{prereqs}}</td>
         <td>
+            <form action="/faculty/view/{{id}}" method="get">
+                <button type="submit" class="btn btn-danger">View</button>
+            </form>
+        </td>
+        <td>
             <form action="/section/add/{{id}}" method="get">
                 <button type="submit" class="btn btn-danger">Add Section</button>
             </form>
         </td>
 
         <td>
-            <form action="/course/delete/{{id}}" method="get">
+            <form action="/faculty/delete/{{id}}" method="get">
                 <button type="submit" class="btn btn-danger">Delete</button>
             </form>
         </td>
         <td>
-            <form action="/course/update/{{id}}" method="get">
+            <form action="/faculty/update/{{id}}" method="get">
                 <button type="submit" class="btn btn-danger">Update</button>
             </form>
         </td>
@@ -39,4 +44,40 @@
 </table>
 <a href="/faculty/create"> Create Course</a>
 
+<br>
+
+<h1>List of Buildings:</h1>
+
+<table>
+    <tr>
+        <th>Unique Id</th>
+        <th>Building Name</th>
+        <th>Acronym</th>
+        <th>Address</th>
+    </tr>
+    {{#allbuildings}}
+    <tr>
+        <td>{{id}}</td>
+        <td>buildingName</td>
+        <td>acronym</td>
+        <td>address</td>
+        <td>
+            <form action="/building/view/" method="get">
+                <button type="submit" class="btn btn-danger">View</button>
+            </form>
+        </td>
+        <td>
+            <form action="/building/delete/" method="get">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </td>
+        <td>
+            <form action="/faculty/update/" method="get">
+                <button type="submit" class="btn btn-danger">Update</button>
+            </form>
+        </td>
+    </tr>
+    {{/allbuildings}}
+</table>
+<a href="/buildings/create"> Create Building</a>
 {{>footer}}

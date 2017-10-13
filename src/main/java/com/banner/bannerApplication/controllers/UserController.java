@@ -21,6 +21,8 @@ import com.banner.bannerApplication.entities.Course;
 import com.banner.bannerApplication.repositories.CourseRepository;
 
 import javax.persistence.GeneratedValue;
+import com.banner.bannerApplication.entities.Section;
+import com.banner.bannerApplication.repositories.SectionRepository;
 
 @Controller
 @RequestMapping("user")
@@ -29,6 +31,14 @@ public class UserController {
     private UserRepository userRepository;
     @Autowired
     private CourseRepository courseRepository;
+    @Autowired
+    private SectionRepository sectionRepository;
+
+    // Create student html page
+    @RequestMapping("/create-student")
+    String createStudent() {
+        return "create";
+    }
 
     // Create
     @RequestMapping(method = RequestMethod.POST)
@@ -37,7 +47,6 @@ public class UserController {
         User n = new User();
         n.setFirstName(firstname);
         n.setLastName(lastname);
-        n.setCourse(null);
         userRepository.save(n);
         return new ModelAndView("redirect:/user");
     }
@@ -57,20 +66,26 @@ public class UserController {
         return "userpage";
     }
 
+    // View One User
+    @GetMapping(path="/view/{id}")
+    public String showOne(@PathVariable Long id, Model model) {
+        User user = userRepository.findOne(id);
 
+        model.addAttribute("student", user);
 
-    // UPDATE
+        return "student-view";
+    }
+
+    // UPDATE page
     @GetMapping(path="/update/{id}")
     public String updateUser(@PathVariable Long id,
                                            Model model) {
-        // Needs Error Checking!!
-//        Long id = Long.parseLong(idString);
         User user = userRepository.findOne(id);
         model.addAttribute("student", user);
         return "update";
     }
 
-    // UPDATE
+    // UPDATE User
     @GetMapping(path="/update")
     public ModelAndView updateStudent(@RequestParam Long id,
                                    @RequestParam String firstname,
@@ -83,19 +98,20 @@ public class UserController {
         userRepository.save(user);
         return new ModelAndView("redirect:/user");
     }
+
     @GetMapping(path="/register/{id}")
     public String registerStudent(@PathVariable Long id, Model model) {
-        Iterable<Course> allcourses = courseRepository.findAll();
-        model.addAttribute("allcourses", allcourses);
+        Iterable<Section> sections = sectionRepository.findAll();
+        model.addAttribute("sections", sections);
         model.addAttribute("studentid", id);
         return "pick-student";
     }
 
     @GetMapping(path="/addcourse/{id}")
-    public ModelAndView registerStudent(@PathVariable Long id, @RequestParam Long course) {
+    public ModelAndView registerStudent(@PathVariable Long id, @RequestParam Long sectionId) {
         User user = userRepository.findOne(id);
-        Course studentSelectedCourse = courseRepository.findOne(course);
-        user.setCourse(studentSelectedCourse);
+        Section section = sectionRepository.findOne(sectionId);
+        user.setSection(section);
         userRepository.save(user);
         return new ModelAndView("redirect:/user");
     }

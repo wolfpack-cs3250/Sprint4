@@ -6,13 +6,18 @@
         <th>Id</th>
         <th>First Name</th>
         <th>Last Name</th>
-        <th>Courses</th>
     </tr>
     {{#allusers}}
     <tr>
         <td>{{id}}</td>
         <td>{{firstName}}</td>
         <td>{{lastName}}</td>
+        <td>
+            <form action="/user/view/{{id}}" method="get">
+                <button type="submit" class="btn btn-danger">View</button>
+            </form>
+        </td>
+
         <td>
             <form action="/user/update/{{id}}" method="get">
                 <button type="submit" class="btn btn-danger">Edit</button>
@@ -31,5 +36,5 @@
     </tr>
     {{/allusers}}
 </table>
-<a href="/create"> Create User</a>
+<a href="/user/create-student"> Create User</a>
 {{>footer}}
