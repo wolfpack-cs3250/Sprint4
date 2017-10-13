@@ -1,5 +1,6 @@
 {{>header}}
 <h1> Select Courses</h1>
+<div class="container" align="center">
 <form action="/user/addcourse/{{studentid}}" >
     {{#allcourses}}
     <label for="courseName">{{courseName}}</label>
@@ -8,4 +9,5 @@
     {{/allcourses}}
     <button type="submit" class="btn btn-danger">Register</button>
 </form>
+</div>
 {{>footer}}
