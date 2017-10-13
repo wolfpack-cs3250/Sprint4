@@ -44,34 +44,34 @@ public class CourseController {
     }
     // Create
     @RequestMapping(method = RequestMethod.POST)
-    public void addNewCourse (@RequestParam long UserID,@RequestParam long coursename) {
-    Course course= courseRepository.findOne(coursename);
-        if(compDirtyToME(coursename,UserID)) {
+    public void addNewCourse (@RequestParam long UserID,@RequestParam long courseName) {
+    Course course= courseRepository.findOne(courseName);
+        if(compDirtyToME(courseName,UserID)) {
 
-            chooseSection(UserID,coursename);
+            chooseSection(UserID,courseName);
         }
-        else if (course.getPrereqs()==null) {
-            chooseSection(UserID,coursename);
+        else if (course.getPrereqs()== null) {
+            chooseSection(UserID,courseName);
         }
     }
-    public ModelAndView chooseSection(long UserID,long coursename){
-        User user=userRepository.findOne(UserID);
-        user.setInProgress(coursename);
+    public ModelAndView chooseSection(long UserID,long courseName){
+        User user = userRepository.findOne(UserID);
+        user.setInProgress(courseName);
 
         userRepository.save(user);
         return new ModelAndView("redirect:/student");
     }
     // Delete
     @GetMapping(path="/delete")
-    public ModelAndView RemoveCourse(@RequestParam String coursename,@RequestParam long id) {
+    public ModelAndView removeCourse(@RequestParam String courseName,@RequestParam long id) {
         User user= userRepository.findOne(id);
-        user.removeInprgoress(coursename);
+        user.removeInProgress(courseName);
         return new ModelAndView("redirect:/course");
     }
 
     // Read All
     @GetMapping(path="")
-    public String showall(Model model) {
+    public String showAll(Model model) {
         Iterable<User> allUser = userRepository.findAll();
         model.addAttribute("UserAll", allUser);
         return "User";
@@ -85,11 +85,12 @@ public class CourseController {
     // UPDATE
     @GetMapping(path="/update")
     public ModelAndView updateCourse(@RequestParam Long id,
-                                           @RequestParam String coursename) {
+                                     @RequestParam String courseName) {
+
         // Needs Error Checking!!
         Course course = courseRepository.findOne(id);
 
-        course.setCourseName(coursename);
+        course.setCourseName(courseName);
         courseRepository.save(course);
         return new ModelAndView("redirect:/course");
 

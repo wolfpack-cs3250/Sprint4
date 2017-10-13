@@ -18,12 +18,14 @@ public class Buildings {
     @Column(unique = true)
     private String acronym;
 
+    @OneToMany
+    private Rooms rooms;
 
     public Long getId(){
         return id;
     }
 
-    public String getbuildingName() {
+    public String getBuildingName() {
         return buildingName;
     }
 
@@ -40,6 +42,13 @@ public class Buildings {
     public void setAddress(String address) {
 
         this.address = address;
+    }
+
+    public Rooms getRooms() {
+        return rooms;
+    }
+    public void setRooms(Rooms rooms){
+        this.rooms = rooms;
     }
 
     public String getAcronym() {

@@ -46,16 +46,16 @@ public class FacultyCourse {
 
     // Delete
     @GetMapping(path="/delete/{id}")
-    public ModelAndView RemoveCourse(@PathVariable Long id) {
+    public ModelAndView removeCourse(@PathVariable Long id) {
         courseRepository.delete(id);
         return new ModelAndView("redirect:/faculty");
     }
 
     // Read All
     @GetMapping(path="")
-    public String showall(Model model) {
-        Iterable<Course> allcourses = courseRepository.findAll();
-        model.addAttribute("allcourses", allcourses);
+    public String showAll(Model model) {
+        Iterable<Course> allCourses = courseRepository.findAll();
+        model.addAttribute("allCourses", allCourses);
         return "faculty";
     }
 

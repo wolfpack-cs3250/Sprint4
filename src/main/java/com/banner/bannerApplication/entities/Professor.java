@@ -9,11 +9,11 @@ public class Professor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(unique=true)
+    @Column(unique = true)
     private Long id;
 
     @OneToMany(mappedBy = "professor")
-    private Set<Section> sections = new HashSet<>();
+    private Set<Section> section = new HashSet<>();
 
     @Column(unique = false)
     private String firstName;
@@ -22,13 +22,13 @@ public class Professor {
     private String lastName;
 
     public Professor(){}
-    public Professor(String firstname, String lastname){
-        this.firstName = firstname;
-        this.lastName = lastname;
+    public Professor(String firstName, String lastName){
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
-    public Set<Section> getSections(){
-        return sections;
+    public Set<Section> getSection(){
+        return section;
     }
 
     public String getFirstName() {
