@@ -35,17 +35,17 @@ public class BuildingsController {
 
     // Delete
     @GetMapping(path="/delete/{id}")
-    public ModelAndView RemoveUser(@PathVariable Long id) {
+    public ModelAndView removeUser(@PathVariable Long id) {
         buildingRepository.delete(id);
         return new ModelAndView("redirect:/buildings");
     }
 
     // Read All
     @GetMapping(path="")
-    public String showall(Model model) {
+    public String showAll(Model model) {
         Iterable<Buildings> allBuildings = buildingRepository.findAll();
         model.addAttribute("allBuildings", allBuildings);
-        return "buildingspage";
+        return "buildingsPage";
     }
 
     // UPDATE

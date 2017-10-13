@@ -9,7 +9,6 @@ import javax.persistence.Id;
 public class Global {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
 
     private String schoolName;
     private long freshmanCredits;
@@ -38,12 +37,12 @@ public class Global {
     }
 
     // Set Sophomore Credits
-    public void setSophmoreCredits(long sophomoreCredits) {
+    public void setSophomoreCredits(long sophomoreCredits) {
         this.sophomoreCredits = sophomoreCredits;
     }
 
     // Get Sophomore Credits
-    public long getSophmoreCredits() {
+    public long getSophomoreCredits() {
         return sophomoreCredits;
     }
 
@@ -63,7 +62,6 @@ public class Global {
     }
 
     // Get Senior Credits
-
     public long getSeniorCredits() {
         return seniorCredits;
     }
