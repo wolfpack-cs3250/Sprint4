@@ -6,6 +6,8 @@
 package com.banner.bannerApplication.entities;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Section{
@@ -21,12 +23,15 @@ public class Section{
     @ManyToOne
     private Professor professor;
 
+    @OneToMany(mappedBy = "section")
+    private Set<User> users = new HashSet<>();
+
     public Section() {}
     public Section(Course course, Long sectionNumber){
         this.sectionNumber = sectionNumber;
         this.course = course;
     }
-    public Long getCourseId () {
+    public Long getId () {
         return id;
     }
     public void setProfessor(Professor professor){
