@@ -28,20 +28,27 @@ public class SectionController {
     // Create
     // Section Controllers
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView addSection(@RequestParam Long courseId, @RequestParam Long sectionNumber){
+    public ModelAndView addSection(@RequestParam Long courseId, @RequestParam Long sectionNumber,
+                                   @RequestParam Long professorId){
 
         Course course = courseRepository.findOne(courseId);
+        Professor professor = professorRepository.findOne(professorId);
+
         Section n = new Section();
         n.setSectionNumber(sectionNumber);
         n.setCourse(course);
+        n.setProfessor(professor);
         sectionRepository.save(n);
         return new ModelAndView("redirect:/faculty/view/" + courseId);
     }
 
     @GetMapping(path="/add/{id}")
     public String createSection(@PathVariable Long id, Model model) {
-       model.addAttribute("courseId", id);
-       return "create-section";
+        Course course = courseRepository.findOne(id);
+        Iterable<Professor> professors = professorRepository.findAll();
+        model.addAttribute("professors", professors);
+        model.addAttribute("course", course);
+        return "create-section";
     }
 
     @GetMapping(path="/add/professor/{id}")
@@ -74,6 +81,32 @@ public class SectionController {
         Iterable<Section> allsections = sectionRepository.findAll();
         model.addAttribute("allsections", allsections);
         return "sectionpage";
+    }
+
+    // UPDATE page
+    @GetMapping(path="/update/{id}")
+    public String updateSection(@PathVariable Long id,
+                               Model model) {
+
+        Section section = sectionRepository.findOne(id);
+        Iterable<Professor> professors = professorRepository.findAll();
+
+        model.addAttribute("section", section);
+        model.addAttribute("professors", professors);
+        return "update-section";
+    }
+
+    // UPDATE course
+    @GetMapping(path="/update")
+    public ModelAndView updateCourse(@RequestParam Long sectionId, @RequestParam Long sectionNumber,
+                                     @RequestParam Long professorId){
+
+        Professor professor = professorRepository.findOne(professorId);
+        Section n = sectionRepository.findOne(sectionId);
+        n.setSectionNumber(sectionNumber);
+        n.setProfessor(professor);
+        sectionRepository.save(n);
+        return new ModelAndView("redirect:/faculty/view/" + n.getCourse().getCourseId());
     }
 
     // UPDATE

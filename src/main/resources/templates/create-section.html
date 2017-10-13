@@ -1,12 +1,22 @@
 {{>header}}
 <h1> Create a Section</h1>
 <div class="container">
+    <p>Making a section for course: {{course.courseName}}</p>
     <form action="/section" method="post">
 
-        <input type="hidden" name="courseId" value="{{courseId}}">
+        <input type="hidden" name="courseId" value="{{course.id}}">
 
         <label for="SectionNumber">SectionNumber:</label>
         <input type="number" name="sectionNumber">
+
+        <p> Select a professor to teach</p>
+        {{#professors}}
+        <label for="name">{{firstName}} {{lastName}}</label>
+        <input type="radio" name="professorId" value="{{id}}">
+        <br>
+        {{/professors}}
+        <p> Select Building </p>
+        <p>Select Room</p>
 
        <button type="submit"> Submit</button>
     </form>

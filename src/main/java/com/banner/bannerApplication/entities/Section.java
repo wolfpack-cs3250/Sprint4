@@ -26,7 +26,7 @@ public class Section{
         this.sectionNumber = sectionNumber;
         this.course = course;
     }
-    public Long getCourseId () {
+    public Long getId () {
         return id;
     }
     public void setProfessor(Professor professor){

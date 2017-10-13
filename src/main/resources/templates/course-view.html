@@ -27,7 +27,9 @@
         <td>{{sectionNumber}}</td>
         <td><p>x</p></td>
         <td><p>x</p></td>
-        <td><p>x</p></td>
+        {{#professors}}
+        <td>{{firstName}} {{lastName}}</td>
+        {{/professors}}
         <td>
             <form action="/section/update/{{id}}" method="get">
                 <button type="submit" class="btn btn-danger">Edit</button>
@@ -38,19 +40,10 @@
                 <button type="submit" class="btn btn-danger">Delete</button>
             </form>
         </td>
-        <td>
-            <form action="/section/add/professor/{{id}}" method="get">
-                <button type="submit" class="btn btn-danger">Add Professor</button>
-            </form>
-        </td>
-        <td>
-            <form action="/section/add/location/{{id}}" method="get">
-                <button type="submit" class="btn btn-danger">Add Location</button>
-            </form>
-        </td>
     </tr>
     {{/sections}}
 </table>
+<a href="/section/add/{{course.id}}">Create Section</a>
 
 
 {{>footer}}
