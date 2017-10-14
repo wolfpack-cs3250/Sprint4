@@ -2,11 +2,32 @@
 <h1> Select Courses</h1>
 <div class="container" align="center">
 <form action="/user/addcourse/{{studentid}}" >
-    {{#allcourses}}
-    <label for="courseName">{{courseName}}</label>
-    <input type="checkbox" name="course" value="{{id}}">
+    <table>
+        <tr>
+            <th>Sections Number</th>
+            <th>Course Name</th>
+            <th>Course Number</th>
+            <th>Credits</th>
+            <th>Professor</th>
+        </tr>
+        {{#sections}}
+        <tr>
+            <td>{{sectionNumber}}</td>
+            {{#course}}
+            <td>{{courseName}}</td>
+            <td>{{number}}</td>
+            <td>{{credits}}</td>
+            {{/course}}
+            {{#professor}}
+            <td>{{firstName}} {{lastName}}</td>
+            {{/professor}}
+            <td>
+            <input type="radio" name="sectionId" value="{{id}}">
+            </td>
+        </tr>
+        {{/sections}}
+    </table>
     <br>
-    {{/allcourses}}
     <button type="submit" class="btn btn-danger">Register</button>
 </form>
 </div>
