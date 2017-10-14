@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Collection;
+
 @Controller
 @RequestMapping("buildings")
 
@@ -19,6 +21,11 @@ public class BuildingsController {
 
     @Autowired
     private BuildingRepository buildingRepository;
+
+    @RequestMapping("/create")
+    String newBuildings() {
+        return "create-buildings";
+    }
 
     // Create
     @RequestMapping(method = RequestMethod.POST)
@@ -43,18 +50,26 @@ public class BuildingsController {
     // Read All
     @GetMapping(path="")
     public String showall(Model model) {
-        Iterable<Buildings> allBuildings = buildingRepository.findAll();
-        model.addAttribute("allBuildings", allBuildings);
-        return "buildingspage";
+        Iterable<Buildings> allbuildings = buildingRepository.findAll();
+        model.addAttribute("allbuildings", allbuildings);
+        return "buildings";
+    }
+
+    @GetMapping(path="/view/{id}")
+    public String showOne(@PathVariable Long id, Model model) {
+        Buildings buildings = buildingRepository.findOne(id);
+
+        model.addAttribute("buildings", buildings);
+        return "buildings-view";
     }
 
     // UPDATE
     @GetMapping(path="/update/{id}")
     public String updateUser(@PathVariable Long id,
                              Model model) {
-        Buildings building = buildingRepository.findOne(id);
-        model.addAttribute("building", building);
-        return "update-building";
+        Buildings buildings = buildingRepository.findOne(id);
+        model.addAttribute("buildings", buildings);
+        return "update-buildings";
     }
 
     // UPDATE
@@ -63,7 +78,7 @@ public class BuildingsController {
                                       @RequestParam String buildingName,
                                       @RequestParam String address) {
         Buildings buildings = buildingRepository.findOne(id);
-        buildings.setBuildingName(buildingName);;
+        buildings.setBuildingName(buildingName);
         buildings.setAddress(address);
         buildings.setAcronym(acronym);
         buildingRepository.save(buildings);
