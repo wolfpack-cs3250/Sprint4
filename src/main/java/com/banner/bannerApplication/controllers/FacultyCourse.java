@@ -58,9 +58,11 @@ public class FacultyCourse {
     // Read All
     @GetMapping(path="")
     public String showall(Model model) {
+        //Views all Courses
         Iterable<Course> allcourses = courseRepository.findAll();
         model.addAttribute("allcourses", allcourses);
 
+        //Views all Buildings
         Iterable<Buildings> allbuildings = buildingRepository.findAll();
         model.addAttribute("allbuildings", allbuildings);
 
