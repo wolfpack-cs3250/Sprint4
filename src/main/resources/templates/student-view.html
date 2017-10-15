@@ -5,20 +5,31 @@
     <h4>Student Id: {{student.id}}</h4>
     <h4>Student First Name: {{student.firstName}}</h4>
     <h4>Student Last Name: {{student.lastName}}</h4>
-    <h4>Course: </h4>
+    <h4>Courses: </h4>
     {{#student}}
     {{#section}}
-    <h3>Section: {{sectionNumber}}</h3>
-    {{#course}}
-    <h3>Course Name: {{courseName}}</h3>
-    <h3>Course Number: {{number}}</h3>
-    <h3>Credits: {{credits}}</h3>
-    {{/course}}
-    {{#professor}}
-    <h3>Professor: {{firstName}} {{lastName}}</h3>
-    {{/professor}}
+    <table>
+        <tr>
+            <th>Section Number</th>
+            <th>Course Name</th>
+            <th>Course Number</th>
+            <th>Credits</th>
+            <th>Professor</th>
+        </tr>
+        <tr>
+            <td>{{sectionNumber}}</td>
+            {{#course}}
+            <td>{{courseName}}</td>
+            <td>{{number}}</td>
+            <td>{{credits}}</td>
+            {{/course}}
+            {{#professor}}
+            <td> Professor: {{firstName}} {{lastName}}</td>
+            {{/professor}}
+        </tr>
+    </table>
     {{/section}}
-    {{/student}}
+{{/student}}
 
 </div>
 {{>footer}}
