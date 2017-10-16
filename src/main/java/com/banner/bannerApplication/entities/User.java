@@ -38,14 +38,14 @@ public class User {
 
     @Column(name="Registered", nullable = false)
     @ElementCollection(targetClass = long.class)
-    private List<Long> inProgess;
+    private List<Long> inProgress;
 
     public void setInProgress(long classId) {
-        inProgess.add(classId);
+        inProgress.add(classId);
     }
 
-    public void removeInprgoress(String classname) {
-        inProgess.remove(classname);
+    public void removeInProgress(String classname) {
+        inProgress.remove(classname);
     }
 
     public String[] getDone() {
@@ -62,6 +62,7 @@ public class User {
     public void setSection(Section section){
         this.section = section;
     }
+
     public String getFirstName() {
         return firstName;
     }

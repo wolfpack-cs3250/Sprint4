@@ -42,18 +42,18 @@ public class BuildingsController {
 
     // Delete
     @GetMapping(path="/delete/{id}")
-    public ModelAndView RemoveUser(@PathVariable Long id) {
+    public ModelAndView removeUser(@PathVariable Long id) {
         buildingRepository.delete(id);
         return new ModelAndView("redirect:/faculty");
     }
 
     // Read All
     @GetMapping(path="")
-    public String showall(Model model) {
-        Iterable<Buildings> allbuildings = buildingRepository.findAll();
-        model.addAttribute("allbuildings", allbuildings);
-        return "buildings";
-    }
+    public String showAll(Model model) {
+        Iterable<Buildings> allBuildings = buildingRepository.findAll();
+        model.addAttribute("allBuildings", allBuildings);
+        return "buildingsPage";
+        //from master return "buildings";
 
     @GetMapping(path="/view/{id}")
     public String showOne(@PathVariable Long id, Model model) {
