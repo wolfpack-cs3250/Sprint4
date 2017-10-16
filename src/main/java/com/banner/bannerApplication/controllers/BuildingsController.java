@@ -63,7 +63,7 @@ public class BuildingsController {
                                       @RequestParam String buildingName,
                                       @RequestParam String address) {
         Buildings buildings = buildingRepository.findOne(id);
-        buildings.setBuildingName(buildingName);;
+        buildings.setBuildingName(buildingName);
         buildings.setAddress(address);
         buildings.setAcronym(acronym);
         buildingRepository.save(buildings);

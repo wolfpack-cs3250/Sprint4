@@ -18,7 +18,7 @@ public class Buildings {
     @Column(unique = true)
     private String acronym;
 
-    @OneToMany
+    @OneToMany(mappedBy = "buildings")
     private Rooms rooms;
 
     public Long getId(){
