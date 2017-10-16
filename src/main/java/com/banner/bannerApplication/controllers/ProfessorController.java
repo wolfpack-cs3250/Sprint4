@@ -1,7 +1,9 @@
 package com.banner.bannerApplication.controllers;
 
 import com.banner.bannerApplication.entities.Professor;
+import com.banner.bannerApplication.entities.Section;
 import com.banner.bannerApplication.repositories.ProfessorRepository;
+import com.banner.bannerApplication.repositories.SectionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.banner.bannerApplication.entities.Course;
 import com.banner.bannerApplication.repositories.CourseRepository;
 
+import java.util.Collection;
+
 @Controller
 @RequestMapping("professor")
 
@@ -25,6 +29,9 @@ public class ProfessorController {
 
     @Autowired
     private CourseRepository courseRepository;
+
+    @Autowired
+    private SectionRepository sectionRepository;
 
     // Create Professer html page
     @RequestMapping("/create-professor")
@@ -62,8 +69,10 @@ public class ProfessorController {
     @GetMapping(path="/view/{id}")
     public String showOne(@PathVariable Long id, Model model) {
         Professor professor = professorRepository.findOne(id);
+        Collection<Section> sections = sectionRepository.findByProfessorId((id));
 
         model.addAttribute("professor", professor);
+        model.addAttribute("sections", sections);
         return "professor-view";
     }
 

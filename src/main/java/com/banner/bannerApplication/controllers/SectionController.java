@@ -69,10 +69,13 @@ public class SectionController {
 
     // Delete
     //needs to be fixed
-    @GetMapping(path="/delete/{id]")
+    @GetMapping(path="/delete/{id}")
     public ModelAndView RemoveSection(@PathVariable Long id) {
+        Section section = sectionRepository.findOne(id);
+        Long courseId = section.getCourse().getCourseId();
+
         sectionRepository.delete(id);
-        return new ModelAndView("redirect:/faculty");
+        return new ModelAndView("redirect:/faculty/view/"+ courseId);
     }
 
     // Read All
