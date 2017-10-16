@@ -7,6 +7,7 @@ public class Rooms {
 
     @ManyToOne
     private Buildings buildings;
+    //what was wrong is this
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
