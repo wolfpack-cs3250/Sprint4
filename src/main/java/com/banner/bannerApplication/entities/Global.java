@@ -16,6 +16,13 @@ public class Global {
     private long sophomoreCredits;
     private long juniorCredits;
     private long seniorCredits;
+    private long creditsCompleted;
+
+    // Set id number
+    public void setId(String id){ this.id = id; }
+
+    // Get id number
+    public String getId(){ return id; }
 
     // Get School Name
     public String getSchoolName(){
@@ -63,8 +70,13 @@ public class Global {
     }
 
     // Get Senior Credits
-
     public long getSeniorCredits() {
         return seniorCredits;
     }
+
+    // Set completed credits
+    public void setCreditsCompleted(){ creditsCompleted = getFreshmanCredits()+getSophmoreCredits()+getJuniorCredits()+getSeniorCredits();}
+
+    // Get total completed credits (adds up total completed credits)
+    public long getCompletedCredits(){ return creditsCompleted; }
 }

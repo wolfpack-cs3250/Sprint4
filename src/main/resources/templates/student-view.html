@@ -28,6 +28,21 @@
             {{/professor}}
         </tr>
     </table>
+  <!-
+    <h4>Course: </h4>
+    <h4>Completed Credits: {{global.completedCredits}}</h4>
+    {{#student}}
+    {{#section}}
+    <h4>Section: {{sectionNumber}}</h4>
+    {{#course}}
+    <h4>Course Name: {{courseName}}</h4>
+    <h4>Course Number: {{number}}</h4>
+    <h4>Credits: {{credits}}</h4>
+    {{/course}}
+    {{#professor}}
+    <h4>Professor: {{firstName}} {{lastName}}</h4>
+    {{/professor}}
+  ->
     {{/section}}
 {{/student}}
 

@@ -30,6 +30,9 @@ public class User {
     @Column(unique = false)
     private String lastName;
 
+    //@Column(unique = false)
+    //private long completedCredits = 666;
+
     @Column(unique = true)
     private String[] done;
 
@@ -72,7 +75,6 @@ public class User {
     public String getLastName() {
         return lastName;
     }
-
 
 
 }
