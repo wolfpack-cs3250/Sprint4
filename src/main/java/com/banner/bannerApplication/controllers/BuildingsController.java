@@ -37,14 +37,14 @@ public class BuildingsController {
         n.setAddress(address);
         n.setAcronym(acronym);
         buildingRepository.save(n);
-        return new ModelAndView("redirect:/buildings");
+        return new ModelAndView("redirect:/faculty");
     }
 
     // Delete
     @GetMapping(path="/delete/{id}")
     public ModelAndView RemoveUser(@PathVariable Long id) {
         buildingRepository.delete(id);
-        return new ModelAndView("redirect:/buildings");
+        return new ModelAndView("redirect:/faculty");
     }
 
     // Read All
@@ -81,7 +81,7 @@ public class BuildingsController {
         buildings.setAddress(address);
         buildings.setAcronym(acronym);
         buildingRepository.save(buildings);
-        return new ModelAndView("redirect:/buildings");
+        return new ModelAndView("redirect:/faculty");
     }
 
 }

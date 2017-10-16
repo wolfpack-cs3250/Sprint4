@@ -24,11 +24,6 @@
         </form>
         </td>
         <td>
-            <form action="/faculty/view/{{id}}" method="get">
-                <button type="submit" class="btn btn-danger">View</button>
-            </form>
-        </td>
-        <td>
             <form action="/section/add/{{id}}" method="get">
                 <button type="submit" class="btn btn-danger">Add Section</button>
             </form>
@@ -69,17 +64,17 @@
         <td>{{acronym}}</td>
         <td>{{address}}</td>
         <td>
-            <form action="/building/view/{{id}}" method="get">
+            <form action="/buildings/view/{{id}}" method="get">
                 <button type="submit" class="btn btn-danger">View</button>
             </form>
         </td>
         <td>
-            <form action="/building/delete/{{id}}" method="get">
+            <form action="/buildings/delete/{{id}}" method="get">
                 <button type="submit" class="btn btn-danger">Delete</button>
             </form>
         </td>
         <td>
-            <form action="/faculty/update/{{id}}" method="get">
+            <form action="/buildings/update/{{id}}" method="get">
                 <button type="submit" class="btn btn-danger">Update</button>
             </form>
         </td>
