@@ -1,10 +1,12 @@
 package com.banner.bannerApplication.controllers;
 
+import com.banner.bannerApplication.entities.Buildings;
 import com.banner.bannerApplication.entities.Course;
 import com.banner.bannerApplication.entities.Professor;
 import com.banner.bannerApplication.entities.Section;
 import com.banner.bannerApplication.repositories.CourseRepository;
 import com.banner.bannerApplication.repositories.SectionRepository;
+import com.banner.bannerApplication.repositories.BuildingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +22,8 @@ public class FacultyCourse {
     private CourseRepository courseRepository;
     @Autowired
     private SectionRepository sectionRepository;
+    @Autowired
+    private BuildingRepository buildingRepository;
 
     // Create - w GET REQUEST
     @GetMapping(path="/create")
@@ -54,8 +58,14 @@ public class FacultyCourse {
     // Read All
     @GetMapping(path="")
     public String showall(Model model) {
+        // View all Courses
         Iterable<Course> allcourses = courseRepository.findAll();
         model.addAttribute("allcourses", allcourses);
+
+        // View all Buildings
+        Iterable<Buildings> allbuildings = buildingRepository.findAll();
+        model.addAttribute("allbuildings", allbuildings);
+
         return "faculty";
     }
 
