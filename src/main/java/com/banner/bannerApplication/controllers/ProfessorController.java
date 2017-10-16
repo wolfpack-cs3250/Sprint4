@@ -26,7 +26,7 @@ public class ProfessorController {
     @Autowired
     private CourseRepository courseRepository;
 
-    // Create Professer html page
+    // Create Professor html page
     @RequestMapping("/create-professor")
     String createProfessor() {
         return "create-professor";
@@ -34,28 +34,28 @@ public class ProfessorController {
 
     // Create
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView addNewProfessor (@RequestParam String firstname,
-                                         @RequestParam String lastname) {
+    public ModelAndView addNewProfessor (@RequestParam String firstName,
+                                         @RequestParam String lastName) {
         Professor n = new Professor();
-        n.setFirstName(firstname);
-        n.setLastName(lastname);
+        n.setFirstName(firstName);
+        n.setLastName(lastName);
         professorRepository.save(n);
         return new ModelAndView("redirect:/professor");
     }
 
     // Delete
     @GetMapping(path="/delete/{id}")
-    public ModelAndView RemoveProfessor(@PathVariable Long id) {
+    public ModelAndView removeProfessor(@PathVariable Long id) {
         professorRepository.delete(id);
         return new ModelAndView("redirect:/professor");
     }
 
     // Read All
     @GetMapping(path="")
-    public String showall(Model model) {
+    public String showAll(Model model) {
         Iterable<Professor> professors = professorRepository.findAll();
         model.addAttribute("professors", professors);
-        return "professorpage";
+        return "professorPage";
     }
 
     // View One Professor
@@ -79,11 +79,11 @@ public class ProfessorController {
     // UPDATE
     @GetMapping(path="/update")
     public ModelAndView updateProfessorFinal(@RequestParam Long id,
-                                      @RequestParam String firstname,
-                                      @RequestParam String lastname) {
+                                      @RequestParam String firstName,
+                                      @RequestParam String lastName) {
         Professor professor = professorRepository.findOne(id);
-        professor.setFirstName(firstname);
-        professor.setLastName(lastname);
+        professor.setFirstName(firstName);
+        professor.setLastName(lastName);
         professorRepository.save(professor);
         return new ModelAndView("redirect:/professor");
     }
@@ -91,9 +91,9 @@ public class ProfessorController {
     // Register - Professor
     @GetMapping(path="/register/{id}")
     public String registerProfessor(@PathVariable Long id, Model model) {
-        Iterable<Course> allcourses = courseRepository.findAll();
-        model.addAttribute("allcourses", allcourses);
-        model.addAttribute("professorid", id);
+        Iterable<Course> allCourses = courseRepository.findAll();
+        model.addAttribute("allCourses", allCourses);
+        model.addAttribute("professorId", id);
         return "pick-professor";
     }
 
