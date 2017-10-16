@@ -5,10 +5,13 @@ import javax.persistence.*;
 @Entity
 public class Rooms {
 
+    @ManyToOne
+    private Buildings buildings;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(unique = false)
     private String roomSize;
 
     @Column(unique = true)
@@ -37,5 +40,11 @@ public class Rooms {
         this.roomNumber = roomNumber;
     }
 
+    public Buildings getBuildings() {
+        return buildings;
+    }
+    public void setSection(Buildings buildings){
+        this.buildings = buildings;
+    }
 }
 

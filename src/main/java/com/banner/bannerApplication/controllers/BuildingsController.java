@@ -50,8 +50,7 @@ public class BuildingsController {
 
     // UPDATE
     @GetMapping(path="/update/{id}")
-    public String updateUser(@PathVariable Long id,
-                             Model model) {
+    public String updateUser(@PathVariable Long id, Model model) {
         Buildings building = buildingRepository.findOne(id);
         model.addAttribute("building", building);
         return "update-building";
