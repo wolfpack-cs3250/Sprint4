@@ -19,16 +19,15 @@
         <td>{{credits}}</td>
         <td>{{prereqs}}</td>
         <td>
-            <form action="/faculty/view/{{id}}" method="get">
-                <button type="submit" class="btn btn-danger">View</button>
-            </form>
+        <form action="/faculty/view/{{id}}" method="get">
+            <button type="submit" class="btn btn-danger">View</button>
+        </form>
         </td>
         <td>
             <form action="/section/add/{{id}}" method="get">
                 <button type="submit" class="btn btn-danger">Add Section</button>
             </form>
         </td>
-
         <td>
             <form action="/faculty/delete/{{id}}" method="get">
                 <button type="submit" class="btn btn-danger">Delete</button>
@@ -47,33 +46,40 @@
 
 <br>
 
+<br>
+
 <h1>List of Buildings:</h1>
 
 <table>
     <tr>
+        <th>Unique Id</th>
         <th>Building Name</th>
         <th>Acronym</th>
         <th>Address</th>
     </tr>
+    {{#allbuildings}}
     <tr>
-        <td>x</td>
-        <td>x</td>
-        <td>x</td>
+        <td>{{id}}</td>
+        <td>{{buildingName}}</td>
+        <td>{{acronym}}</td>
+        <td>{{address}}</td>
         <td>
-            <form action="/building/view/" method="get">
+            <form action="/buildings/view/{{id}}" method="get">
                 <button type="submit" class="btn btn-danger">View</button>
             </form>
         </td>
         <td>
-            <form action="/building/delete/" method="get">
+            <form action="/buildings/delete/{{id}}" method="get">
                 <button type="submit" class="btn btn-danger">Delete</button>
             </form>
         </td>
         <td>
-            <form action="/faculty/update/" method="get">
+            <form action="/buildings/update/{{id}}" method="get">
                 <button type="submit" class="btn btn-danger">Update</button>
             </form>
         </td>
     </tr>
+    {{/allbuildings}}
 </table>
+<a href="/buildings/create"> Create Building</a>
 {{>footer}}

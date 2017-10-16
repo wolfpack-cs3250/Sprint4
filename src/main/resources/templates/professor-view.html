@@ -6,5 +6,32 @@
     <h4>Professor First Name: {{professor.firstName}}</h4>
     <h4>Professor Last Name: {{professor.lastName}}</h4>
     <h4> Sections you are teaching: </h4>
+    {{#sections}}
+    <table>
+        <tr>
+            <th>Section</th>
+            <th>Course Name</th>
+            <th>Course Number</th>
+            <th>Credits</th>
+            <th>Students</th>
+        </tr>
+        <tr>
+            <td>{{sectionNumber}}</td>
+
+            {{#course}}
+            <td>{{courseName}}</td>
+            <td>{{number}}</td>
+            <td>{{credits}}</td>
+            {{/course}}
+
+            {{#users}}
+            <tr>
+                <td>{{firstName}} {{lastName}}</td>
+            </tr>
+            {{/users}}
+        </tr>
+    </table>
+    {{/sections}}
+
 </div>
 {{>footer}}
