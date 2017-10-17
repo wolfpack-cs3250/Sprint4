@@ -5,31 +5,8 @@
     <h4>Student Id: {{student.id}}</h4>
     <h4>Student First Name: {{student.firstName}}</h4>
     <h4>Student Last Name: {{student.lastName}}</h4>
+
     <h4>Courses: </h4>
-    {{#student}}
-    {{#section}}
-    <table>
-        <tr>
-            <th>Section Number</th>
-            <th>Course Name</th>
-            <th>Course Number</th>
-            <th>Credits</th>
-            <th>Professor</th>
-        </tr>
-        <tr>
-            <td>{{sectionNumber}}</td>
-            {{#course}}
-            <td>{{courseName}}</td>
-            <td>{{number}}</td>
-            <td>{{credits}}</td>
-            {{/course}}
-            {{#professor}}
-            <td> Professor: {{firstName}} {{lastName}}</td>
-            {{/professor}}
-        </tr>
-    </table>
-  <!-
-    <h4>Course: </h4>
     <h4>Completed Credits: {{global.completedCredits}}</h4>
     {{#student}}
     {{#section}}
@@ -42,7 +19,6 @@
     {{#professor}}
     <h4>Professor: {{firstName}} {{lastName}}</h4>
     {{/professor}}
-  ->
     {{/section}}
 {{/student}}
 

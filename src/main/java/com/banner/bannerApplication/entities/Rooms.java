@@ -14,6 +14,9 @@ public class Rooms {
     @Column(unique = true)
     private String roomNumber;
 
+    @ManyToOne
+    private Buildings buildings;
+
     public Long getId(){
         return id;
     }
@@ -35,6 +38,12 @@ public class Rooms {
     public void setRoomNumber(String roomNumber) {
 
         this.roomNumber = roomNumber;
+    }
+    public Buildings getBuildings() {
+        return buildings;
+    }
+    public void setBuildings(Buildings buildings){
+        this.buildings = buildings;
     }
 
 }

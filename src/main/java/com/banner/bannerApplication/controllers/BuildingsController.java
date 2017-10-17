@@ -1,7 +1,9 @@
 package com.banner.bannerApplication.controllers;
 
 import com.banner.bannerApplication.entities.Buildings;
+import com.banner.bannerApplication.entities.Rooms;
 import com.banner.bannerApplication.repositories.BuildingRepository;
+import com.banner.bannerApplication.repositories.RoomsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +23,8 @@ public class BuildingsController {
 
     @Autowired
     private BuildingRepository buildingRepository;
+    @Autowired
+    private RoomsRepository roomsRepository;
 
     @RequestMapping("/create")
     String newBuildings() {
@@ -58,7 +62,9 @@ public class BuildingsController {
     @GetMapping(path="/view/{id}")
     public String showOne(@PathVariable Long id, Model model) {
          Buildings buildings = buildingRepository.findOne(id);
+         Collection<Rooms> rooms = roomsRepository.findByBuildingsId(id);
          model.addAttribute("buildings", buildings);
+        model.addAttribute("rooms", rooms);
          return "buildings-view";
     }
 
