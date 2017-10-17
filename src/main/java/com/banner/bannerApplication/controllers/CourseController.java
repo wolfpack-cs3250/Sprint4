@@ -79,7 +79,7 @@ public class CourseController {
 
 
     // Read by id
-//    @GetMapping(path="/{id}")
+    // @GetMapping(path="/{id}")
 
 
     // UPDATE

@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
+import com.banner.bannerApplication.entities.Global;
+import com.banner.bannerApplication.repositories.GlobalRepository;
+
 import com.banner.bannerApplication.entities.User;
 import com.banner.bannerApplication.repositories.UserRepository;
 
@@ -33,6 +36,8 @@ public class UserController {
     private CourseRepository courseRepository;
     @Autowired
     private SectionRepository sectionRepository;
+    @Autowired
+    private GlobalRepository globalRepository;
 
     // Create student html page
     @RequestMapping("/create-student")
@@ -45,9 +50,19 @@ public class UserController {
     public ModelAndView addNewUser (@RequestParam String firstname,
                                             @RequestParam String lastname) {
         User n = new User();
+        Global g = new Global();
         n.setFirstName(firstname);
         n.setLastName(lastname);
+        // initializes default global values for student
+        g.setSchoolName("Wolfpack University");
+        g.setSeniorCredits(0);
+        g.setJuniorCredits(0);
+        g.setSophomoreCredits(0);
+        g.setFreshmanCredits(0);
+        g.setCreditsCompleted();
+        // saves to db
         userRepository.save(n);
+        globalRepository.save(g);
         return new ModelAndView("redirect:/user");
     }
 
@@ -70,8 +85,10 @@ public class UserController {
     @GetMapping(path="/view/{id}")
     public String showOne(@PathVariable Long id, Model model) {
         User user = userRepository.findOne(id);
+        Global global = globalRepository.findBySchoolName("Wolfpack University");
 
         model.addAttribute("student", user);
+        model.addAttribute("global", global);
 
         return "student-view";
     }
