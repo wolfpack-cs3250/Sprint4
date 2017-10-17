@@ -12,7 +12,7 @@ public class GlobalTest {
         global1 = new Global();
         global1.setSchoolName("Wolfpack University");
         global1.setFreshmanCredits(32);
-        global1.setSophmoreCredits(64);
+        global1.setSophomoreCredits(64);
         global1.setJuniorCredits(96);
         global1.setSeniorCredits(128);
     }
@@ -31,8 +31,8 @@ public class GlobalTest {
 
     @Test
     public void setSophmoreCredits() throws Exception {
-        global1.setSophmoreCredits(65);
-        assertEquals(65,global1.getSophmoreCredits());
+        global1.setSophomoreCredits(65);
+        assertEquals(65,global1.getSophomoreCredits());
     }
 
     @Test
@@ -59,7 +59,7 @@ public class GlobalTest {
 
     @Test
     public void getSophmoreCredits() throws Exception {
-        assertEquals(64,global1.getSophmoreCredits());
+        assertEquals(64,global1.getSophomoreCredits());
     }
 
     @Test
