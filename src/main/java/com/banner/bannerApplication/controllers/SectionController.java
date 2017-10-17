@@ -80,10 +80,10 @@ public class SectionController {
 
     // Read All
     @GetMapping(path="")
-    public String showall(Model model) {
-        Iterable<Section> allsections = sectionRepository.findAll();
-        model.addAttribute("allsections", allsections);
-        return "sectionpage";
+    public String showAll(Model model) {
+        Iterable<Section> allSections = sectionRepository.findAll();
+        model.addAttribute("allSections", allSections);
+        return "sectionPage";
     }
 
     // UPDATE page

@@ -5,11 +5,7 @@ import com.banner.bannerApplication.repositories.BuildingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Collection;
@@ -42,21 +38,22 @@ public class BuildingsController {
 
     // Delete
     @GetMapping(path="/delete/{id}")
-    public ModelAndView RemoveUser(@PathVariable Long id) {
+    public ModelAndView removeUser(@PathVariable Long id) {
         buildingRepository.delete(id);
         return new ModelAndView("redirect:/faculty");
     }
 
     // Read All
     @GetMapping(path="")
-    public String showall(Model model) {
-        Iterable<Buildings> allbuildings = buildingRepository.findAll();
-        model.addAttribute("allbuildings", allbuildings);
-        return "buildings";
+    public String showAll(Model model) {
+        Iterable<Buildings> allBuildings = buildingRepository.findAll();
+        model.addAttribute("allBuildings", allBuildings);
+        return "buildingsPage";
     }
+        //from master return "buildings";
 
     @GetMapping(path="/view/{id}")
-    public String showOne(@PathVariable Long id, Model model) {
+    public String showOne(@PathVariable Long id, Model model){
          Buildings buildings = buildingRepository.findOne(id);
          model.addAttribute("buildings", buildings);
          return "buildings-view";
@@ -64,8 +61,7 @@ public class BuildingsController {
 
     // UPDATE
     @GetMapping(path="/update/{id}")
-    public String updateUser(@PathVariable Long id,
-                             Model model) {
+    public String updateUser(@PathVariable Long id, Model model) {
         Buildings buildings = buildingRepository.findOne(id);
         model.addAttribute("buildings", buildings);
         return "update-buildings";

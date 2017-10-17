@@ -1,6 +1,8 @@
 package com.banner.bannerApplication.entities;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Buildings {
@@ -18,12 +20,14 @@ public class Buildings {
     @Column(unique = true)
     private String acronym;
 
+    @OneToMany(mappedBy = "buildings")
+    private Set<Rooms> rooms= new HashSet<>();
 
     public Long getId(){
         return id;
     }
 
-    public String getbuildingName() {
+    public String getBuildingName() {
         return buildingName;
     }
 
@@ -41,6 +45,13 @@ public class Buildings {
 
         this.address = address;
     }
+
+//   public Rooms getRooms() {
+//        return rooms;
+//    }
+//    public void setRooms(Rooms rooms){
+//        this.rooms = rooms;
+//    }
 
     public String getAcronym() {
         return acronym;

@@ -29,17 +29,17 @@ public class RoomsController {
 
     // Delete
     @GetMapping(path="/delete/{id}")
-    public ModelAndView RemoveRooms(@PathVariable Long roomId) {
+    public ModelAndView removeRooms(@PathVariable Long roomId) {
         roomsRepository.delete(roomId);
         return new ModelAndView("redirect:/rooms");
     }
 
     // Read All
     @GetMapping(path="")
-    public String showall(Model model) {
+    public String showAll(Model model) {
         Iterable<Rooms> allRooms = roomsRepository.findAll();
         model.addAttribute("allRooms", allRooms);
-        return "roomspage";
+        return "roomsPage";
     }
 
     // UPDATE

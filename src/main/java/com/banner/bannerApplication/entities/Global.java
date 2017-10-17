@@ -9,7 +9,6 @@ import javax.persistence.Id;
 public class Global {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
 
     private String schoolName;
     private long freshmanCredits;
@@ -18,11 +17,11 @@ public class Global {
     private long seniorCredits;
     private long creditsCompleted;
 
-    // Set id number
-    public void setId(String id){ this.id = id; }
-
-    // Get id number
-    public String getId(){ return id; }
+//    // Set id number
+//    public void setId(String id){ this.id = id; }
+//
+//    // Get id number
+//    public String getId(){ return id; }
 
     // Get School Name
     public String getSchoolName(){
@@ -45,12 +44,12 @@ public class Global {
     }
 
     // Set Sophomore Credits
-    public void setSophmoreCredits(long sophomoreCredits) {
+    public void setSophomoreCredits(long sophomoreCredits) {
         this.sophomoreCredits = sophomoreCredits;
     }
 
     // Get Sophomore Credits
-    public long getSophmoreCredits() {
+    public long getSophomoreCredits() {
         return sophomoreCredits;
     }
 
@@ -75,7 +74,7 @@ public class Global {
     }
 
     // Set completed credits
-    public void setCreditsCompleted(){ creditsCompleted = getFreshmanCredits()+getSophmoreCredits()+getJuniorCredits()+getSeniorCredits();}
+    public void setCreditsCompleted(){ creditsCompleted = getFreshmanCredits()+getSophomoreCredits()+getJuniorCredits()+getSeniorCredits();}
 
     // Get total completed credits (adds up total completed credits)
     public long getCompletedCredits(){ return creditsCompleted; }

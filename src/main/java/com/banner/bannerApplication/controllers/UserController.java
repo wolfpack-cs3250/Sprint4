@@ -57,7 +57,7 @@ public class UserController {
         g.setSchoolName("Wolfpack University");
         g.setSeniorCredits(0);
         g.setJuniorCredits(0);
-        g.setSophmoreCredits(0);
+        g.setSophomoreCredits(0);
         g.setFreshmanCredits(0);
         g.setCreditsCompleted();
         // saves to db
