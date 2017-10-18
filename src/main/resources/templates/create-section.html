@@ -15,8 +15,14 @@
         <input type="radio" name="professorId" value="{{id}}">
         <br>
         {{/professors}}
-        <p> Select Building </p>
-        <p>Select Room</p>
+
+        <p>Select Location</p>
+        {{#allRooms}}
+        {{#buildings}}
+        <label for="roomNumber">{{acronym}}{{/buildings}}{{roomNumber}}</label>
+        <input type="radio" name="roomId" value="{{id}}">
+        {{/allRooms}}
+        <br>
 
        <button type="submit"> Submit</button>
     </form>

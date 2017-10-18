@@ -2,9 +2,11 @@ package com.banner.bannerApplication.controllers;
 
 import com.banner.bannerApplication.entities.Course;
 import com.banner.bannerApplication.entities.Professor;
+import com.banner.bannerApplication.entities.Rooms;
 import com.banner.bannerApplication.entities.Section;
 import com.banner.bannerApplication.repositories.CourseRepository;
 import com.banner.bannerApplication.repositories.ProfessorRepository;
+import com.banner.bannerApplication.repositories.RoomsRepository;
 import com.banner.bannerApplication.repositories.SectionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,20 +26,24 @@ public class SectionController {
     private CourseRepository courseRepository;
     @Autowired
     private ProfessorRepository professorRepository;
+    @Autowired
+    private RoomsRepository roomsRepository;
 
     // Create
     // Section Controllers
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView addSection(@RequestParam Long courseId, @RequestParam Long sectionNumber,
-                                   @RequestParam Long professorId){
+                                   @RequestParam Long professorId, @RequestParam Long roomId){
 
         Course course = courseRepository.findOne(courseId);
         Professor professor = professorRepository.findOne(professorId);
+        Rooms room = roomsRepository.findOne(roomId);
 
         Section n = new Section();
         n.setSectionNumber(sectionNumber);
         n.setCourse(course);
         n.setProfessor(professor);
+        n.setRoom(room);
         sectionRepository.save(n);
         return new ModelAndView("redirect:/faculty/view/" + courseId);
     }
@@ -45,26 +51,14 @@ public class SectionController {
     @GetMapping(path="/add/{id}")
     public String createSection(@PathVariable Long id, Model model) {
         Course course = courseRepository.findOne(id);
+
         Iterable<Professor> professors = professorRepository.findAll();
+        Iterable<Rooms> allRooms = roomsRepository.findAll();
+
+        model.addAttribute("allRooms", allRooms);
         model.addAttribute("professors", professors);
         model.addAttribute("course", course);
         return "create-section";
-    }
-
-    @GetMapping(path="/add/professor/{id}")
-    public String addProfessorToSectionView(@PathVariable Long id, Model model) {
-        Iterable<Professor> professors = professorRepository.findAll();
-        model.addAttribute("sectionId", id);
-        model.addAttribute("professors", professors);
-        return "add-professor-to-section";
-    }
-    @GetMapping(path="/add/professor/")
-    public ModelAndView addProfessorToSection(@RequestParam Long professorId, @RequestParam Long sectionId){
-        Professor professor = professorRepository.findOne(professorId);
-        Section section = sectionRepository.findOne(sectionId);
-        section.setProfessor(professor);
-        sectionRepository.save(section);
-        return new ModelAndView("redirect:/faculty");
     }
 
     // Delete

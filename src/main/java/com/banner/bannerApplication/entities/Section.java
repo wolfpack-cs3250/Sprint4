@@ -4,7 +4,6 @@
 //
 
 package com.banner.bannerApplication.entities;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,6 +18,9 @@ public class Section{
 
     @ManyToOne
     private Course course;
+
+    @ManyToOne
+    private Rooms room;
 
     @ManyToOne
     private Professor professor;
@@ -52,5 +54,10 @@ public class Section{
     public void setCourse(Course course){
         this.course = course;
     }
-
+    public Rooms getRoom(){
+        return room;
+    }
+    public void setRoom(Rooms room){
+        this.room = room;
+    }
 }
