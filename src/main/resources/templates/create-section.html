@@ -7,12 +7,12 @@
         <input type="hidden" name="courseId" value="{{course.id}}">
 
         <label for="SectionNumber">SectionNumber:</label>
-        <input type="number" name="sectionNumber">
+        <input type="number" name="sectionNumber" required>
 
         <p> Select a professor to teach</p>
         {{#professors}}
         <label for="name">{{firstName}} {{lastName}}</label>
-        <input type="radio" name="professorId" value="{{id}}">
+        <input type="radio" name="professorId" value="{{id}}" required>
         <br>
         {{/professors}}
 
@@ -20,7 +20,7 @@
         {{#allRooms}}
         {{#buildings}}
         <label for="roomNumber">{{acronym}}{{/buildings}}{{roomNumber}}</label>
-        <input type="radio" name="roomId" value="{{id}}">
+        <input type="radio" name="roomId" value="{{id}}" required>
         {{/allRooms}}
         <br>
 

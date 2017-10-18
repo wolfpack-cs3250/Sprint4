@@ -53,6 +53,9 @@ public class SectionController {
         Course course = courseRepository.findOne(id);
 
         Iterable<Professor> professors = professorRepository.findAll();
+        if (professors == null) {
+            System.out.println(" Is it Null?");
+        }
         Iterable<Rooms> allRooms = roomsRepository.findAll();
 
         model.addAttribute("allRooms", allRooms);
