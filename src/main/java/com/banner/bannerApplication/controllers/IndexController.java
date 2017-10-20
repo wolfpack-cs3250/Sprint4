@@ -11,25 +11,14 @@ public class IndexController {
     String index() {
         return "index";
     }
-
-    @RequestMapping("/create")
-    String create() {
-        return "create";
+    @RequestMapping("/select")
+    String select() {
+        return "select";
     }
 
-    @RequestMapping("/delete")
-    String delete() {
-        return "delete";
-    }
+    @RequestMapping("/school-information")
+    String schoolInformation() {return "school-information";}
 
-    @RequestMapping("/edit")
-    String edit() {
-        return "edit";
-    }
-
-    @RequestMapping("/update")
-    String update() {
-        return "update";
-    }
-
+    @RequestMapping("/buildings")
+    String buildings() {return "buildings";}
 }

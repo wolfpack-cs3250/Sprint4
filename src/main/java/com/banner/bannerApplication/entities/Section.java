@@ -4,47 +4,60 @@
 //
 
 package com.banner.bannerApplication.entities;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-public class Section {
-
+public class Section{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-    private String courseId;
+    private Long sectionNumber;
 
-    private String courseName;
-    private String sectionNumber;
+    @ManyToOne
+    private Course course;
 
-    public Section() {
+    @ManyToOne
+    private Rooms room;
 
+    @ManyToOne
+    private Professor professor;
+
+    @OneToMany(mappedBy = "section")
+    private Set<User> users = new HashSet<>();
+
+    public Section() {}
+    public Section(Course course, Long sectionNumber){
+        this.sectionNumber = sectionNumber;
+        this.course = course;
     }
-
-
-    public void getCourseId (String id) {
-        this.courseId = courseId;
+    public Long getId () {
+        return id;
     }
-
-
-    public String getCourseName  (String courseName) {
-        return courseName;
+    public void setProfessor(Professor professor){
+        this.professor = professor;
     }
-
-    public void setCourseName (String courseName) {
-        this.courseName = courseName;
+    public Professor getProfessor(){
+        return professor;
     }
-
-    public String getSectionNumber (String sectionNumber) {
+    public Long getSectionNumber (Long sectionNumber) {
         return sectionNumber;
     }
-
-    public void setSectionNumber (String sectionNumber) {
+    public void setSectionNumber (Long sectionNumber) {
         this.sectionNumber = sectionNumber;
     }
-
+    public Course getCourse(){
+        return course;
+    }
+    public void setCourse(Course course){
+        this.course = course;
+    }
+    public Rooms getRoom(){
+        return room;
+    }
+    public void setRoom(Rooms room){
+        this.room = room;
+    }
 }

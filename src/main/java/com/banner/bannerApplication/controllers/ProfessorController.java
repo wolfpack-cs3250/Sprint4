@@ -1,7 +1,9 @@
 package com.banner.bannerApplication.controllers;
 
 import com.banner.bannerApplication.entities.Professor;
+import com.banner.bannerApplication.entities.Section;
 import com.banner.bannerApplication.repositories.ProfessorRepository;
+import com.banner.bannerApplication.repositories.SectionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,7 +11,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.banner.bannerApplication.entities.Course;
+import com.banner.bannerApplication.repositories.CourseRepository;
+
+import java.util.Collection;
 
 @Controller
 @RequestMapping("professor")
@@ -18,6 +26,18 @@ public class ProfessorController {
 
     @Autowired
     private ProfessorRepository professorRepository;
+
+    @Autowired
+    private CourseRepository courseRepository;
+
+    @Autowired
+    private SectionRepository sectionRepository;
+
+    // Create Professer html page
+    @RequestMapping("/create-professor")
+    String createProfessor() {
+        return "create-professor";
+    }
 
     // Create
     @RequestMapping(method = RequestMethod.POST)
@@ -31,10 +51,8 @@ public class ProfessorController {
     }
 
     // Delete
-    @GetMapping(path="/delete")
-    public ModelAndView RemoveProfessor(@RequestParam String id) {
-        Professor n = new Professor();
-        n.setId(id);
+    @GetMapping(path="/delete/{id}")
+    public ModelAndView RemoveProfessor(@PathVariable Long id) {
         professorRepository.delete(id);
         return new ModelAndView("redirect:/professor");
     }
@@ -42,25 +60,51 @@ public class ProfessorController {
     // Read All
     @GetMapping(path="")
     public String showall(Model model) {
-        Iterable<Professor> allusers = professorRepository.findAll();
-        model.addAttribute("allusers", allusers);
+        Iterable<Professor> professors = professorRepository.findAll();
+        model.addAttribute("professors", professors);
         return "professorpage";
+    }
+
+    // View One Professor
+    @GetMapping(path="/view/{id}")
+    public String showOne(@PathVariable Long id, Model model) {
+        Professor professor = professorRepository.findOne(id);
+        Collection<Section> sections = sectionRepository.findByProfessorId((id));
+
+        model.addAttribute("professor", professor);
+        model.addAttribute("sections", sections);
+        return "professor-view";
+    }
+
+    // UPDATE
+    @GetMapping(path="/update/{id}")
+    public String updateProfessor(@PathVariable Long id, Model model) {
+        // Needs Error Checking!!
+        Professor professor = professorRepository.findOne(id);
+        model.addAttribute("professor", professor);
+        return "update-professor";
     }
 
     // UPDATE
     @GetMapping(path="/update")
-    public ModelAndView updateProfessor(@RequestParam String id,
-                                        @RequestParam String firstname,
-                                        @RequestParam String lastname) {
-        // Needs Error Checking!!
+    public ModelAndView updateProfessorFinal(@RequestParam Long id,
+                                      @RequestParam String firstname,
+                                      @RequestParam String lastname) {
         Professor professor = professorRepository.findOne(id);
-
         professor.setFirstName(firstname);
         professor.setLastName(lastname);
         professorRepository.save(professor);
         return new ModelAndView("redirect:/professor");
-
-
     }
+
+    // Register - Professor
+    @GetMapping(path="/register/{id}")
+    public String registerProfessor(@PathVariable Long id, Model model) {
+        Iterable<Course> allcourses = courseRepository.findAll();
+        model.addAttribute("allcourses", allcourses);
+        model.addAttribute("professorid", id);
+        return "pick-professor";
+    }
+
 
 }

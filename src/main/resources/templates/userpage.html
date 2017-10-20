@@ -1,6 +1,6 @@
 {{>header}}
-<h1>List of Users:</h1>
-
+<h1>Students:</h1>
+<div class="container" align="center">
 <table>
     <tr>
         <th>Id</th>
@@ -12,7 +12,32 @@
         <td>{{id}}</td>
         <td>{{firstName}}</td>
         <td>{{lastName}}</td>
+        <td>
+            <form action="/user/view/{{id}}" method="get">
+                <button type="submit" class="btn btn-danger">View</button>
+            </form>
+        </td>
+
+        <td>
+            <form action="/user/update/{{id}}" method="get">
+                <button type="submit" class="btn btn-danger">Edit</button>
+            </form>
+        </td>
+        <td>
+            <form action="/user/delete/{{id}}" method="get">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </td>
+        <td>
+            <form action="/user/register/{{id}}" method="get">
+                <button type="submit" class="btn btn-danger">Register</button>
+            </form>
+        </td>
     </tr>
     {{/allusers}}
 </table>
+</div>
+<div class="container" align="center">
+    <a href="/user/create-student"> Create User</a>
+</div>
 {{>footer}}

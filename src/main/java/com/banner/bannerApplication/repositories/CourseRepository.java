@@ -1,15 +1,11 @@
 package com.banner.bannerApplication.repositories;
 
 import com.banner.bannerApplication.entities.Course;
-import com.banner.bannerApplication.entities.User;
-import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.data.repository.query.Param;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.Optional;
 
-import java.util.List;
-
-@RepositoryRestResource(collectionResourceRel = "courses", path = "courses")
-public interface CourseRepository extends PagingAndSortingRepository<Course, String> {
-    List<Course> findByCourseName(@Param("name") String name);
+public interface CourseRepository extends JpaRepository<Course, Long> {
+  
+    Optional<Course> findByCourseName(String courseName);
 
 }

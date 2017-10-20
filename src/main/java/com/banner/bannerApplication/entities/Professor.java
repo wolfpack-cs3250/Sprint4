@@ -1,23 +1,36 @@
 package com.banner.bannerApplication.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Professor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    @Column(unique=true)
+    private Long id;
 
+    @OneToMany(mappedBy = "professor")
+    private Set<Section> sections = new HashSet<>();
+
+    @Column(unique = false)
     private String firstName;
+
+    @Column(unique = false)
     private String lastName;
 
-    public void setId(String id){
-        this.id=id;
+    public Professor(){}
+    public Professor(String firstname, String lastname){
+        this.firstName = firstname;
+        this.lastName = lastname;
     }
+
+    public Set<Section> getSections(){
+        return sections;
+    }
+
     public String getFirstName() {
         return firstName;
     }
