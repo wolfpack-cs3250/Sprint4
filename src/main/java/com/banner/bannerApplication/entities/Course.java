@@ -1,11 +1,15 @@
 package com.banner.bannerApplication.entities;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import org.springframework.util.Assert;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Column;
+import javax.validation.constraints.AssertTrue;
 
 import java.util.Set;
 import java.util.HashSet;
@@ -45,6 +49,31 @@ public class Course {
 
     @Column(unique = false)
     private String coreq;
+
+    protected Course(){
+
+    }
+    public Course(String courseName,String department,String number,int credits,
+                  String description,String learningObjective, String prereqs,
+                   String coreq ){
+        Assert.hasLength(courseName,"You need to Enter a Course Name");
+        Assert.hasLength(department,"You need to Enter a Department");
+        Assert.hasLength(number,"You need to Enter a Course Numerb");
+        Assert.notNull(credits,"credits can't be null");
+        if (credits > 6){
+            throw new IllegalArgumentException();
+        }
+        Assert.hasLength(description,"Need a Description");
+        Assert.hasLength(learningObjective,"Enter Objective of Course");
+        this.courseName=courseName;
+        this.department=department;
+        this.number=number;
+        this.credits=credits;
+        this.description=description;
+        this.learningObjective=learningObjective;
+        this.prereqs=prereqs;
+        this.coreq=coreq;
+    }
 
     public Set<Section> getSections(){
         return sections;
@@ -125,9 +154,6 @@ public class Course {
         this.courseName = courseName;
     }
 
-    // jpa only
-    public Course (){
-    }
 
 }
 
