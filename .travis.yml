@@ -7,6 +7,7 @@ cache:
   - $HOME/.gradle
 before_install:
 - chmod +x gradlew
+
 test:
   post:
   - bash <(curl -s https://codecov.io/bash)
