@@ -35,7 +35,7 @@ public class FacultyCourse {
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView addNewCourse (@RequestParam String department, @RequestParam String courseName, @RequestParam String number, @RequestParam int credits,
                                       @RequestParam String description,@RequestParam String learningObjective, @RequestParam String prereqs, @RequestParam String coreqs) {
-        Course n = new Course();
+        Course n = new Course(department,courseName,number,credits,description,learningObjective,prereqs,coreqs);
         n.setDepartment(department);
         n.setCourseName(courseName);
         n.setNumber(number);
