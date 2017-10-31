@@ -4,7 +4,6 @@
 //
 
 package com.banner.bannerApplication.entities;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -17,8 +16,13 @@ public class Section{
 
     private Long sectionNumber;
 
+    private String startDate, endDate, startTime, endTime;
+
     @ManyToOne
     private Course course;
+
+    @ManyToOne
+    private Rooms room;
 
     @ManyToOne
     private Professor professor;
@@ -52,5 +56,16 @@ public class Section{
     public void setCourse(Course course){
         this.course = course;
     }
-
+    public Rooms getRoom(){
+        return room;
+    }
+    public void setRoom(Rooms room){ this.room = room; }
+    public void setStartDate (String startDate) { this.startDate = startDate;}
+    public String getStartDate() { return startDate; }
+    public void setEndDate (String EndDate) { this.endDate = endDate;}
+    public String getEndDate() { return endDate; }
+    public String getStartTime() { return startTime; }
+    public void setStartTime (String startTime) { this.startTime = startTime;}
+    public String getEndTime() { return endTime; }
+    public void setEndTIme (String endDate) { this.endTime = endTime;}
 }
