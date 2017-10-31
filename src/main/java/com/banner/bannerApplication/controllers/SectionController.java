@@ -33,7 +33,9 @@ public class SectionController {
     // Section Controllers
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView addSection(@RequestParam Long courseId, @RequestParam Long sectionNumber,
-                                   @RequestParam Long professorId, @RequestParam Long roomId){
+                                   @RequestParam Long professorId, @RequestParam Long roomId,
+                                   @RequestParam String startDate, @RequestParam String endDate,
+                                   @RequestParam String startTime, @RequestParam String endTime){
 
         Course course = courseRepository.findOne(courseId);
         Professor professor = professorRepository.findOne(professorId);
@@ -44,6 +46,10 @@ public class SectionController {
         n.setCourse(course);
         n.setProfessor(professor);
         n.setRoom(room);
+        n.setStartDate(startDate);
+        n.setEndDate(endDate);
+        n.setStartTime(startTime);
+        n.setEndTIme(endTime);
         sectionRepository.save(n);
         return new ModelAndView("redirect:/faculty/view/" + courseId);
     }
@@ -99,12 +105,18 @@ public class SectionController {
     // UPDATE section
     @GetMapping(path="/update")
     public ModelAndView updateCourse(@RequestParam Long sectionId, @RequestParam Long sectionNumber,
-                                     @RequestParam Long professorId){
+                                     @RequestParam Long professorId, @RequestParam String startDate,
+                                     @RequestParam String endDate, @RequestParam String startTime,
+                                     @RequestParam String endTime){
 
         Professor professor = professorRepository.findOne(professorId);
         Section n = sectionRepository.findOne(sectionId);
         n.setSectionNumber(sectionNumber);
         n.setProfessor(professor);
+        n.setStartDate(startDate);
+        n.setEndDate(endDate);
+        n.setStartTime(startTime);
+        n.setEndTIme(endTime);
         sectionRepository.save(n);
         return new ModelAndView("redirect:/faculty/view/" + n.getCourse().getCourseId());
     }
