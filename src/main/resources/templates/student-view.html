@@ -1,10 +1,26 @@
 {{>header}}
 <h1>{{student.firstName}}'s Account</h1>
 
-<div class="container">
+<div class="container" align="center">
     <h4>Student Id: {{student.id}}</h4>
     <h4>Student First Name: {{student.firstName}}</h4>
     <h4>Student Last Name: {{student.lastName}}</h4>
-    <h4>Course: {{course.courseName}}</h4>
+
+    <h4>Courses: </h4>
+    <h4>Completed Credits: {{global.completedCredits}}</h4>
+    {{#student}}
+    {{#section}}
+    <h4>Section: {{sectionNumber}}</h4>
+    {{#course}}
+    <h4>Course Name: {{courseName}}</h4>
+    <h4>Course Number: {{number}}</h4>
+    <h4>Credits: {{credits}}</h4>
+    {{/course}}
+    {{#professor}}
+    <h4>Professor: {{firstName}} {{lastName}}</h4>
+    {{/professor}}
+    {{/section}}
+{{/student}}
+
 </div>
 {{>footer}}

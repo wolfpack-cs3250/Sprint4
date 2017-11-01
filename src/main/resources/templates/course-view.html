@@ -1,0 +1,60 @@
+{{>header}}
+<h1>{{course.CourseName}}</h1>
+
+<div class="container">
+    <h4>Course Id: {{course.id}}</h4>
+    <h4>Course Name: {{course.courseName}}</h4>
+    <h4>Course Department: {{course.department}}</h4>
+    <h4>Course Number: {{course.number}}</h4>
+    <h4>Credits: {{course.credits}}</h4>
+    <h4>Course description: {{course.description}}</h4>
+    <h4>Learning Objectives: {{course.learningObjective}}</h4>
+    <h4>Pre-Reqs: {{course.prereqs}}</h4>
+    <h4>Co-Reqs: {{course.coreq}}</h4>
+</div>
+<div class="container">
+    <div class="col-lg-12">
+        <h1> Sections: </h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>Sections Number</th>
+                <th>Building</th>
+                <th>Room</th>
+                <th>Professor</th>
+            </tr>
+            </thead>
+            {{#sections}}
+            <tbody>
+            <tr>
+                <td>{{id}}</td>
+                <td>{{sectionNumber}}</td>
+                {{#room}}
+                {{#buildings}}
+                <td><p>{{buildingName}}</p></td>
+                {{/buildings}}
+                <td><p>{{roomNumber}}</p></td>
+                {{/room}}
+                {{#professor}}
+                <td>{{firstName}} {{lastName}}</td>
+                {{/professor}}
+                <td>
+                    <form action="/section/update/{{id}}" method="get">
+                        <button type="submit" class="btn btn-danger">Edit</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="/section/delete/{{id}}" method="get">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+            {{/sections}}
+        </table>
+        <a href="/section/add/{{course.id}}">Create Section</a>
+    </div>
+</div>
+
+{{>footer}}

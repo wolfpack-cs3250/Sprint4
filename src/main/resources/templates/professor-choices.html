@@ -1,7 +1,7 @@
 {{>header}}
 
 <h1>Select an Option</h1>
-<div class="container">
+<div class="container align= "center"">
     <form action="/edit-professor" method="get">
         <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
         <button type="submit" class="btn btn-danger">Edit Professor</button>
@@ -9,7 +9,7 @@
 </div>
 <br>
 
-<div class="container">
+<div class="container align= "center"">
     <form action="/pick-professor" method="get">
         <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
         <button type="submit" class="btn btn-danger">Pick a Course</button>
