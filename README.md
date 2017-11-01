@@ -1,6 +1,6 @@
-# Sprint 3
+# Sprint 5
 
-![alt text](https://travis-ci.org/wolfpack-cs3250/Sprint3.svg?branch=master)
+![alt text](https://travis-ci.org/wolfpack-cs3250/Sprint4.svg?branch=master)
 
 Notes:
 
@@ -16,8 +16,6 @@ Notes:
         Instance --> Row
         Variables --> Columns
 
-- Create a user class and be able to do the CRUD ops on it.
-
-- Use apache derby.
+- Use H2
 
 

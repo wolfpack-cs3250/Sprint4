@@ -30,7 +30,7 @@ public class GlobalTest {
     }
 
     @Test
-    public void setSophmoreCredits() throws Exception {
+    public void setSophomoreCredits() throws Exception {
         global1.setSophmoreCredits(65);
         assertEquals(65,global1.getSophmoreCredits());
     }
@@ -58,7 +58,7 @@ public class GlobalTest {
     }
 
     @Test
-    public void getSophmoreCredits() throws Exception {
+    public void getSophomoreCredits() throws Exception {
         assertEquals(64,global1.getSophmoreCredits());
     }
 

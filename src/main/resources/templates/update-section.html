@@ -1,0 +1,24 @@
+{{>header}}
+<h1> Update a Section</h1>
+<div class="container">
+    <form action="/section/update" >
+
+        <input type="hidden" name="sectionId" value="{{section.id}}">
+
+        <label for="SectionNumber">SectionNumber:</label>
+        <input type="number" name="sectionNumber" value="{{section.sectionNumber}}">
+
+        <h3> Select a professor to teach:</h3>
+        {{#professors}}
+        <label for="name">{{firstName}} {{lastName}}</label>
+        <input type="radio" name="professorId" value="{{id}}">
+        <br>
+        {{/professors}}
+
+        <h3> Select Building: </h3>
+        <h3>Select Room:</h3>
+
+        <button type="submit"> Submit</button>
+    </form>
+</div>
+{{>footer}}

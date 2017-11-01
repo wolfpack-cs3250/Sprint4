@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.banner.bannerApplication.entities.Course;
+import com.banner.bannerApplication.entities.Section;
 
 @Entity
 public class User {
@@ -19,15 +20,18 @@ public class User {
     @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "student_id", unique = true)
     private Long id;
-  
+
     @ManyToOne
-    private Course studentCourse;
+    private Section section;
 
     @Column(unique = false)
     private String firstName;
 
     @Column(unique = false)
     private String lastName;
+
+    //@Column(unique = false)
+    //private long completedCredits = 666;
 
     @Column(unique = true)
     private String[] done;
@@ -52,6 +56,12 @@ public class User {
         return id;
     }
 
+    public Section getSection() {
+        return section;
+    }
+    public void setSection(Section section){
+        this.section = section;
+    }
     public String getFirstName() {
         return firstName;
     }
@@ -66,13 +76,5 @@ public class User {
         return lastName;
     }
 
-    // Course Getters and setters
-    public Course getCourse() {
-        return studentCourse;
-    }
-
-    public void setCourse(Course course) {
-        this.studentCourse = course;
-    }
 
 }

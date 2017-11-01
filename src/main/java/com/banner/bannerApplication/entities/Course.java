@@ -4,12 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.*;
+import javax.persistence.OneToMany;
+import javax.persistence.Column;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 
-import com.banner.bannerApplication.entities.User;
 
 @Entity
 public class Course {
@@ -19,13 +19,10 @@ public class Course {
     @Column(name = "id_course", unique = true)
     private Long id;
 
-    @OneToMany(mappedBy = "studentCourse")
-    private List<User> students = new ArrayList<User>();
+    @OneToMany(mappedBy = "course")
+    private Set<Section> sections = new HashSet<>();
 
-    // private List<Section> sections;
-
-
-    @Column(unique = false)
+    @Column(unique = true)
     private String courseName;
 
     @Column(unique = false)
@@ -49,7 +46,13 @@ public class Course {
     @Column(unique = false)
     private String coreq;
 
-    public Long getCourseId() { return id; }
+    public Set<Section> getSections(){
+        return sections;
+    }
+
+    public Long getCourseId() {
+        return id;
+    }
 
     public String getCoreq() {
         return coreq;
@@ -122,13 +125,9 @@ public class Course {
         this.courseName = courseName;
     }
 
-
-    // Students getters and setters
-    public void setStudents(List<User> students) {
-        this.students = students;
+    // jpa only
+    public Course (){
     }
 
-    public List<User> getStudents() {
-        return students;
-    }
 }
+

@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
+import com.banner.bannerApplication.entities.Global;
+import com.banner.bannerApplication.repositories.GlobalRepository;
+
 import com.banner.bannerApplication.entities.User;
 import com.banner.bannerApplication.repositories.UserRepository;
 
@@ -21,6 +24,8 @@ import com.banner.bannerApplication.entities.Course;
 import com.banner.bannerApplication.repositories.CourseRepository;
 
 import javax.persistence.GeneratedValue;
+import com.banner.bannerApplication.entities.Section;
+import com.banner.bannerApplication.repositories.SectionRepository;
 
 @Controller
 @RequestMapping("user")
@@ -29,16 +34,35 @@ public class UserController {
     private UserRepository userRepository;
     @Autowired
     private CourseRepository courseRepository;
+    @Autowired
+    private SectionRepository sectionRepository;
+    @Autowired
+    private GlobalRepository globalRepository;
+
+    // Create student html page
+    @RequestMapping("/create-student")
+    String createStudent() {
+        return "create";
+    }
 
     // Create
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView addNewUser (@RequestParam String firstname,
                                             @RequestParam String lastname) {
         User n = new User();
+        Global g = new Global();
         n.setFirstName(firstname);
         n.setLastName(lastname);
-        n.setCourse(null);
+        // initializes default global values for student
+        g.setSchoolName("Wolfpack University");
+        g.setSeniorCredits(0);
+        g.setJuniorCredits(0);
+        g.setSophmoreCredits(0);
+        g.setFreshmanCredits(0);
+        g.setCreditsCompleted();
+        // saves to db
         userRepository.save(n);
+        globalRepository.save(g);
         return new ModelAndView("redirect:/user");
     }
 
@@ -61,9 +85,11 @@ public class UserController {
     @GetMapping(path="/view/{id}")
     public String showOne(@PathVariable Long id, Model model) {
         User user = userRepository.findOne(id);
-        Course course = courseRepository.findOne(user.getCourse().getCourseId());
+        Global global = globalRepository.findBySchoolName("Wolfpack University");
+
         model.addAttribute("student", user);
-        model.addAttribute("course", course);
+        model.addAttribute("global", global);
+
         return "student-view";
     }
 
@@ -89,19 +115,20 @@ public class UserController {
         userRepository.save(user);
         return new ModelAndView("redirect:/user");
     }
+
     @GetMapping(path="/register/{id}")
     public String registerStudent(@PathVariable Long id, Model model) {
-        Iterable<Course> allcourses = courseRepository.findAll();
-        model.addAttribute("allcourses", allcourses);
+        Iterable<Section> sections = sectionRepository.findAll();
+        model.addAttribute("sections", sections);
         model.addAttribute("studentid", id);
         return "pick-student";
     }
 
     @GetMapping(path="/addcourse/{id}")
-    public ModelAndView registerStudent(@PathVariable Long id, @RequestParam Long course) {
+    public ModelAndView registerStudent(@PathVariable Long id, @RequestParam Long sectionId) {
         User user = userRepository.findOne(id);
-        Course studentSelectedCourse = courseRepository.findOne(course);
-        user.setCourse(studentSelectedCourse);
+        Section section = sectionRepository.findOne(sectionId);
+        user.setSection(section);
         userRepository.save(user);
         return new ModelAndView("redirect:/user");
     }
