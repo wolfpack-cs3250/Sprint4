@@ -12,6 +12,7 @@ import static org.junit.Assert.*;
 
 public class UserTest {
 
+
     private static User user1;
     @Before
     public void setup(){
@@ -20,7 +21,6 @@ public class UserTest {
         user1.setLastName("apple");
 
     }
-
 
     @Test
     public void getFirstName() throws Exception {
@@ -45,7 +45,29 @@ public class UserTest {
         assertEquals("last name test", user1.getLastName());
     }
 
+    @Test
+    public void setInProgress() throws Exception {
+    }
 
+    @Test
+    public void removeInprogress() throws Exception {
+    }
+
+    @Test
+    public void getDone() throws Exception {
+    }
+
+    @Test
+    public void getStudentId() throws Exception {
+    }
+
+    @Test
+    public void getSection() throws Exception {
+    }
+
+    @Test
+    public void setSection() throws Exception {
+    }
 
 
 }
