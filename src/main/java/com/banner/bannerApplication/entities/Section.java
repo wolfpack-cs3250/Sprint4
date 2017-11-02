@@ -12,11 +12,9 @@ import java.util.Set;
 public class Section{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private long id;
 
-    private Long sectionNumber;
-
-    private String startDate, endDate, startTime, endTime;
+    private long sectionNumber;
 
     @ManyToOne
     private Course course;
@@ -31,11 +29,11 @@ public class Section{
     private Set<User> users = new HashSet<>();
 
     public Section() {}
-    public Section(Course course, Long sectionNumber){
+    public Section(Course course, long sectionNumber){
         this.sectionNumber = sectionNumber;
         this.course = course;
     }
-    public Long getId () {
+    public long getId () {
         return id;
     }
     public void setProfessor(Professor professor){
@@ -44,11 +42,12 @@ public class Section{
     public Professor getProfessor(){
         return professor;
     }
-    public Long getSectionNumber (Long sectionNumber) {
+    public int getSectionNumber (int sectionNumber) {
         return sectionNumber;
     }
-    public void setSectionNumber (Long sectionNumber) {
-        this.sectionNumber = sectionNumber;
+
+    public void setSectionNumber (long sectionNumber) {
+       this.sectionNumber = sectionNumber;
     }
     public Course getCourse(){
         return course;
@@ -59,13 +58,7 @@ public class Section{
     public Rooms getRoom(){
         return room;
     }
-    public void setRoom(Rooms room){ this.room = room; }
-    public void setStartDate (String startDate) { this.startDate = startDate;}
-    public String getStartDate() { return startDate; }
-    public void setEndDate (String EndDate) { this.endDate = endDate;}
-    public String getEndDate() { return endDate; }
-    public String getStartTime() { return startTime; }
-    public void setStartTime (String startTime) { this.startTime = startTime;}
-    public String getEndTime() { return endTime; }
-    public void setEndTIme (String endDate) { this.endTime = endTime;}
+    public void setRoom(Rooms room){
+        this.room = room;
+    }
 }
