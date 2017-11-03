@@ -22,7 +22,12 @@ public class Professor {
     @Column(unique = false)
     private String lastName;
 
-
+    public Professor(){
+    }
+    public Professor(String firstName,String lastName){
+        this.firstName=firstName;
+        this.lastName=lastName;
+    }
 
     @NotNull
     private String password;
