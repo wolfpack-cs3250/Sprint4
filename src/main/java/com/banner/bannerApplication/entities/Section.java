@@ -7,6 +7,7 @@ package com.banner.bannerApplication.entities;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+import java.time.LocalDateTime;
 
 @Entity
 public class Section{
@@ -62,7 +63,7 @@ public class Section{
     public void setRoom(Rooms room){ this.room = room; }
     public void setStartDate (String startDate) { this.startDate = startDate;}
     public String getStartDate() { return startDate; }
-    public void setEndDate (String EndDate) { this.endDate = endDate;}
+    public void setEndDate (String endDate) { this.endDate = endDate;}
     public String getEndDate() { return endDate; }
     public String getStartTime() { return startTime; }
     public void setStartTime (String startTime) { this.startTime = startTime;}
