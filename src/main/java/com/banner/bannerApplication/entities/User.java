@@ -34,6 +34,16 @@ public class User {
     @NotNull
     private String password;
 
+    public String getUsername() {
+        return Username;
+    }
+
+    public void setUsername(String username) {
+        Username = username;
+    }
+
+    private String Username;
+
     //@Column(unique = false)
     //private long completedCredits = 666;
 
