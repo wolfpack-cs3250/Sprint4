@@ -31,6 +31,7 @@ public class Professor {
 
     @NotNull
     private String password;
+
     public Set<Section> getSections(){
         return sections;
     }

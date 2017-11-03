@@ -42,10 +42,12 @@ public class ProfessorController {
     // Create
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView addNewProfessor (@RequestParam String firstname,
-                                         @RequestParam String lastname) {
+                                         @RequestParam String lastname,
+                                         @RequestParam String password) {
         Professor n = new Professor();
         n.setFirstName(firstname);
         n.setLastName(lastname);
+        n.setPassword(password);
         professorRepository.save(n);
         return new ModelAndView("redirect:/professor");
     }

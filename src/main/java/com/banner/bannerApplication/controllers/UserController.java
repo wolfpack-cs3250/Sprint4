@@ -48,11 +48,12 @@ public class UserController {
     // Create
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView addNewUser (@RequestParam String firstname,
-                                            @RequestParam String lastname) {
+                                            @RequestParam String lastname,@RequestParam String password) {
         User n = new User();
         Global g = new Global();
         n.setFirstName(firstname);
         n.setLastName(lastname);
+        n.setPassword(password);
         // initializes default global values for student
         g.setSchoolName("Wolfpack University");
         g.setSeniorCredits(0);
