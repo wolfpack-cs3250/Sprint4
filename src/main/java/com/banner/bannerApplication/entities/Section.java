@@ -7,6 +7,7 @@ package com.banner.bannerApplication.entities;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+import java.time.LocalDateTime;
 
 @Entity
 public class Section{
