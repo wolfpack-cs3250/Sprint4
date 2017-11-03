@@ -62,7 +62,7 @@ public class Section{
     public void setRoom(Rooms room){ this.room = room; }
     public void setStartDate (String startDate) { this.startDate = startDate;}
     public String getStartDate() { return startDate; }
-    public void setEndDate (String EndDate) { this.endDate = endDate;}
+    public void setEndDate (String endDate) { this.endDate = endDate;}
     public String getEndDate() { return endDate; }
     public String getStartTime() { return startTime; }
     public void setStartTime (String startTime) { this.startTime = startTime;}
