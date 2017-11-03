@@ -13,18 +13,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("login")
+@RequestMapping("login2")
 public class LoginProfessorController {
+
     @Autowired
     private LoginServices loginServices;
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/login2", method = RequestMethod.GET)
     public String showLoginForm() {
         return "login";
     }
 
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/login2", method = RequestMethod.POST)
     public String verifyLogin(@RequestParam String userId,
                               @RequestParam String password, HttpSession session, Model model) {
 
@@ -32,7 +33,7 @@ public class LoginProfessorController {
         Professor professor = loginServices.loginProfessor(userId, password);
         if (professor == null) {
             model.addAttribute("loginError", "Error logging in. Please try again");
-            return "login";
+            return "login2";
         }
         session.setAttribute("loggedInUser", professor);
         return "redirect:/";
@@ -41,6 +42,6 @@ public class LoginProfessorController {
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logout(HttpSession session) {
         session.removeAttribute("loggedInUser");
-        return "login";
+        return "login2";
     }
 }

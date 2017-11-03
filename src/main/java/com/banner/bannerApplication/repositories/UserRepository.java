@@ -10,10 +10,8 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import javax.persistence.TypedQuery;
 
 @RepositoryRestResource(collectionResourceRel = "users", path = "users")
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, Long>{
     List<User> findByLastName(@Param("name") String name);
+    User findByFirstName(@Param("name")String name);
     //String findByFirstName(@Param("name") String name);
-public TypedQuery<User> findUserBYName(String name){
-
-}
 }

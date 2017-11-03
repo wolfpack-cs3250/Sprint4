@@ -25,18 +25,18 @@ public class BannerApplication {
 
 
 
-	@Bean
-    ApplicationRunner init(ProfessorRepository professorRepository) {
-	    return (evt) -> Arrays.asList(
-	            "TBD".split(","))
-                .forEach(
-                        a -> {
-                            Professor defaultProfessor = new Professor();
-                            defaultProfessor.setFirstName(a);
-                            defaultProfessor.setLastName(" ");
-                            professorRepository.save(defaultProfessor);
-                        });
-	}
+//	@Bean
+//    ApplicationRunner init(ProfessorRepository professorRepository) {
+//	    return (evt) -> Arrays.asList(
+//	            "TBD".split(","))
+//                .forEach(
+//                        a -> {
+//                            Professor defaultProfessor = new Professor();
+//                            defaultProfessor.setFirstName(a);
+//                            defaultProfessor.setLastName(" ");
+//                            professorRepository.save(defaultProfessor);
+//                        });
+//	}
     @Bean
     ApplicationRunner init2(BuildingRepository buildingRepository, RoomsRepository roomsRepository) {
         return (evt) -> Arrays.asList(

@@ -18,14 +18,15 @@ public User findUser(Long id){
 }
 
 public User findUser(String name){
-    return  userRepository.findByLastName(name);
+    return  userRepository.findByFirstName(name);
+    //might be spagetti
 }
 
 public Professor findProfessor(Long id){
     return professorRepository.findOne(id);
 }
 public  Professor findProfessor(String name){
-    return professorRepository.findByFirstName(name);
+    return professorRepository.findByLastName(name);
 }
 public User loginUser(String userId,String password){
     User user= this.findUser(userId);
