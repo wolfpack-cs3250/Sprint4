@@ -5,8 +5,16 @@
 
 package com.banner.bannerApplication.entities;
 import javax.persistence.*;
+import javax.swing.text.DateFormatter;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.time.LocalDateTime;
 
 @Entity
 public class Section{
@@ -16,7 +24,7 @@ public class Section{
 
     private Long sectionNumber;
 
-    private String startDate, endDate, startTime, endTime;
+    private String startDate, endDate, startTime, endTime, classDate;
 
     @ManyToOne
     private Course course;
@@ -60,12 +68,31 @@ public class Section{
         return room;
     }
     public void setRoom(Rooms room){ this.room = room; }
-    public void setStartDate (String startDate) { this.startDate = startDate;}
-    public String getStartDate() { return startDate; }
-    public void setEndDate (String EndDate) { this.endDate = endDate;}
+
+    public void setStartDate (String startDate) throws ParseException {
+
+        DateFormat outputFormat = new SimpleDateFormat("mm-dd-yyyy");
+        DateFormat inputFormat = new SimpleDateFormat("mm-dd-yyyy");
+        Date date = inputFormat.parse(startDate);
+        String outputText = outputFormat.format(date);
+        this.startDate = startDate;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+    public void setEndDate (String endDate) throws ParseException {
+        DateFormat outputFormat = new SimpleDateFormat("mm-dd-yyyy");
+        DateFormat inputFormat = new SimpleDateFormat("mm-dd-yyyy");
+        Date date = inputFormat.parse(endDate);
+        String outputText = outputFormat.format(date);
+        this.endDate = endDate;
+    }
     public String getEndDate() { return endDate; }
     public String getStartTime() { return startTime; }
     public void setStartTime (String startTime) { this.startTime = startTime;}
     public String getEndTime() { return endTime; }
     public void setEndTIme (String endDate) { this.endTime = endTime;}
+    public String getClassDate() { return classDate; }
+    public void setClassDate (String classDate) { this.classDate = classDate;}
 }
