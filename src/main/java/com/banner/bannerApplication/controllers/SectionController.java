@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.*;
 
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.ParseException;
+import java.time.LocalDateTime;
+
 @Controller
 @RequestMapping("section")
 
@@ -35,7 +38,8 @@ public class SectionController {
     public ModelAndView addSection(@RequestParam Long courseId, @RequestParam Long sectionNumber,
                                    @RequestParam Long professorId, @RequestParam Long roomId,
                                    @RequestParam String startDate, @RequestParam String endDate,
-                                   @RequestParam String startTime, @RequestParam String endTime){
+                                   @RequestParam String startTime, @RequestParam String endTime,
+                                   @RequestParam String classDate) throws ParseException {
 
         Course course = courseRepository.findOne(courseId);
         Professor professor = professorRepository.findOne(professorId);
@@ -50,6 +54,7 @@ public class SectionController {
         n.setEndDate(endDate);
         n.setStartTime(startTime);
         n.setEndTIme(endTime);
+        n.setClassDate(classDate);
         sectionRepository.save(n);
         return new ModelAndView("redirect:/faculty/view/" + courseId);
     }
@@ -107,7 +112,8 @@ public class SectionController {
     public ModelAndView updateCourse(@RequestParam Long sectionId, @RequestParam Long sectionNumber,
                                      @RequestParam Long professorId, @RequestParam String startDate,
                                      @RequestParam String endDate, @RequestParam String startTime,
-                                     @RequestParam String endTime){
+                                     @RequestParam String endTime, @RequestParam String classDate) throws ParseException
+    {
 
         Professor professor = professorRepository.findOne(professorId);
         Section n = sectionRepository.findOne(sectionId);
@@ -117,6 +123,7 @@ public class SectionController {
         n.setEndDate(endDate);
         n.setStartTime(startTime);
         n.setEndTIme(endTime);
+        n.setClassDate(classDate);
         sectionRepository.save(n);
         return new ModelAndView("redirect:/faculty/view/" + n.getCourse().getCourseId());
     }
