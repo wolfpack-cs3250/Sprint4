@@ -1,39 +1,42 @@
 package com.banner.bannerApplication.entities;
 
-import com.sun.scenario.effect.impl.prism.PrFilterContext;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
+
 public class ProfessorTest {
-    private Professor professor;
+
+    private static Professor professor1;
+
     @Before
-    public void setUP(){
-        professor=new Professor();
-        professor.setFirstName("anakin");
-        professor.setLastName("Skywalker");
+    public void setup(){
+        professor1 = new Professor();
+        professor1.setFirstName("bob");
+        professor1.setLastName("apple");
+
     }
 
     @Test
-    public void getFirstName() throws Exception{
-        assertEquals("anakin",professor.getFirstName());
+    public void getFirstName() throws Exception {
+        assertEquals("bob", professor1.getFirstName());
     }
 
     @Test
-    public void setFirstName() throws Exception{
-        professor.setFirstName("jake");
-        assertEquals("jake",professor.getFirstName());
+    public void setFirstName() throws Exception {
+        professor1.setFirstName("first name test");
+        assertEquals("first name test", professor1.getFirstName());
     }
 
     @Test
-    public void getLastName() throws Exception{
-        assertEquals("Skywalker",professor.getLastName());
+    public void getLastName() throws Exception {
+        assertEquals("apple", professor1.getLastName());
     }
 
     @Test
-    public void setLastName() throws Exception{
-        professor.setLastName("anakinBleack");
-        assertEquals("anakinBleack",professor.getLastName());
+    public void setLastName() throws Exception {
+        professor1.setLastName("last name test");
+        assertEquals("last name test", professor1.getLastName());
     }
 
 }

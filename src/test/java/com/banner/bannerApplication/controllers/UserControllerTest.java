@@ -1,35 +1,29 @@
 package com.banner.bannerApplication.controllers;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-import org.junit.Test;
-import org.junit.After;
+
+import com.banner.bannerApplication.entities.User;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import com.banner.bannerApplication.repositories.UserRepository;
-import com.banner.bannerApplication.entities.User;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
+import static org.junit.Assert.*;
 
 public class UserControllerTest {
 
-    @Mock
-    private User user1;
-    @Mock
-    private UserRepository userRepo1;
-
+    private static User user1;
     @Before
-    public void setUp() throws Exception {
-        MockitoAnnotations.initMocks(this);
+    public void setup() {
+        user1 = new User();
+        user1.setLastName("bob");
+        user1.setFirstName("apple");
+    }
+
+    @Test
+    public void createStudent() throws Exception {
     }
 
     @Test
     public void addNewUser() throws Exception {
-        //user1.setFirstName("bob");
-        //user1.setLastName("taylor");
-
-        //assertEquals("taylor", user1.getLastName());
+        assertEquals("bob", user1.getLastName());
+        assertEquals("apple", user1.getFirstName());
     }
 
     @Test
@@ -41,7 +35,23 @@ public class UserControllerTest {
     }
 
     @Test
+    public void showOne() throws Exception {
+    }
+
+    @Test
     public void updateUser() throws Exception {
+    }
+
+    @Test
+    public void updateStudent() throws Exception {
+    }
+
+    @Test
+    public void registerStudent() throws Exception {
+    }
+
+    @Test
+    public void registerStudent1() throws Exception {
     }
 
 }
