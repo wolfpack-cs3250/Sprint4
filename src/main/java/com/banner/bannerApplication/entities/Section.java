@@ -31,11 +31,11 @@ public class Section{
     private Set<User> users = new HashSet<>();
 
     public Section() {}
-    public Section(Course course, long sectionNumber){
+    public Section(Course course, Long sectionNumber){
         this.sectionNumber = sectionNumber;
         this.course = course;
     }
-    public long getId () {
+    public Long getId () {
         return id;
     }
     public void setProfessor(Professor professor){
@@ -44,10 +44,9 @@ public class Section{
     public Professor getProfessor(){
         return professor;
     }
-    public int getSectionNumber (int sectionNumber) {
+    public Long getSectionNumber (Long sectionNumber) {
         return sectionNumber;
     }
-
     public void setSectionNumber (long sectionNumber) {
        this.sectionNumber = sectionNumber;
     }
@@ -60,7 +59,5 @@ public class Section{
     public Rooms getRoom(){
         return room;
     }
-    public void setRoom(Rooms room){
-        this.room = room;
-    }
+    public void setRoom(Rooms room){this.room = room; }
 }
