@@ -12,10 +12,12 @@ import java.util.Set;
 public class Section{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
-    private long sectionNumber;
+    private Long sectionNumber;
 
+    private String startDate, endDate, startTime, endTime;
+    
     @ManyToOne
     private Course course;
 
