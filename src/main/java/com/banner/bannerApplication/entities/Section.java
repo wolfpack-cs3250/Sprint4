@@ -35,8 +35,9 @@ public class Section{
     @ManyToOne
     private Professor professor;
 
-    @OneToMany(mappedBy = "section")
-    private Set<User> users = new HashSet<>();
+    @ManyToOne
+    private User user;
+
 
     public Section() {}
     public Section(Course course, Long sectionNumber){
@@ -52,6 +53,8 @@ public class Section{
     public Professor getProfessor(){
         return professor;
     }
+    public User getUser() { return user;}
+    public void setUser (User user) {this.user = user;}
     public Long getSectionNumber (Long sectionNumber) {
         return sectionNumber;
     }
