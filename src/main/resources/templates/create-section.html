@@ -16,6 +16,13 @@
         <br>
         {{/professors}}
 
+        <p> Select a user</p>
+        {{#users}}
+        <label for="name">{{firstName}} {{lastName}}</label>
+        <input type="radio" name="userId" value="{{id}}" required>
+        <br>
+        {{/users}}
+
         <p>Select Location</p>
         {{#allRooms}}
         {{#buildings}}
@@ -37,6 +44,8 @@
         <label for="endTime">Time End: </label>
         <input type="time" name="endTime" required>
 
+        <label for="classDate">Days: </label>
+        <input type="text" name="classDate" required>
        <button type="submit"> Submit</button>
     </form>
 </div>
