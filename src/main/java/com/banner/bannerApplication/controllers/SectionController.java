@@ -1,13 +1,7 @@
 package com.banner.bannerApplication.controllers;
 
-import com.banner.bannerApplication.entities.Course;
-import com.banner.bannerApplication.entities.Professor;
-import com.banner.bannerApplication.entities.Rooms;
-import com.banner.bannerApplication.entities.Section;
-import com.banner.bannerApplication.repositories.CourseRepository;
-import com.banner.bannerApplication.repositories.ProfessorRepository;
-import com.banner.bannerApplication.repositories.RoomsRepository;
-import com.banner.bannerApplication.repositories.SectionRepository;
+import com.banner.bannerApplication.entities.*;
+import com.banner.bannerApplication.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,24 +25,29 @@ public class SectionController {
     private ProfessorRepository professorRepository;
     @Autowired
     private RoomsRepository roomsRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     // Create
     // Section Controllers
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView addSection(@RequestParam Long courseId, @RequestParam Long sectionNumber,
                                    @RequestParam Long professorId, @RequestParam Long roomId,
+                                   @RequestParam Long userId,
                                    @RequestParam String startDate, @RequestParam String endDate,
                                    @RequestParam String startTime, @RequestParam String endTime,
                                    @RequestParam String classDate) throws ParseException {
 
         Course course = courseRepository.findOne(courseId);
         Professor professor = professorRepository.findOne(professorId);
+        User user = userRepository.findOne(userId);
         Rooms room = roomsRepository.findOne(roomId);
 
         Section n = new Section();
         n.setSectionNumber(sectionNumber);
         n.setCourse(course);
         n.setProfessor(professor);
+        n.setUser(user);
         n.setRoom(room);
         n.setStartDate(startDate);
         n.setEndDate(endDate);
@@ -68,10 +67,12 @@ public class SectionController {
             System.out.println(" Is it Null?");
         }
         Iterable<Rooms> allRooms = roomsRepository.findAll();
+        Iterable<User> users = userRepository.findAll();
 
         model.addAttribute("allRooms", allRooms);
         model.addAttribute("professors", professors);
         model.addAttribute("course", course);
+        model.addAttribute("users", users);
         return "create-section";
     }
 
@@ -101,24 +102,29 @@ public class SectionController {
 
         Section section = sectionRepository.findOne(id);
         Iterable<Professor> professors = professorRepository.findAll();
+        Iterable<User> users = userRepository.findAll();
 
         model.addAttribute("section", section);
         model.addAttribute("professors", professors);
+        model.addAttribute("users", users);
         return "update-section";
     }
 
     // UPDATE section
     @GetMapping(path="/update")
     public ModelAndView updateCourse(@RequestParam Long sectionId, @RequestParam Long sectionNumber,
-                                     @RequestParam Long professorId, @RequestParam String startDate,
+                                     @RequestParam Long professorId,  @RequestParam Long userId,
+                                     @RequestParam String startDate,
                                      @RequestParam String endDate, @RequestParam String startTime,
                                      @RequestParam String endTime, @RequestParam String classDate) throws ParseException
     {
 
         Professor professor = professorRepository.findOne(professorId);
+        User user = userRepository.findOne(userId);
         Section n = sectionRepository.findOne(sectionId);
         n.setSectionNumber(sectionNumber);
         n.setProfessor(professor);
+        n.setUser(user);
         n.setStartDate(startDate);
         n.setEndDate(endDate);
         n.setStartTime(startTime);
