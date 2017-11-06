@@ -16,6 +16,13 @@
         <br>
         {{/professors}}
 
+        <p> Select a user</p>
+        {{#users}}
+        <label for="name">{{firstName}} {{lastName}}</label>
+        <input type="radio" name="userId" value="{{id}}" required>
+        <br>
+        {{/users}}
+
         <p>Select Location</p>
         {{#allRooms}}
         {{#buildings}}
