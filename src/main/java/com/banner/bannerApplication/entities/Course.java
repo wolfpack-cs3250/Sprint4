@@ -50,7 +50,7 @@ public class Course {
         return sections;
     }
 
-    public Long getCourseId() {
+    public long getCourseId() {
         return id;
     }
 

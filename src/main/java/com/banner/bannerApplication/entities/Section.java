@@ -5,8 +5,18 @@
 
 package com.banner.bannerApplication.entities;
 import javax.persistence.*;
+import javax.swing.text.DateFormatter;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.time.LocalDateTime;
 
 @Entity
 public class Section{
@@ -16,8 +26,10 @@ public class Section{
 
     private Long sectionNumber;
 
-    private String startDate, endDate, startTime, endTime;
-    
+    private LocalDate startDate, endDate;
+    private LocalTime startTime, endTime;
+    private String classDate;
+
     @ManyToOne
     private Course course;
 
@@ -27,8 +39,9 @@ public class Section{
     @ManyToOne
     private Professor professor;
 
-    @OneToMany(mappedBy = "section")
-    private Set<User> users = new HashSet<>();
+    @ManyToOne
+    private User user;
+
 
     public Section() {}
     public Section(Course course, Long sectionNumber){
@@ -44,6 +57,12 @@ public class Section{
     public Professor getProfessor(){
         return professor;
     }
+    public User getUser() { return user;}
+
+    public void setUser (User user) {
+        this.user = user;
+    }
+
     public Long getSectionNumber (Long sectionNumber) {
         return sectionNumber;
     }
@@ -59,5 +78,25 @@ public class Section{
     public Rooms getRoom(){
         return room;
     }
-    public void setRoom(Rooms room){this.room = room; }
+    public void setRoom(Rooms room){ this.room = room; }
+    public void setStartDate (String startDate) throws ParseException {
+
+        this.startDate = LocalDate.parse(startDate);
+    }
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+    public void setEndDate (String endDate) throws ParseException {
+        this.endDate = LocalDate.parse(endDate);
+    }
+    public LocalDate getEndDate() { return endDate; }
+    public void setStartTime (String startTime) {
+
+        this.startTime = LocalTime.parse(startTime);
+    }
+    public LocalTime getStartTime() { return startTime; }
+    public void setEndTIme (String endTime) { this.endTime = LocalTime.parse(endTime);}
+    public LocalTime getEndTime() { return endTime; }
+    public String getClassDate() { return classDate; }
+    public void setClassDate (String classDate) { this.classDate = classDate;}
 }

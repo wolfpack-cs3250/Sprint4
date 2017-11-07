@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Collection;
 import java.util.List;
 
 import com.banner.bannerApplication.entities.Global;
@@ -85,10 +87,12 @@ public class UserController {
     @GetMapping(path="/view/{id}")
     public String showOne(@PathVariable Long id, Model model) {
         User user = userRepository.findOne(id);
+        Collection<Section> sections = sectionRepository.findByUserId((id));
         Global global = globalRepository.findBySchoolName("Wolfpack University");
 
         model.addAttribute("student", user);
         model.addAttribute("global", global);
+        model.addAttribute("sections", sections);
 
         return "student-view";
     }
@@ -125,12 +129,35 @@ public class UserController {
     }
 
     @GetMapping(path="/addcourse/{id}")
-    public ModelAndView registerStudent(@PathVariable Long id, @RequestParam Long sectionId) {
+    public ModelAndView registerStudent(@PathVariable Long id, @RequestParam Long sectionId,
+                                        Model model) {
         User user = userRepository.findOne(id);
         Section section = sectionRepository.findOne(sectionId);
-        user.setSection(section);
-        userRepository.save(user);
-        return new ModelAndView("redirect:/user");
+
+        if (checkConflictingSchedules(id, sectionId)) {
+            section.setUser(user);
+            sectionRepository.save(section);
+            return new ModelAndView("redirect:/user");
+        }
+        else{
+            return new ModelAndView("redirect:/user/error");
+        }
+    }
+    @GetMapping(path="/error")
+    public String someError(){
+       return "error-page";
     }
 
+    // checkConflictingSchedules will return true is there are no conflicting schedules
+    //      will return false if there is some conflict
+    private boolean checkConflictingSchedules(Long studentId, Long sectionId){
+        // Get all of the sections the user already belongs to
+        Collection<Section> sections = sectionRepository.findByUserId((studentId));
+
+        // If the student is registered to no classes, return true
+        if (sections.isEmpty()){
+            return true;
+        }
+        return false;
+    }
 }

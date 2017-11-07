@@ -7,4 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface SectionRepository extends JpaRepository<Section, Long> {
     Collection<Section> findByCourseNumber (String name);
     Collection<Section> findByProfessorId(Long id);
+    Collection<Section> findByUserId(Long id);
 }
