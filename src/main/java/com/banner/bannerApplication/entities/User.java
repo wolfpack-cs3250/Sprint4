@@ -57,6 +57,10 @@ public class User {
         return sections;
     }
 
+    public void setSection(Section section){
+        this.section = section;
+    }
+
     public String[] getDone() {
         return Arrays.copyOf(done, done.length);
     }

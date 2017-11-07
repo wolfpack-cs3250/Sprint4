@@ -128,4 +128,36 @@ public class UserController {
         return "pick-student";
     }
 
+    @GetMapping(path="/addcourse/{id}")
+    public ModelAndView registerStudent(@PathVariable Long id, @RequestParam Long sectionId,
+                                        Model model) {
+        User user = userRepository.findOne(id);
+        Section section = sectionRepository.findOne(sectionId);
+
+        if (checkConflictingSchedules(id, sectionId)) {
+            section.setUser(user);
+            sectionRepository.save(section);
+            return new ModelAndView("redirect:/user");
+        }
+        else{
+            return new ModelAndView("redirect:/user/error");
+        }
+    }
+    @GetMapping(path="/error")
+    public String someError(){
+       return "error-page";
+    }
+
+    // checkConflictingSchedules will return true is there are no conflicting schedules
+    //      will return false if there is some conflict
+    private boolean checkConflictingSchedules(Long studentId, Long sectionId){
+        // Get all of the sections the user already belongs to
+        Collection<Section> sections = sectionRepository.findByUserId((studentId));
+
+        // If the student is registered to no classes, return true
+        if (sections.isEmpty()){
+            return true;
+        }
+        return false;
+    }
 }

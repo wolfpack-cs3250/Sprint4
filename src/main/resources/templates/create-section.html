@@ -16,13 +16,6 @@
         <br>
         {{/professors}}
 
-        <p> Select a user</p>
-        {{#users}}
-        <label for="name">{{firstName}} {{lastName}}</label>
-        <input type="radio" name="userId" value="{{id}}" required>
-        <br>
-        {{/users}}
-
         <p>Select Location</p>
         {{#allRooms}}
         {{#buildings}}
@@ -32,10 +25,10 @@
         <br>
 
         <p> Select Date for course to begin</p>
-        <label for="date">Date Start [MM-DD-YYYY]: </label>
+        <label for="date">Date Start [YYYY-MM-DD]: </label>
         <input type="date" name="startDate" required>
 
-        <label for="endDate">Date End [MM-DD-YYYY]: </label>
+        <label for="endDate">Date End [YYYY-MM-DD]: </label>
         <input type="date" name="endDate" required>
 
         <label for="startTime">Time Begin: </label>
