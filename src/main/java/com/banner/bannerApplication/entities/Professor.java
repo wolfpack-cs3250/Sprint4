@@ -1,6 +1,7 @@
 package com.banner.bannerApplication.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,11 +22,15 @@ public class Professor {
     @Column(unique = false)
     private String lastName;
 
-    public Professor(){}
-    public Professor(String firstname, String lastname){
-        this.firstName = firstname;
-        this.lastName = lastname;
+    public Professor(){
     }
+    public Professor(String firstName,String lastName){
+        this.firstName=firstName;
+        this.lastName=lastName;
+    }
+
+    @NotNull
+    private String password;
 
     public Set<Section> getSections(){
         return sections;
@@ -45,6 +50,14 @@ public class Professor {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 }

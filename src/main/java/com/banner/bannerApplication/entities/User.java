@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -31,6 +32,19 @@ public class User {
 
     @Column(unique = false)
     private String lastName;
+
+    @NotNull
+    private String password;
+
+    public String getUsername() {
+        return Username;
+    }
+
+    public void setUsername(String username) {
+        Username = username;
+    }
+
+    private String Username;
 
     //@Column(unique = false)
     //private long completedCredits = 666;
@@ -82,6 +96,8 @@ public class User {
     public String getLastName() {
         return lastName;
     }
+    public void setPassword(String password){this.password=password;}
+    public String getPassword(){return password;}
 
 
 }

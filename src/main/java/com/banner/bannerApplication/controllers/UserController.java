@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Random;
 
 import com.banner.bannerApplication.entities.Global;
 import com.banner.bannerApplication.repositories.GlobalRepository;
@@ -50,11 +51,12 @@ public class UserController {
     // Create
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView addNewUser (@RequestParam String firstname,
-                                            @RequestParam String lastname) {
+                                            @RequestParam String lastname,@RequestParam String password) {
         User n = new User();
         Global g = new Global();
         n.setFirstName(firstname);
         n.setLastName(lastname);
+        n.setPassword(password);
         // initializes default global values for student
         g.setSchoolName("Wolfpack University");
         g.setSeniorCredits(0);
@@ -62,6 +64,12 @@ public class UserController {
         g.setSophmoreCredits(0);
         g.setFreshmanCredits(0);
         g.setCreditsCompleted();
+        //randomly generates username
+        Random randy= new Random();
+        int candy= randy.nextInt(100)+1;
+        String username=(firstname.charAt(1)+lastname+candy);
+        n.setUsername(username);
+        System.out.println(username);
         // saves to db
         userRepository.save(n);
         globalRepository.save(g);
