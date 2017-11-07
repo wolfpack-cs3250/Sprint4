@@ -18,16 +18,16 @@ public class SectionTest {
        section.setSectionNumber(1);
     }
         
-    @Test
-    public void getCourseId()throws Exception {
-    assertEquals(1, course.getCourseId());
-    }
+//     @Test
+//     public void getCourseId()throws Exception {
+//     assertEquals(1, course.getCourseId());
+//     }
 
-    @Test
-    public void setCourseId()throws Exception {
-        course.setCourseId(2);
-        assertEquals(2,course.getCourseId());
-    }
+//     @Test
+//     public void setCourseId()throws Exception {
+//         course.setCourseId(2);
+//         assertEquals(2,course.getCourseId());
+//     }
 
     @Test
     public void getCourseName()throws Exception {
@@ -42,13 +42,13 @@ public class SectionTest {
 
     @Test
     public void getSectionNumber() throws Exception {
-        int aLong = 1;
+        Long aLong = 1;
         assertEquals(1, section.getSectionNumber(aLong));
     }
 
     @Test
     public void setSectionNumber() throws Exception {
-        int aLong = 1;
+        Long aLong = 1;
         section.setSectionNumber(3);
         assertEquals(3, section.getSectionNumber(aLong));
     }
