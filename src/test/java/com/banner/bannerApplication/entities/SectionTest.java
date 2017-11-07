@@ -16,6 +16,7 @@ public class SectionTest {
         course.setCourseId(1);
 
        section.setSectionNumber(1);
+    }
         
     @Test
     public void getCourseId()throws Exception {
