@@ -24,13 +24,10 @@ public class Section{
 
     private Long sectionNumber;
 
-<<<<<<< HEAD
     private String startDate, endDate, startTime, endTime;
     
-=======
-    private String startDate, endDate, startTime, endTime, classDate;
+   private String startDate, endDate, startTime, endTime, classDate;
 
->>>>>>> e0c8b0c565632f7c9cc8e750578031397f6dcab7
     @ManyToOne
     private Course course;
 
@@ -75,9 +72,6 @@ public class Section{
     public Rooms getRoom(){
         return room;
     }
-<<<<<<< HEAD
-    public void setRoom(Rooms room){this.room = room; }
-=======
     public void setRoom(Rooms room){ this.room = room; }
 
     public void setStartDate (String startDate) throws ParseException {
@@ -106,5 +100,4 @@ public class Section{
     public void setEndTIme (String endDate) { this.endTime = endTime;}
     public String getClassDate() { return classDate; }
     public void setClassDate (String classDate) { this.classDate = classDate;}
->>>>>>> e0c8b0c565632f7c9cc8e750578031397f6dcab7
 }
