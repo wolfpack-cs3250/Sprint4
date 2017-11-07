@@ -13,7 +13,6 @@ public class SectionTest {
         course = new Course();
         section = new Section();
         course.setCourseName("A");
-        course.setCourseId(1);
 
        section.setSectionNumber(1);
     }
