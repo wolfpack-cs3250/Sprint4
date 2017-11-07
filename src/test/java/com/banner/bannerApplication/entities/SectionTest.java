@@ -2,9 +2,10 @@ package com.banner.bannerApplication.entities;
 
 import org.junit.Before;
 import org.junit.Test;
-
 import static org.junit.Assert.*;
+
 public class SectionTest {
+<<<<<<< HEAD
     private Course course;
     private Section section;
 
@@ -16,6 +17,11 @@ public class SectionTest {
         course.setCourseId(1);
 
        section.setSectionNumber(1);
+=======
+
+    @Before
+    public void setUp(){
+>>>>>>> e0c8b0c565632f7c9cc8e750578031397f6dcab7
     }
 
     @Test

@@ -8,7 +8,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.*;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.banner.bannerApplication.entities.Course;
 import com.banner.bannerApplication.entities.Section;
@@ -18,7 +20,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
-    @Column(name = "student_id", unique = true)
+    @Column(unique = true)
     private Long id;
 
     @ManyToOne
@@ -36,6 +38,9 @@ public class User {
     @Column(unique = true)
     private String[] done;
 
+    @OneToMany(mappedBy = "user")
+    private Set<Section> sections = new HashSet<>();
+
     @Column(name="Registered", nullable = false)
     @ElementCollection(targetClass = long.class)
     private List<Long> inProgess;
@@ -48,20 +53,18 @@ public class User {
         inProgess.remove(classname);
     }
 
+    public Set<Section> getSections(){
+        return sections;
+    }
+
     public String[] getDone() {
         return Arrays.copyOf(done, done.length);
     }
 
-    public Long getStudentId() {
+    public Long getId() {
         return id;
     }
 
-    public Section getSection() {
-        return section;
-    }
-    public void setSection(Section section){
-        this.section = section;
-    }
     public String getFirstName() {
         return firstName;
     }
