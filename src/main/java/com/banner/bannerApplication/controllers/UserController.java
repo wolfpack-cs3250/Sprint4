@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Collection;
 import java.util.List;
 
 import com.banner.bannerApplication.entities.Global;
@@ -85,10 +87,12 @@ public class UserController {
     @GetMapping(path="/view/{id}")
     public String showOne(@PathVariable Long id, Model model) {
         User user = userRepository.findOne(id);
+        Collection<Section> sections = sectionRepository.findByUserId((id));
         Global global = globalRepository.findBySchoolName("Wolfpack University");
 
         model.addAttribute("student", user);
         model.addAttribute("global", global);
+        model.addAttribute("sections", sections);
 
         return "student-view";
     }
@@ -122,15 +126,6 @@ public class UserController {
         model.addAttribute("sections", sections);
         model.addAttribute("studentid", id);
         return "pick-student";
-    }
-
-    @GetMapping(path="/addcourse/{id}")
-    public ModelAndView registerStudent(@PathVariable Long id, @RequestParam Long sectionId) {
-        User user = userRepository.findOne(id);
-        Section section = sectionRepository.findOne(sectionId);
-        user.setSection(section);
-        userRepository.save(user);
-        return new ModelAndView("redirect:/user");
     }
 
 }
