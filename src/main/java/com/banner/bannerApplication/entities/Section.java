@@ -25,8 +25,6 @@ public class Section{
     private Long sectionNumber;
 
     private String startDate, endDate, startTime, endTime;
-    
-   private String startDate, endDate, startTime, endTime, classDate;
 
     @ManyToOne
     private Course course;
