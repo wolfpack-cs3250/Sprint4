@@ -13,5 +13,6 @@ import javax.persistence.TypedQuery;
 public interface UserRepository extends JpaRepository<User, Long>{
     List<User> findByLastName(@Param("name") String name);
     User findByFirstName(@Param("name")String name);
+    User findByUsername(String username);
     //String findByFirstName(@Param("name") String name);
 }

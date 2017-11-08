@@ -10,6 +10,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 import com.banner.bannerApplication.entities.Course;
 import com.banner.bannerApplication.entities.Section;
@@ -33,6 +34,9 @@ public class User {
 
     @NotNull
     private String password;
+    private String Username;
+    private String passwordConfirm;
+    private Set<Position> positions;
 
     public String getUsername() {
         return Username;
@@ -42,7 +46,7 @@ public class User {
         Username = username;
     }
 
-    private String Username;
+
 
     //@Column(unique = false)
     //private long completedCredits = 666;
@@ -92,5 +96,22 @@ public class User {
     public void setPassword(String password){this.password=password;}
     public String getPassword(){return password;}
 
+    @Transient
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
 
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
+    }
+
+    @ManyToMany
+    @JoinTable(name="user_position", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "position_id"))
+    public Set<Position> getPositions() {
+        return positions;
+    }
+
+    public void setPositions(Set<Position> positions) {
+        this.positions = positions;
+    }
 }
