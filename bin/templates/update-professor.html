@@ -1,0 +1,18 @@
+{{>header}}
+<h1>Update an Account</h1>
+<div class="container">
+    <form action="/professor/update">
+
+        <input type="hidden" name="id" value="{{professor.id}}"/>
+
+        <label type="firstname">put updated first name here:</label>
+        <input type="text" name="firstname" value="{{professor.firstName}}" />
+
+        <label type="lastname">put updated last name here:</label>
+        <input type="text" name="lastname" value="{{professor.lastName}}">
+
+        <button type="submit" >Update</button>
+    </form>
+</div>
+  </form>
+{{>footer}}

@@ -1,0 +1,18 @@
+{{>header}}
+<h1> Create a Room</h1>
+<div class="container">
+    <p>Making a room for: {{building.buildingName}} Building</p>
+    <form action="/rooms" method="post">
+
+        <input type="hidden" name="buildingId" value="{{building.id}}">
+
+        <label for="RoomNumber">Room Number:</label>
+        <input type="text" name="roomNumber">
+
+        <label for="capacity">Room Capasity:</label>
+        <input type="text" name="roomSize">
+
+        <button type="submit"> Submit</button>
+    </form>
+</div>
+{{>footer}}

@@ -56,9 +56,22 @@ public class CourseController {
     }
     public ModelAndView chooseSection(long UserID,long coursename){
         User user=userRepository.findOne(UserID);
+        Section section= SectionRepository.findOne(coursename);
+        //coinpurse
+        int count= user.getSections().size();
+        Object[] start = user.getSections(section.getStartTime).toArray();
+        Object[] end= user.getSections(section.getEndTime).toArray();
+        Object[] date= user.getSections(section.getClassDate).toArray();
+        for(int i=0;i<=count;i++){
+          //compare the different sections to the section being added.
+          if(date==section.getClassDate){
+          if((start[i]<=section.getStartTime||start[i]>=section.getEndTime)&&(end[i]>=section.getStartTime||end[i]>=section.getEndTime)){
+            return new ModelAndView("redirect:/student");
+          }
+        }
+        }
         user.setInProgress(coursename);
-
-        userRepository.save(user);
+          userRepository.save(user);
         return new ModelAndView("redirect:/student");
     }
     // Delete
