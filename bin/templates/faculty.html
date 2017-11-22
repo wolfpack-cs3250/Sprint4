@@ -1,0 +1,90 @@
+{{>header}}
+<h1>List of Courses:</h1>
+<div class="container" align="center">
+<table>
+    <tr>
+        <th>Unique Id</th>
+        <th>Course Number</th>
+        <th>Course Name</th>
+        <th>Course Description</th>
+        <th>Credits</th>
+        <th>Pre Reqs</th>
+    </tr>
+    {{#allcourses}}
+    <tr>
+        <td>{{id}}</td>
+        <td>{{number}}</td>
+        <td>{{courseName}}</td>
+        <td>{{description}}</td>
+        <td>{{credits}}</td>
+        <td>{{prereqs}}</td>
+        <td>
+        <form action="/faculty/view/{{id}}" method="get">
+            <button type="submit" class="btn btn-danger">View</button>
+        </form>
+        </td>
+        <td>
+            <form action="/section/add/{{id}}" method="get">
+                <button type="submit" class="btn btn-danger">Add Section</button>
+            </form>
+        </td>
+        <td>
+            <form action="/faculty/delete/{{id}}" method="get">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </td>
+        <td>
+            <form action="/faculty/update/{{id}}" method="get">
+                <button type="submit" class="btn btn-danger">Update</button>
+            </form>
+        </td>
+    </tr>
+    {{/allcourses}}
+</table>
+</div>
+<a href="/faculty/create"> Create Course</a>
+
+<br>
+
+<br>
+
+<h1>List of Buildings:</h1>
+
+<table>
+    <tr>
+        <th>Unique Id</th>
+        <th>Building Name</th>
+        <th>Acronym</th>
+        <th>Address</th>
+    </tr>
+    {{#allbuildings}}
+    <tr>
+        <td>{{id}}</td>
+        <td>{{buildingName}}</td>
+        <td>{{acronym}}</td>
+        <td>{{address}}</td>
+        <td>
+            <form action="/buildings/view/{{id}}" method="get">
+                <button type="submit" class="btn btn-danger">View</button>
+            </form>
+        </td>
+        <td>
+            <form action="/rooms/{{id}}" method="get">
+                <button type="submit" class="btn btn-danger">Add Room</button>
+            </form>
+        </td>
+        <td>
+            <form action="/buildings/delete/{{id}}" method="get">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </td>
+        <td>
+            <form action="/buildings/update/{{id}}" method="get">
+                <button type="submit" class="btn btn-danger">Update</button>
+            </form>
+        </td>
+    </tr>
+    {{/allbuildings}}
+</table>
+<a href="/buildings/create"> Create Building</a>
+{{>footer}}
