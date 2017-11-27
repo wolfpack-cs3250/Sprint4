@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import com.banner.bannerApplication.entities.Global;
@@ -29,6 +30,8 @@ import javax.persistence.GeneratedValue;
 import com.banner.bannerApplication.entities.Section;
 import com.banner.bannerApplication.repositories.SectionRepository;
 
+import static java.lang.Integer.parseInt;
+
 @Controller
 @RequestMapping("user")
 public class UserController {
@@ -40,6 +43,7 @@ public class UserController {
     private SectionRepository sectionRepository;
     @Autowired
     private GlobalRepository globalRepository;
+    private Long apple;
 
     // Create student html page
     @RequestMapping("/create-student")
@@ -89,7 +93,6 @@ public class UserController {
         User user = userRepository.findOne(id);
         Collection<Section> sections = sectionRepository.findByUserId((id));
         Global global = globalRepository.findBySchoolName("Wolfpack University");
-
         model.addAttribute("student", user);
         model.addAttribute("global", global);
         model.addAttribute("sections", sections);
@@ -152,12 +155,26 @@ public class UserController {
     //      will return false if there is some conflict
     private boolean checkConflictingSchedules(Long studentId, Long sectionId){
         // Get all of the sections the user already belongs to
+        User user=userRepository.findOne(studentId);
+        Section section= sectionRepository.findOne(sectionId);
         Collection<Section> sections = sectionRepository.findByUserId((studentId));
-
-        // If the student is registered to no classes, return true
+        Iterator e = sections.iterator();
         if (sections.isEmpty()){
             return true;
         }
+        Long apple = new Long(Character.getNumericValue(sections.toString().charAt(1)));
+        Section section1= sectionRepository.findOne(apple);
+
+        if(((section1.getStartTime().isBefore(section.getEndTime())&&)||(section1.getEndTime().isAfter())));
+        while(e.hasNext()) {
+            Long tapple = new Long(Character.getNumericValue(e.next().toString().charAt(1)));
+            int count = user.getSections().size();
+            if(){
+
+            }
+        }
+        // If the student is registered to no classes, return true
+
         return false;
     }
 }
