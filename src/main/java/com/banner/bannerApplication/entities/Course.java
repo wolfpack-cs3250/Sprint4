@@ -12,7 +12,7 @@ import java.util.HashSet;
 
 
 @Entity
-public class Course {
+public class Course{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -48,7 +48,9 @@ public class Course {
 
     public Set<Section> getSections(){
         return sections;
+
     }
+
 
     public long getCourseId() {
         return id;

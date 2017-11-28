@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -31,6 +32,8 @@ import javax.persistence.GeneratedValue;
 import com.banner.bannerApplication.entities.Section;
 import com.banner.bannerApplication.repositories.SectionRepository;
 
+import static java.lang.Integer.parseInt;
+
 @Controller
 @RequestMapping("user")
 public class UserController {
@@ -42,6 +45,7 @@ public class UserController {
     private SectionRepository sectionRepository;
     @Autowired
     private GlobalRepository globalRepository;
+    private Long apple;
 
     // Create student html page
     @RequestMapping("/create-student")
@@ -158,12 +162,38 @@ public class UserController {
     //      will return false if there is some conflict
     private boolean checkConflictingSchedules(Long studentId, Long sectionId){
         // Get all of the sections the user already belongs to
+        User user=userRepository.findOne(studentId);
+        Section section= sectionRepository.findOne(sectionId);
         Collection<Section> sections = sectionRepository.findByUserId((studentId));
-
-        // If the student is registered to no classes, return true
+        Iterator e = sections.iterator();
         if (sections.isEmpty()){
             return true;
         }
+//        Long apple = new Long(Character.getNumericValue(sections.toString().charAt(1)));
+//        Section section1= sectionRepository.findOne(apple);
+//
+//        if(((section1.getStartTime().isBefore(section.getEndTime())&&)||(section1.getEndTime().isAfter())));
+//        while(e.hasNext()) {
+//            Long tapple = new Long(Character.getNumericValue(e.next().toString().charAt(1)));
+//            int count = user.getSections().size();
+//            if(){
+//
+//            }
+//        }
+        for(Section s: sections) {
+            //test time to make sure it doesn't conflict with start
+            if (s.getClassDate().equals(section.getClassDate())) {
+                if ((s.getStartTime().isAfter(section.getStartTime()) && s.getStartTime().isBefore(section.getEndTime()))
+                        ||
+                        //test time to make sure it doesnt conflict with end
+                        (s.getEndTime().isAfter(section.getStartTime()) && s.getEndTime().isBefore(section.getEndTime()))) {
+                    return false;
+                }
+
+            }
+            return true;
+        }
+        // If the student is registered to no classes, return true
 
         return true;
     }

@@ -6,8 +6,10 @@ package com.banner.bannerApplication.controllers;
 */
 
 import com.banner.bannerApplication.entities.Course;
+import com.banner.bannerApplication.entities.Section;
 import com.banner.bannerApplication.entities.User;
 import com.banner.bannerApplication.repositories.CourseRepository;
+import com.banner.bannerApplication.repositories.SectionRepository;
 import com.banner.bannerApplication.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -20,6 +22,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.jws.WebParam;
+import javax.jws.soap.SOAPBinding;
+
+import java.util.Collection;
+
+import static java.lang.Integer.parseInt;
 
 @Controller
 @RequestMapping("course")
@@ -27,6 +34,7 @@ public class CourseController {
     @Autowired
     private CourseRepository courseRepository;
     private UserRepository userRepository;
+    private SectionRepository sectionRepository;
 
     public boolean compDirtyToME(long courseID,long UserId){
 
@@ -56,9 +64,10 @@ public class CourseController {
     }
     public ModelAndView chooseSection(long UserID,long coursename){
         User user=userRepository.findOne(UserID);
-        user.setInProgress(coursename);
+        Section section= sectionRepository.findOne(coursename);
 
-        userRepository.save(user);
+        user.setInProgress(coursename);
+          userRepository.save(user);
         return new ModelAndView("redirect:/student");
     }
     // Delete
