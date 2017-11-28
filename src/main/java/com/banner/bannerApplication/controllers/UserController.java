@@ -162,16 +162,29 @@ public class UserController {
         if (sections.isEmpty()){
             return true;
         }
-        Long apple = new Long(Character.getNumericValue(sections.toString().charAt(1)));
-        Section section1= sectionRepository.findOne(apple);
-
-        if(((section1.getStartTime().isBefore(section.getEndTime())&&)||(section1.getEndTime().isAfter())));
-        while(e.hasNext()) {
-            Long tapple = new Long(Character.getNumericValue(e.next().toString().charAt(1)));
-            int count = user.getSections().size();
-            if(){
+//        Long apple = new Long(Character.getNumericValue(sections.toString().charAt(1)));
+//        Section section1= sectionRepository.findOne(apple);
+//
+//        if(((section1.getStartTime().isBefore(section.getEndTime())&&)||(section1.getEndTime().isAfter())));
+//        while(e.hasNext()) {
+//            Long tapple = new Long(Character.getNumericValue(e.next().toString().charAt(1)));
+//            int count = user.getSections().size();
+//            if(){
+//
+//            }
+//        }
+        for(Section s: sections) {
+            //test time to make sure it doesn't conflict with start
+            if (s.getClassDate().equals(section.getClassDate())) {
+                if ((s.getStartTime().isAfter(section.getStartTime()) && s.getStartTime().isBefore(section.getEndTime()))
+                        ||
+                        //test time to make sure it doesnt conflict with end
+                        (s.getEndTime().isAfter(section.getStartTime()) && s.getEndTime().isBefore(section.getEndTime()))) {
+                    return false;
+                }
 
             }
+            return true;
         }
         // If the student is registered to no classes, return true
 
