@@ -88,10 +88,10 @@ public class UserController {
     public String showOne(@PathVariable Long id, Model model) {
         User user = userRepository.findOne(id);
         Collection<Section> sections = sectionRepository.findByUserId((id));
-        Global global = globalRepository.findBySchoolName("Wolfpack University");
+//        Global global = globalRepository.findBySchoolName("Wolfpack University");
 
         model.addAttribute("student", user);
-        model.addAttribute("global", global);
+//        model.addAttribute("global", global);
         model.addAttribute("sections", sections);
 
         return "student-view";
@@ -159,6 +159,6 @@ public class UserController {
             return true;
         }
 
-        return false;
+        return true;
     }
 }

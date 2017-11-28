@@ -19,6 +19,7 @@ import java.util.Set;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name="SECTION")
 public class Section{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

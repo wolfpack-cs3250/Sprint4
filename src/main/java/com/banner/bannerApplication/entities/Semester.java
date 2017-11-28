@@ -11,7 +11,7 @@ public class Semester {
     private Long id;
 
     // For semester we will need both the year and season of semester (i.e. Spring 2018)
-    @Column(unique = true)
+    @Column(unique = false)
     private long year;
 
     @Column(unique = false)

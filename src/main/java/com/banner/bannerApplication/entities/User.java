@@ -1,5 +1,6 @@
 package com.banner.bannerApplication.entities;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Controller;
 
 import javax.persistence.Entity;
@@ -7,24 +8,25 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.*;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import com.banner.bannerApplication.entities.Course;
 import com.banner.bannerApplication.entities.Section;
 
 @Entity
+@Table(name="USER")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
-    @Column(unique = true)
     private Long id;
 
-    @ManyToOne
-    private Section section;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            joinColumns = { @JoinColumn(name="USER_ID")},
+            inverseJoinColumns = {@JoinColumn(name="SECTION_ID")}
+    )
+    private Set<Section> section = new HashSet<Section>();
 
     @Column(unique = false)
     private String firstName;
@@ -35,7 +37,7 @@ public class User {
     //@Column(unique = false)
     //private long completedCredits = 666;
 
-    @Column(unique = true)
+    @Column(unique = false)
     private String[] done;
 
     @OneToMany(mappedBy = "user")
@@ -57,7 +59,7 @@ public class User {
         return sections;
     }
 
-    public void setSection(Section section){
+    public void setSection(Set<Section> section){
         this.section = section;
     }
 
