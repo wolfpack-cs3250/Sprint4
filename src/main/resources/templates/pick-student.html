@@ -1,34 +1,55 @@
 {{>header}}
 <h1> Select Courses</h1>
 <div class="container" align="center">
-<form action="/user/addcourse/{{studentid}}" >
-    <table>
-        <tr>
-            <th>Sections Number</th>
-            <th>Course Name</th>
-            <th>Course Number</th>
-            <th>Credits</th>
-            <th>Professor</th>
-        </tr>
-        {{#sections}}
-        <tr>
-            <td>{{sectionNumber}}</td>
-            {{#course}}
-            <td>{{courseName}}</td>
-            <td>{{number}}</td>
-            <td>{{credits}}</td>
-            {{/course}}
-            {{#professor}}
-            <td>{{firstName}} {{lastName}}</td>
-            {{/professor}}
-            <td>
-            <input type="radio" name="sectionId" value="{{id}}">
-            </td>
-        </tr>
-        {{/sections}}
-    </table>
-    <br>
-    <button type="submit" class="btn btn-danger">Register</button>
-</form>
+    <div class="col-lg-12">
+        <form action="/user/addcourse/{{studentid}}" >
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Sections Number</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Days</th>
+                    <th>Building</th>
+                    <th>Room</th>
+                    <th>Professor</th>
+                </tr>
+                </thead>
+                {{#sections}}
+                <tr>
+                    <td>{{sectionNumber}}</td>
+                    <td>{{startDate}}</td>
+                    <td>{{endDate}}</td>
+                    <td>{{startTime}}</td>
+                    <td>{{endTime}}</td>
+                    <td>{{classDate}}</td>
+                    {{#room}}
+                    {{#buildings}}
+                    <td><p>{{buildingName}}</p></td>
+                    {{/buildings}}
+                    <td><p>{{roomNumber}}</p></td>
+                    {{/room}}
+                    {{#course}}
+                    <td>{{courseName}}</td>
+                    <td>{{number}}</td>
+                    <td>{{credits}}</td>
+                    {{/course}}
+                    {{#professor}}
+                    <td>{{firstName}} {{lastName}}</td>
+                    {{/professor}}
+                    <td>
+                    <input type="radio" name="sectionId" value="{{id}}">
+                    </td>
+                </tr>
+                {{/sections}}
+            </table>
+            <br>
+            <button type="submit" class="btn btn-danger">Register</button>
+        </form>
+    </div>
 </div>
 {{>footer}}
+
+

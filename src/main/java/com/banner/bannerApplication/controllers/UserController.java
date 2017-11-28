@@ -158,6 +158,7 @@ public class UserController {
         if (sections.isEmpty()){
             return true;
         }
+
         return false;
     }
 }
