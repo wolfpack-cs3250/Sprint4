@@ -13,7 +13,7 @@ public class Rooms {
 
     private String roomSize;
 
-    @Column(unique = true)
+    @Column(unique = false)
     private String roomNumber;
 
     @ManyToOne

@@ -22,7 +22,7 @@ public class Course {
     @OneToMany(mappedBy = "course")
     private Set<Section> sections = new HashSet<>();
 
-    @Column(unique = true)
+    @Column(unique = false)
     private String courseName;
 
     @Column(unique = false)
