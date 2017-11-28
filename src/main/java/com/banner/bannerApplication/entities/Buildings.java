@@ -11,13 +11,13 @@ public class Buildings {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(unique=true)
+    @Column(unique=false)
     private String buildingName;
 
-    @Column(unique = true)
+    @Column(unique = false)
     private String address;
 
-    @Column(unique = true)
+    @Column(unique = false)
     private String acronym;
 
     @OneToMany(mappedBy = "buildings")
