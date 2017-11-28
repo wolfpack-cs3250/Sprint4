@@ -5,29 +5,27 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class SectionTest {
+    private Course course;
+    private Section section;
 
     @Before
     public void setUp(){
-    }
+        course = new Course();
+        section = new Section();
+        course.setCourseName("A");
 
-    @Test
-    public void getCourseId()throws Exception {
+       section.setSectionNumber(1);
     }
-
+       
     @Test
     public void getCourseName()throws Exception {
+        assertEquals("A",course.getCourseName());
     }
 
     @Test
     public void setCourseName() throws Exception{
-    }
-
-    @Test
-    public void getSectionNumber()throws Exception {
-    }
-
-    @Test
-    public void setSectionNumber() throws Exception {
+        course.setCourseName("Yeah");
+        assertEquals("Yeah",course.getCourseName());
     }
 
 }
