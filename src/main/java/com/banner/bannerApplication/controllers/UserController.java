@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.banner.bannerApplication.entities.Global;
 import com.banner.bannerApplication.repositories.GlobalRepository;
@@ -131,11 +133,15 @@ public class UserController {
     @GetMapping(path="/addcourse/{id}")
     public ModelAndView registerStudent(@PathVariable Long id, @RequestParam Long sectionId,
                                         Model model) {
-        User user = userRepository.findOne(id);
+
+        Set<User> s = new HashSet<>();
+        s.add(userRepository.findOne(id));
+
         Section section = sectionRepository.findOne(sectionId);
 
         if (checkConflictingSchedules(id, sectionId)) {
-            section.setUser(user);
+            section.setUser(s);
+            
             sectionRepository.save(section);
             return new ModelAndView("redirect:/user");
         }

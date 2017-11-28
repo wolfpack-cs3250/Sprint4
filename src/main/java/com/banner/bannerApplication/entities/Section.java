@@ -40,8 +40,12 @@ public class Section{
     @ManyToOne
     private Professor professor;
 
-    @ManyToOne
-    private User user;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            joinColumns = { @JoinColumn(name="SECTION_ID")},
+            inverseJoinColumns = {@JoinColumn(name="USER_ID")}
+    )
+    private Set<User> user = new HashSet<>();
 
 
     public Section() {}
@@ -58,9 +62,9 @@ public class Section{
     public Professor getProfessor(){
         return professor;
     }
-    public User getUser() { return user;}
+    public Set<User> getUser() { return user;}
 
-    public void setUser (User user) {
+    public void setUser (Set<User> user) {
         this.user = user;
     }
 
