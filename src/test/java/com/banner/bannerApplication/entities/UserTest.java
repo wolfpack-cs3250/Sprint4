@@ -9,46 +9,48 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+// This is the test class for User objects
+
 public class UserTest {
 
-    private static User user1;
+    private User user;
 
+    // initial setup of our User object
     @Before
     public void setUp() throws Exception {
-        //user1 = mock(User.class);
-        user1 = new User();
-        //assertNotNull(user1);
-        //user1.setFirstName("bob");
-        //user1.setLastName("taylor");
+        user = new User();
+        user.setFirstName("Bob");
+        user.setLastName("Saget");
     }
 
-    @Test
-    public void setId() throws Exception {
-
-    }
-
-    @Test
-    public void setFirstName() throws Exception {
-        //user1.setFirstName("bob");
-        //assertEquals("bob", user1.getLastName());
-    }
-
-    @Test
-    public void setLastName() throws Exception {
-        user1.setLastName("taylor");
-        assertEquals("taylor", user1.getLastName());
-    }
-
+    // make sure we can access the first name of a User object
     @Test
     public void getFirstName() throws Exception {
-        //user1.setFirstName("bob");
-        //assertEquals("bob", user1.getLastName());
+        assertEquals("Bob", user.getFirstName());
+    }
+
+    // make sure we can access the last name of a User object
+    @Test
+    public void getLastName() throws Exception {
+        assertEquals("Saget", user.getLastName());
+    }
+
+    // make sure we can set the first name of a User object
+    @Test
+    public void setFirstName() throws Exception {
+        user.setFirstName("Dirty");
+        assertEquals("Dirty", user.getFirstName());
+    }
+
+    // make sure we can set the last name of a User object
+    @Test
+    public void setLastName() throws Exception {
+        user.setLastName("Harry");
+        assertEquals("Harry", user.getLastName());
     }
 
     @Test
-    public void getLastName() throws Exception {
-        user1.setLastName("taylor");
-        assertEquals("taylor", user1.getLastName());
+    public void getId() throws Exception {
     }
 
 }
