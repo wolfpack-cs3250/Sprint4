@@ -1,12 +1,16 @@
 package com.banner.bannerApplication.entities;
 
-import com.sun.scenario.effect.impl.prism.PrFilterContext;
 import org.junit.Before;
 import org.junit.Test;
 
+// This is the test class for Professor objects
+
 import static org.junit.Assert.*;
 public class ProfessorTest {
+
     private Professor professor;
+
+    // perform our initial set up of our Professor object
     @Before
     public void setUP(){
         professor=new Professor();
@@ -14,22 +18,26 @@ public class ProfessorTest {
         professor.setLastName("Skywalker");
     }
 
+    // try to get the professors first name
     @Test
     public void getFirstName() throws Exception{
         assertEquals("anakin",professor.getFirstName());
     }
 
+    // try to set the professors first name
     @Test
     public void setFirstName() throws Exception{
         professor.setFirstName("jake");
         assertEquals("jake",professor.getFirstName());
     }
 
+    // try to get the professors last name
     @Test
     public void getLastName() throws Exception{
         assertEquals("Skywalker",professor.getLastName());
     }
 
+    // try to set the professors last name
     @Test
     public void setLastName() throws Exception{
         professor.setLastName("anakinBleack");
