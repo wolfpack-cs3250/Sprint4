@@ -14,7 +14,7 @@ public class BuildingsTest {
     /** Initial setup of our Building object */
     @Before
     public void setUP(){
-        buildings= new Buildings();
+        buildings = new Buildings();
         buildings.setAcronym("Belle");
         buildings.setAddress("Fairtytale");
         buildings.setBuildingName("princess");
@@ -33,14 +33,13 @@ public class BuildingsTest {
     assertEquals("THUNDERDOME",buildings.getBuildingName());
     }
 
-//    @Test
-//    public void getRooms() throws Exception {
-//    assertEquals();
-//    }
-//
-//    @Test
-//    public void setRooms() throws Exception {
-//    }
+    @Test
+    public void getRooms() throws Exception {
+    }
+
+    @Test
+    public void setRooms() throws Exception {
+    }
 
     /** make sure we can get the address of the Building object */
     @Test
@@ -66,6 +65,10 @@ public class BuildingsTest {
     public void setAcronym() throws Exception {
     buildings.setAcronym("touch");
     assertEquals("touch",buildings.getAcronym());
+    }
+
+    @Test
+    public void getId() throws Exception {
     }
 
 }
