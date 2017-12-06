@@ -9,13 +9,13 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-// This is the test class for User objects
+/** This is the test class for User objects */
 
 public class UserTest {
 
     private User user;
 
-    // initial setup of our User object
+    /** Initial setup of our User object */
     @Before
     public void setUp() throws Exception {
         user = new User();
@@ -23,26 +23,26 @@ public class UserTest {
         user.setLastName("Saget");
     }
 
-    // make sure we can access the first name of a User object
+    /** make sure we can access the first name of a User object */
     @Test
     public void getFirstName() throws Exception {
         assertEquals("Bob", user.getFirstName());
     }
 
-    // make sure we can access the last name of a User object
+    /** make sure we can access the last name of a User object */
     @Test
     public void getLastName() throws Exception {
         assertEquals("Saget", user.getLastName());
     }
 
-    // make sure we can set the first name of a User object
+    /** make sure we can set the first name of a User object */
     @Test
     public void setFirstName() throws Exception {
         user.setFirstName("Dirty");
         assertEquals("Dirty", user.getFirstName());
     }
 
-    // make sure we can set the last name of a User object
+    /** make sure we can set the last name of a User object */
     @Test
     public void setLastName() throws Exception {
         user.setLastName("Harry");

@@ -4,15 +4,14 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-// This is the test class for Section objects
+/** This is the test class for Section objects */
 
 public class SectionTest {
 
-    // perform our initial set up of our Course and Section objects
     private Course course;
     private Section section;
 
-    // perform our initial set up of our Section object
+    /** performs our initial set up of our Section object */
     @Before
     public void setUp(){
         course = new Course();
@@ -21,13 +20,13 @@ public class SectionTest {
         section.setSectionNumber(1);
     }
 
-    // Make sure we can access the Section objects course name
+    /** Make sure we can access the Section objects course name */
     @Test
     public void getCourseName()throws Exception {
         assertEquals("CS3250",course.getCourseName());
     }
 
-    // Make sure we can set/change the courses name
+    /** Make sure we can set/change the courses name */
     @Test
     public void setCourseName() throws Exception{
         course.setCourseName("CS1050");

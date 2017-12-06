@@ -10,6 +10,12 @@ import javax.persistence.Column;
 import java.util.Set;
 import java.util.HashSet;
 
+/** This is the class for Course
+ *  A course can have many Sections.
+ *  There is also more basic information,
+ *  such as credit hours, course name,
+ *  and learning objective.
+ */
 
 @Entity
 public class Course{
@@ -127,7 +133,7 @@ public class Course{
         this.courseName = courseName;
     }
 
-    // jpa only
+    /** This should only be used by the JPA. */
     public Course (){
     }
 
