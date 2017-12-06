@@ -4,6 +4,13 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+/** This is the Rooms class.
+ *  A room can have many sections.
+ *  A room belongs to a Building.
+ *  We also have various basic info,
+ *  such as room number, room size, etc.
+ */
+
 @Entity
 public class Rooms {
 

@@ -2,6 +2,11 @@ package com.banner.bannerApplication.entities;
 
 import javax.persistence.*;
 
+/** This is the Semester class.
+ *  It contains three unique Season
+ *  enums and a year to represent itself.
+ */
+
 @Entity
 public class Semester {
 
@@ -10,14 +15,16 @@ public class Semester {
     @Column(name = "id_semester", unique = true)
     private Long id;
 
-    // For semester we will need both the year and season of semester (i.e. Spring 2018)
+    /** For semester we will need both the year
+     *  and season of semester (i.e. Spring 2018).
+     */
     @Column(unique = false)
     private long year;
 
     @Column(unique = false)
     private String season;
 
-    // maybe include a winter semester?
+    /** Maybe include a winter semester? */
     public enum Season {
         FALL, SPRING, SUMMER
     }
@@ -32,7 +39,9 @@ public class Semester {
 
     public void setSemesterSeason(Season season){ this.season = season.toString(); }
 
-    // Gives us a nice string version of the semester (i.e. Spring 2018)
+    /** Gives us a nice string version
+     *  of the semester (i.e. Spring 2018)
+     */
     public String getSemesterString(){
         return season + " " + year;
     }

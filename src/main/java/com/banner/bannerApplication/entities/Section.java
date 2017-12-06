@@ -1,9 +1,5 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by Fernflower decompiler)
-//
-
 package com.banner.bannerApplication.entities;
+
 import javax.persistence.*;
 import javax.swing.text.DateFormatter;
 import java.text.DateFormat;
@@ -17,6 +13,13 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.time.LocalDateTime;
+
+/** This is the Section class.
+ *  A section belongs to a Course.
+ *  A section belongs to a Professor.
+ *  We also have basic info such as,
+ *  class dates and start/end times.
+ */
 
 @Entity
 @Table(name="SECTION")

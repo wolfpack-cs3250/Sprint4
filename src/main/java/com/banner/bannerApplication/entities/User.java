@@ -1,8 +1,5 @@
 package com.banner.bannerApplication.entities;
 
-import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.stereotype.Controller;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,11 +7,14 @@ import javax.persistence.Id;
 import javax.persistence.*;
 import java.util.*;
 
-import com.banner.bannerApplication.entities.Course;
-import com.banner.bannerApplication.entities.Section;
+/** This is the class for Users
+ *  Users can have many Sections
+ *  If they are currently in classes,
+ *  their name, etc.
+ */
 
 @Entity
-@Table(name="USER")
+@Table(name = "USER")
 public class User {
 
     @Id
@@ -23,27 +23,32 @@ public class User {
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
-            joinColumns = { @JoinColumn(name="USER_ID")},
-            inverseJoinColumns = {@JoinColumn(name="SECTION_ID")}
+            joinColumns = { @JoinColumn(name = "USER_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "SECTION_ID")}
     )
     private Set<Section> section = new HashSet<Section>();
 
+    /** Column in our database. */
     @Column(unique = false)
     private String firstName;
 
+    /** Column in our database. */
     @Column(unique = false)
     private String lastName;
 
     //@Column(unique = false)
     //private long completedCredits = 666;
 
+    /** Column in our database. */
     @Column(unique = false)
     private String[] done;
 
+    /** We map a User to a section. */
     @OneToMany(mappedBy = "user")
     private Set<Section> sections = new HashSet<>();
 
-    @Column(name="Registered", nullable = false)
+    /** Column in our database. */
+    @Column(name = "Registered", nullable = false)
     @ElementCollection(targetClass = long.class)
     private List<Long> inProgess;
 

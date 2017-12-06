@@ -4,6 +4,12 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+/** This is the class for Buildings.
+ *  A building contains many rooms.
+ *  It also contains other basic info,
+ *  such as address, and name.
+ * */
+
 @Entity
 public class Buildings {
 
