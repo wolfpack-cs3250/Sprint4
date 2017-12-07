@@ -63,7 +63,7 @@ public class CourseController {
     }
     // Delete
     @GetMapping(path = "/delete")
-    public ModelAndView removeCourse(@RequestParam final String coursename,
+    public ModelAndView removeCourse(@RequestParam final Long courseId,
                                      @RequestParam final long id) {
         User user = userRepository.findOne(id);
         user.removeInProgress(coursename);
