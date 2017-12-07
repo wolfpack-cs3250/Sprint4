@@ -41,7 +41,7 @@ public class SemesterController {
 
     // Delete
     @GetMapping(path="/delete/{id}")
-    public ModelAndView removeSemester(@PathVariable Long id) {
+    public ModelAndView removeSemester(@PathVariable long id) {
         semesterRepository.delete(id);
         return new ModelAndView("redirect:/semester");
     }

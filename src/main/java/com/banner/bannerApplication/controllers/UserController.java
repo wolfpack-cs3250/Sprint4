@@ -63,7 +63,7 @@ public class UserController {
 
     // Delete
     @GetMapping(path="/delete/{id}")
-    public ModelAndView removeUser(@PathVariable Long id) {
+    public ModelAndView removeUser(@PathVariable long id) {
         userRepository.delete(id);
         return new ModelAndView("redirect:/user");
     }
@@ -78,7 +78,7 @@ public class UserController {
 
     /** View One User */
     @GetMapping(path="/view/{id}")
-    public String showOne(@PathVariable Long id, Model model) {
+    public String showOne(@PathVariable long id, Model model) {
         User user = userRepository.findOne(id);
         Collection<Section> sections = sectionRepository.findByUserId((id));
 //        Global global = globalRepository.findBySchoolName("Wolfpack University");
@@ -92,7 +92,7 @@ public class UserController {
 
     /** UPDATE page */
     @GetMapping(path="/update/{id}")
-    public String updateUser(@PathVariable Long id,
+    public String updateUser(@PathVariable long id,
                                            Model model) {
         User user = userRepository.findOne(id);
         model.addAttribute("student", user);
@@ -101,7 +101,7 @@ public class UserController {
 
     /** UPDATE User */
     @GetMapping(path="/update")
-    public ModelAndView updateStudent(@RequestParam Long id,
+    public ModelAndView updateStudent(@RequestParam long id,
                                    @RequestParam String firstname,
                                    @RequestParam String lastname) {
         // Needs Error Checking
@@ -114,7 +114,7 @@ public class UserController {
     }
 
     @GetMapping(path="/register/{id}")
-    public String registerStudent(@PathVariable Long id, Model model) {
+    public String registerStudent(@PathVariable long id, Model model) {
         Iterable<Section> sections = sectionRepository.findAll();
         model.addAttribute("sections", sections);
         model.addAttribute("studentid", id);
@@ -122,7 +122,7 @@ public class UserController {
     }
 
     @GetMapping(path="/addcourse/{id}")
-    public ModelAndView registerStudent(@PathVariable Long id, @RequestParam Long sectionId,
+    public ModelAndView registerStudent(@PathVariable long id, @RequestParam long sectionId,
                                         Model model) {
 
         Set<User> s = new HashSet<>();
@@ -148,7 +148,7 @@ public class UserController {
     /** checkConflictingSchedules will return true is there are no conflicting schedules
      *  will return false if there is some conflict.
      */
-    private boolean checkConflictingSchedules(Long studentId, Long sectionId){
+    private boolean checkConflictingSchedules(long studentId, long sectionId){
         // Get all of the sections the user already belongs to
         Section section = sectionRepository.findOne(sectionId);
         Collection<Section> sections = sectionRepository.findByUserId((studentId));
