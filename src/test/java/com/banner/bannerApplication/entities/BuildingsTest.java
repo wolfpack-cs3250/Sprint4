@@ -33,14 +33,15 @@ public class BuildingsTest {
     assertEquals("THUNDERDOME",buildings.getBuildingName());
     }
 
-//    @Test
-//    public void getRooms() throws Exception {
-//    assertEquals();
-//    }
-//
-//    @Test
-//    public void setRooms() throws Exception {
-//    }
+    @Test
+    public void getRooms() throws Exception {
+
+   }
+
+    @Test
+    public void setRooms() throws Exception {
+
+    }
 
     /** make sure we can get the address of the Building object */
     @Test
