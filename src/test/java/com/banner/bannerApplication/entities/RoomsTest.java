@@ -17,7 +17,6 @@ public class RoomsTest {
         rooms.setRoomNumber("123");
     }
 
-
     @Test
     public void getRoomSize() throws Exception {
         Assert.assertEquals("123", rooms.getRoomSize());
@@ -38,6 +37,17 @@ public class RoomsTest {
     public void setRoomNumber() throws Exception {
         rooms.setRoomNumber("123");
         assertEquals("123", rooms.getRoomNumber());
+    }
+
+    @Test
+    public void getBuilding() throws Exception {
+        Buildings building = new Buildings();
+        Buildings buildings2 = building;
+
+        Rooms room = new Rooms();
+        room.setBuildings(building);
+
+        assertEquals(buildings2, room.getBuildings());
     }
 
 }
