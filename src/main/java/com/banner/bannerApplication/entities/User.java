@@ -56,8 +56,8 @@ public class User {
         inProgess.add(classId);
     }
 
-    public void removeInprgoress(String classname) {
-        inProgess.remove(classname);
+    public void removeInProgress(Long courseId) {
+        inProgess.remove(courseId);
     }
 
     public Set<Section> getSections(){

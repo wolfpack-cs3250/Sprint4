@@ -44,7 +44,7 @@ public class RoomsController {
 
     // Delete
     @GetMapping(path="/delete/{id}")
-    public ModelAndView RemoveRooms(@PathVariable Long id) {
+    public ModelAndView removeRooms(@PathVariable Long id) {
         Rooms room = roomsRepository.findOne(id);
         Long buildingId = room.getBuildings().getId();
         roomsRepository.delete(id);

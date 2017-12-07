@@ -14,10 +14,11 @@ public class SectionTest {
     /** performs our initial set up of our Section object */
     @Before
     public void setUp(){
+        Long sectionNum = new Long(1);
         course = new Course();
         section = new Section();
         course.setCourseName("CS3250");
-        section.setSectionNumber(1);
+        section.setSectionNumber(sectionNum);
     }
 
     /** Make sure we can access the Section objects course name */

@@ -3,36 +3,24 @@ package com.banner.bannerApplication.controllers;
 /*
 *   Here will lie all of the CRUD operations for Sprint2
 *   - Sal
-*
 */
 
-import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-
 import com.banner.bannerApplication.entities.Global;
 import com.banner.bannerApplication.repositories.GlobalRepository;
-
 import com.banner.bannerApplication.entities.User;
 import com.banner.bannerApplication.repositories.UserRepository;
-
-import com.banner.bannerApplication.entities.Course;
 import com.banner.bannerApplication.repositories.CourseRepository;
-
-import javax.persistence.GeneratedValue;
 import com.banner.bannerApplication.entities.Section;
 import com.banner.bannerApplication.repositories.SectionRepository;
 
-import static java.lang.Integer.parseInt;
 
 @Controller
 @RequestMapping("user")
@@ -45,7 +33,6 @@ public class UserController {
     private SectionRepository sectionRepository;
     @Autowired
     private GlobalRepository globalRepository;
-    private Long apple;
 
     // Create student html page
     @RequestMapping("/create-student")
@@ -76,20 +63,20 @@ public class UserController {
 
     // Delete
     @GetMapping(path="/delete/{id}")
-    public ModelAndView RemoveUser(@PathVariable Long id) {
+    public ModelAndView removeUser(@PathVariable Long id) {
         userRepository.delete(id);
         return new ModelAndView("redirect:/user");
     }
 
-    // Read All
+    /** Read All Users */
     @GetMapping(path="")
-    public String showall(Model model) {
+    public String showAll(Model model) {
         Iterable<User> allusers = userRepository.findAll();
         model.addAttribute("allusers", allusers);
         return "userpage";
     }
 
-    // View One User
+    /** View One User */
     @GetMapping(path="/view/{id}")
     public String showOne(@PathVariable Long id, Model model) {
         User user = userRepository.findOne(id);
@@ -103,7 +90,7 @@ public class UserController {
         return "student-view";
     }
 
-    // UPDATE page
+    /** UPDATE page */
     @GetMapping(path="/update/{id}")
     public String updateUser(@PathVariable Long id,
                                            Model model) {
@@ -112,7 +99,7 @@ public class UserController {
         return "update";
     }
 
-    // UPDATE User
+    /** UPDATE User */
     @GetMapping(path="/update")
     public ModelAndView updateStudent(@RequestParam Long id,
                                    @RequestParam String firstname,
@@ -158,34 +145,23 @@ public class UserController {
        return "error-page";
     }
 
-    // checkConflictingSchedules will return true is there are no conflicting schedules
-    //      will return false if there is some conflict
+    /** checkConflictingSchedules will return true is there are no conflicting schedules
+     *  will return false if there is some conflict.
+     */
     private boolean checkConflictingSchedules(Long studentId, Long sectionId){
         // Get all of the sections the user already belongs to
-        User user=userRepository.findOne(studentId);
-        Section section= sectionRepository.findOne(sectionId);
+        Section section = sectionRepository.findOne(sectionId);
         Collection<Section> sections = sectionRepository.findByUserId((studentId));
-        Iterator e = sections.iterator();
         if (sections.isEmpty()){
             return true;
         }
-//        Long apple = new Long(Character.getNumericValue(sections.toString().charAt(1)));
-//        Section section1= sectionRepository.findOne(apple);
-//
-//        if(((section1.getStartTime().isBefore(section.getEndTime())&&)||(section1.getEndTime().isAfter())));
-//        while(e.hasNext()) {
-//            Long tapple = new Long(Character.getNumericValue(e.next().toString().charAt(1)));
-//            int count = user.getSections().size();
-//            if(){
-//
-//            }
-//        }
+
         for(Section s: sections) {
-            //test time to make sure it doesn't conflict with start
+            // test time to make sure it doesn't conflict with start.
             if (s.getClassDate().equals(section.getClassDate())) {
                 if ((s.getStartTime().isAfter(section.getStartTime()) && s.getStartTime().isBefore(section.getEndTime()))
                         ||
-                        //test time to make sure it doesnt conflict with end
+                        // test time to make sure it doesn't conflict with end.
                         (s.getEndTime().isAfter(section.getStartTime()) && s.getEndTime().isBefore(section.getEndTime()))) {
                     return false;
                 }
@@ -193,7 +169,7 @@ public class UserController {
             }
             return true;
         }
-        // If the student is registered to no classes, return true
+        // If the student is registered to no classes, return true.
 
         return true;
     }

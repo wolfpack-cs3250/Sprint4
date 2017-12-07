@@ -75,7 +75,7 @@ public class SectionController {
     // Delete
     //needs to be fixed
     @GetMapping(path="/delete/{id}")
-    public ModelAndView RemoveSection(@PathVariable Long id) {
+    public ModelAndView removeSection(@PathVariable Long id) {
         Section section = sectionRepository.findOne(id);
         Long courseId = section.getCourse().getCourseId();
 

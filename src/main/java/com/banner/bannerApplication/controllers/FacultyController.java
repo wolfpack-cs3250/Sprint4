@@ -17,7 +17,7 @@ import java.util.HashSet;
 
 @Controller
 @RequestMapping("faculty")
-public class FacultyCourse {
+public class FacultyController {
     @Autowired
     private CourseRepository courseRepository;
     @Autowired
@@ -50,7 +50,7 @@ public class FacultyCourse {
 
     // Delete
     @GetMapping(path="/delete/{id}")
-    public ModelAndView RemoveCourse(@PathVariable Long id) {
+    public ModelAndView removeCourse(@PathVariable Long id) {
         courseRepository.delete(id);
         return new ModelAndView("redirect:/faculty");
     }
