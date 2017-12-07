@@ -26,7 +26,6 @@ public class SectionTest {
         course.setCourseName("CS3250");
         section.setProfessor(professor);
         section.setCourse(course);
-        section.setSectionNumber(1);
     }
 
     /** Make sure we can access the Section objects course name */
@@ -40,11 +39,6 @@ public class SectionTest {
     public void setCourseName() throws Exception{
         course.setCourseName("CS1050");
         assertEquals("CS1050",course.getCourseName());
-    }
-
-    @Test
-    public void setSectionNumber() throws Exception{
-        section.setSectionNumber(1);
     }
 
     @Test
