@@ -12,9 +12,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+<<<<<<< Updated upstream
 import java.util.List;
 import java.util.Random;
 
+=======
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
+>>>>>>> Stashed changes
 import com.banner.bannerApplication.entities.Global;
 import com.banner.bannerApplication.repositories.GlobalRepository;
 
@@ -62,12 +69,19 @@ public class UserController {
         g.setSophmoreCredits(0);
         g.setFreshmanCredits(0);
         g.setCreditsCompleted();
+<<<<<<< Updated upstream
         //randomly generates username
+=======
+        //random generated username
+>>>>>>> Stashed changes
         Random randy= new Random();
         int candy= randy.nextInt(100)+1;
         String username=(firstname.charAt(1)+lastname+candy);
         n.setUsername(username);
+<<<<<<< Updated upstream
         System.out.println(username);
+=======
+>>>>>>> Stashed changes
         // saves to db
         userRepository.save(n);
         globalRepository.save(g);
@@ -141,4 +155,40 @@ public class UserController {
         return new ModelAndView("redirect:/user");
     }
 
+<<<<<<< Updated upstream
+=======
+    /** checkConflictingSchedules will return true is there are no conflicting schedules
+     *  will return false if there is some conflict.
+     */
+    private boolean checkConflictingSchedules(Long studentId, Long sectionId){
+        // Get all of the sections the user already belongs to
+        Section section = sectionRepository.findOne(sectionId);
+        Collection<Section> sections = sectionRepository.findByUserId((studentId));
+        if (sections.isEmpty()){
+            System.out.println("error1");
+            return true;
+
+        }
+
+        for(Section s: sections) {
+            // test time to make sure it doesn't conflict with start.
+            //if (s.getClassDate().equals(section.getClassDate())) {
+                if ((s.getStartTime().isAfter(section.getStartTime()) && s.getStartTime().isBefore(section.getEndTime()))
+                        ||
+                        // test time to make sure it doesn't conflict with end.
+                        (s.getEndTime().isAfter(section.getStartTime()) && s.getEndTime().isBefore(section.getEndTime()))) {
+
+                    return false;
+
+                }
+
+            //}
+
+            return true;
+        }
+        // If the student is registered to no classes, return true.
+
+        return true;
+    }
+>>>>>>> Stashed changes
 }

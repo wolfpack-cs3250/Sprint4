@@ -21,6 +21,7 @@ public class Professor {
 
     @Column(unique = false)
     private String lastName;
+<<<<<<< Updated upstream
     private Set<Position> positions;
 
     public Set<Position> getPositions() {
@@ -40,9 +41,22 @@ public class Professor {
     }
 
     private String Username;
+=======
+    @NotNull
+    private String password;
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+>>>>>>> Stashed changes
 
     public Professor(){
     }
+<<<<<<< Updated upstream
     public Professor(String firstName,String lastName){
         this.firstName=firstName;
         this.lastName=lastName;
@@ -50,7 +64,17 @@ public class Professor {
 
     @NotNull
     private String password;
+=======
+    public String getUsername() {
+        return Username;
+    }
 
+    public void setUsername(String username) {
+        Username = username;
+    }
+>>>>>>> Stashed changes
+
+    private String Username;
     public Set<Section> getSections(){
         return sections;
     }

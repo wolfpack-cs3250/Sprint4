@@ -8,9 +8,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+<<<<<<< Updated upstream
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
+=======
+import java.util.*;
+>>>>>>> Stashed changes
 
 import com.banner.bannerApplication.entities.Course;
 import com.banner.bannerApplication.entities.Section;
@@ -53,6 +57,27 @@ public class User {
 
     @Column(unique = true)
     private String[] done;
+    private String Username;
+    @NotNull
+    private String password;
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+
+
+    public String getUsername() {
+        return Username;
+    }
+
+    public void setUsername(String username) {
+        Username = username;
+    }
+
 
     @Column(name="Registered", nullable = false)
     @ElementCollection(targetClass = long.class)
