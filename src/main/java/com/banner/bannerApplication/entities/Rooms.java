@@ -30,6 +30,7 @@ public class Rooms {
     private Set<Section> sections = new HashSet<>();
 
 
+    public void setId(long id) {this.id = id;}
     public Long getId(){
         return id;
     }
