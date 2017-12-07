@@ -1,9 +1,8 @@
 package com.banner.bannerApplication.controllers;
 
-/*
-*   Here will lie all of the CRUD operations for Sprint2
-*   - Sal
-*/
+/** This is the controller for Semesters.
+ *  This holds the CRUD operations for Semesters.
+ * */
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +24,7 @@ import com.banner.bannerApplication.repositories.SectionRepository;
 @Controller
 @RequestMapping("user")
 public class UserController {
+
     @Autowired
     private UserRepository userRepository;
     @Autowired
@@ -34,20 +34,22 @@ public class UserController {
     @Autowired
     private GlobalRepository globalRepository;
 
-    // Create student html page
+    /** Create Student html */
     @RequestMapping("/create-student")
     String createStudent() {
         return "create";
     }
 
-    // Create
+    /** Create a User */
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView addNewUser (@RequestParam String firstname,
-                                            @RequestParam String lastname) {
+    public ModelAndView addNewUser (@RequestParam String firstName,
+                                    @RequestParam String lastName) {
+
         User n = new User();
         Global g = new Global();
-        n.setFirstName(firstname);
-        n.setLastName(lastname);
+        n.setFirstName(firstName);
+        n.setLastName(lastName);
+
         // initializes default global values for student
         g.setSchoolName("Wolfpack University");
         g.setSeniorCredits(0);
@@ -55,15 +57,17 @@ public class UserController {
         g.setSophmoreCredits(0);
         g.setFreshmanCredits(0);
         g.setCreditsCompleted();
+
         // saves to db
         userRepository.save(n);
         globalRepository.save(g);
         return new ModelAndView("redirect:/user");
     }
 
-    // Delete
+    /** Delete a User */
     @GetMapping(path="/delete/{id}")
     public ModelAndView removeUser(@PathVariable Long id) {
+
         userRepository.delete(id);
         return new ModelAndView("redirect:/user");
     }
@@ -71,9 +75,10 @@ public class UserController {
     /** Read All Users */
     @GetMapping(path="")
     public String showAll(Model model) {
-        Iterable<User> allusers = userRepository.findAll();
-        model.addAttribute("allusers", allusers);
-        return "userpage";
+
+        Iterable<User> allUsers = userRepository.findAll();
+        model.addAttribute("allUsers", allUsers);
+        return "userPage";
     }
 
     /** View One User */
@@ -90,7 +95,7 @@ public class UserController {
         return "student-view";
     }
 
-    /** UPDATE page */
+    /** Update page */
     @GetMapping(path="/update/{id}")
     public String updateUser(@PathVariable Long id,
                                            Model model) {
@@ -99,30 +104,33 @@ public class UserController {
         return "update";
     }
 
-    /** UPDATE User */
+    /** Update User */
     @GetMapping(path="/update")
     public ModelAndView updateStudent(@RequestParam Long id,
-                                   @RequestParam String firstname,
-                                   @RequestParam String lastname) {
+                                      @RequestParam String firstName,
+                                      @RequestParam String lastName) {
+
         // Needs Error Checking
         User user = userRepository.findOne(id);
 
-        user.setFirstName(firstname);
-        user.setLastName(lastname);
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
         userRepository.save(user);
         return new ModelAndView("redirect:/user");
     }
 
     @GetMapping(path="/register/{id}")
     public String registerStudent(@PathVariable Long id, Model model) {
+
         Iterable<Section> sections = sectionRepository.findAll();
         model.addAttribute("sections", sections);
-        model.addAttribute("studentid", id);
+        model.addAttribute("studentId", id);
         return "pick-student";
     }
 
-    @GetMapping(path="/addcourse/{id}")
-    public ModelAndView registerStudent(@PathVariable Long id, @RequestParam Long sectionId,
+    @GetMapping(path="/addCourse/{id}")
+    public ModelAndView registerStudent(@PathVariable Long id,
+                                        @RequestParam Long sectionId,
                                         Model model) {
 
         Set<User> s = new HashSet<>();
@@ -140,6 +148,7 @@ public class UserController {
             return new ModelAndView("redirect:/user/error");
         }
     }
+
     @GetMapping(path="/error")
     public String someError(){
        return "error-page";
@@ -149,6 +158,7 @@ public class UserController {
      *  will return false if there is some conflict.
      */
     private boolean checkConflictingSchedules(Long studentId, Long sectionId){
+
         // Get all of the sections the user already belongs to
         Section section = sectionRepository.findOne(sectionId);
         Collection<Section> sections = sectionRepository.findByUserId((studentId));

@@ -1,6 +1,5 @@
 package com.banner.bannerApplication.controllers;
 
-
 import com.banner.bannerApplication.entities.Semester;
 import com.banner.bannerApplication.repositories.SemesterRepository;
 import com.banner.bannerApplication.repositories.SectionRepository;
@@ -12,8 +11,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Collection;
 
+/** This is the controller for Semesters.
+ *  This holds the CRUD operations for Semesters.
+ * */
+
 @Controller
-@RequestMapping("semesters")
+@RequestMapping("semester")
 
 public class SemesterController {
 
@@ -23,15 +26,15 @@ public class SemesterController {
     private SectionRepository sectionRepository;
 
     @RequestMapping("/create")
-    String newBuildings() {
-        return "create-semesters";
+    String newSemester() {
+        return "create-semester";
     }
 
-    // Create
+    /** Create a Semester */
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView addNewSemester (@RequestParam long semesterYear,
-                                        @RequestParam Semester.Season semesterSeason
-                                        ) {
+                                        @RequestParam Semester.Season semesterSeason) {
+
         Semester s = new Semester();
         s.setSemesterSeason(semesterSeason);
         s.setSemesterYear(semesterYear);
@@ -39,18 +42,19 @@ public class SemesterController {
         return new ModelAndView("redirect:/semester");
     }
 
-    // Delete
+    /** Delete a Semester */
     @GetMapping(path="/delete/{id}")
     public ModelAndView removeSemester(@PathVariable Long id) {
+
         semesterRepository.delete(id);
         return new ModelAndView("redirect:/semester");
     }
 
-    // Read All
+    /** Read all Semesters */
     @GetMapping(path="")
-    public String showall(Model model) {
-        Iterable<Semester> allsemesters = semesterRepository.findAll();
-        model.addAttribute("allsemesters", allsemesters);
+    public String showAll(Model model) {
+        Iterable<Semester> allSemester = semesterRepository.findAll();
+        model.addAttribute("allSemester", allSemester);
         return "semester";
     }
 
