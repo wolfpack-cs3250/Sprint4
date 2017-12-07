@@ -1,7 +1,7 @@
 package com.banner.bannerApplication.controllers;
 
 import com.banner.bannerApplication.entities.Buildings;
-import com.banner.bannerApplication.entities.User;
+import com.banner.bannerApplication.entities.Semester;
 import org.junit.Test;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,25 +16,36 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
-public class CourseControllerTest {
+public class SemesterControllerTest {
 
-    @Test(expected = NullPointerException.class)
-    public void removeCourse() throws MalformedURLException, IOException {
-        CourseController cC = new CourseController();
-        Long id = 123L;
-        String courseName = "Testing";
-        cC.removeCourse(courseName, id);
-        assertEquals("Testing", 123L, cC.removeCourse(courseName, id));
-
-        URL u = new URL("http://localhost:8080/faculty");
+    @Test
+    public void newBuildings() throws MalformedURLException, IOException {
+        URL u = new URL("http://localhost:8080/buildings/create");
         HttpURLConnection huc = (HttpURLConnection) u.openConnection();
         HttpURLConnection.setFollowRedirects(false);
         huc.setRequestMethod("HEAD");
         huc.connect();
     }
 
+    @Test(expected = NullPointerException.class)
+    public void addNewSemester() {
+        SemesterController sC = new SemesterController();
+        Long semesterYear = 1225L;
+        Semester.Season semesterSeason = Semester.Season.FALL;
+        ModelAndView mav = sC.addNewSemester(semesterYear, semesterSeason);
+        assertEquals(1225L, sC.addNewSemester(semesterYear, semesterSeason));
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void removeSemester() {
+        SemesterController sC = new SemesterController();
+        Long id = 123L;
+        sC.removeSemester(id);
+        assertEquals(123L, sC.removeSemester(id));
+    }
+
     @Test
-    public void showAll() throws IOException {
+    public void showAll() throws MalformedURLException, IOException {
         Model model = new Model() {
             @Override
             public Model addAttribute(String attributeName, Object attributeValue) {
@@ -74,25 +85,8 @@ public class CourseControllerTest {
                 return null;
             }
         };
-        Iterable<User> allUsers = new ArrayList<>();
-        model.addAttribute("allUsers", allUsers);
+        Iterable<Semester> allSemesters = new ArrayList<>();
+        model.addAttribute("allSemesters", allSemesters);
         assertEquals(model, model);
     }
-
-    @Test(expected = NullPointerException.class)
-    public void updateCourse() throws MalformedURLException, IOException {
-        CourseController cC = new CourseController();
-        String courseName = "Fire juggling";
-        Long id = 456L;
-        ModelAndView mav = cC.updateCourse(id, courseName);
-        assertEquals("Fire juggling", 456L, cC.updateCourse(id, courseName));
-
-
-        URL u = new URL("http://localhost:8080/faculty");
-        HttpURLConnection huc = (HttpURLConnection) u.openConnection();
-        HttpURLConnection.setFollowRedirects(false);
-        huc.setRequestMethod("HEAD");
-        huc.connect();
-    }
-
 }
