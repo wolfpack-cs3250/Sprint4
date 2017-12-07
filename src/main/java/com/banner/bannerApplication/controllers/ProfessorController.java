@@ -52,7 +52,7 @@ public class ProfessorController {
 
     // Delete
     @GetMapping(path="/delete/{id}")
-    public ModelAndView RemoveProfessor(@PathVariable Long id) {
+    public ModelAndView removeProfessor(@PathVariable Long id) {
         professorRepository.delete(id);
         return new ModelAndView("redirect:/professor");
     }
