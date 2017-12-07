@@ -21,6 +21,15 @@ public class Professor {
 
     @Column(unique = false)
     private String lastName;
+    private Set<Position> positions;
+
+    public Set<Position> getPositions() {
+        return positions;
+    }
+
+    public void setPositions(Set<Position> positions) {
+        this.positions = positions;
+    }
 
     public String getUsername() {
         return Username;
