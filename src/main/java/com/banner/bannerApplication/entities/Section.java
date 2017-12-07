@@ -74,7 +74,7 @@ public class Section{
     public Long getSectionNumber (Long sectionNumber) {
         return sectionNumber;
     }
-    public void setSectionNumber (long sectionNumber) {
+    public void setSectionNumber (Long sectionNumber) {
        this.sectionNumber = sectionNumber;
     }
     public Course getCourse(){

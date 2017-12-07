@@ -36,13 +36,13 @@ public class FacultyCourse {
     // Create - w POST REQUEST
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView addNewCourse(@RequestParam final String department,
-                                  @RequestParam final String courseName,
-                                  @RequestParam final String number,
-                                  @RequestParam final int credits,
-                                  @RequestParam final String description,
-                                  @RequestParam final String learningObjective,
-                                  @RequestParam final String prereqs,
-                                  @RequestParam final String coreqs) {
+                                     @RequestParam final String courseName,
+                                     @RequestParam final String number,
+                                     @RequestParam final int credits,
+                                     @RequestParam final String description,
+                                     @RequestParam final String learningObjective,
+                                     @RequestParam final String prereqs,
+                                     @RequestParam final String coreqs) {
         Course n = new Course();
         n.setDepartment(department);
         n.setCourseName(courseName);
@@ -92,7 +92,7 @@ public class FacultyCourse {
     // UPDATE page
     @GetMapping(path = "/update/{id}")
     public String updateCourse(@PathVariable final Long id,
-                             final Model model) {
+                               final Model model) {
         Course course = courseRepository.findOne(id);
         model.addAttribute("course", course);
         return "update-course";
@@ -101,14 +101,14 @@ public class FacultyCourse {
     // UPDATE course
     @GetMapping(path = "/update")
     public ModelAndView updateCourse(@RequestParam final String department,
-                                 @RequestParam final String coursename,
-                                 @RequestParam final String number,
-                                 @RequestParam final int credits,
-                                 @RequestParam final String description,
-                                 @RequestParam final String learningObjective,
-                                 @RequestParam final String prereqs,
-                                 @RequestParam final String coreqs,
-                                 @RequestParam final Long id) {
+                                     @RequestParam final String coursename,
+                                     @RequestParam final String number,
+                                     @RequestParam final int credits,
+                                     @RequestParam final String description,
+                                     @RequestParam final String learningObjective,
+                                     @RequestParam final String prereqs,
+                                     @RequestParam final String coreqs,
+                                     @RequestParam final Long id) {
 
         Course course = courseRepository.findOne(id);
         course.setDepartment(department);

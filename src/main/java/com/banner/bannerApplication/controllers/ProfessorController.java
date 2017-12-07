@@ -40,7 +40,7 @@ public class ProfessorController {
     // Create
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView addNewProfessor(@RequestParam final String firstname,
-                                         @RequestParam final String lastname) {
+                                        @RequestParam final String lastname) {
         Professor n = new Professor();
         n.setFirstName(firstname);
         n.setLastName(lastname);
@@ -87,8 +87,9 @@ public class ProfessorController {
     // UPDATE
     @GetMapping(path = "/update")
     public ModelAndView updateProfessorFinal(@RequestParam final Long id,
-                                      @RequestParam final String firstname,
-                                      @RequestParam final String lastname) {
+                                             @RequestParam final String firstname,
+                                             @RequestParam final String lastname) {
+
         Professor professor = professorRepository.findOne(id);
         professor.setFirstName(firstname);
         professor.setLastName(lastname);

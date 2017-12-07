@@ -27,7 +27,7 @@ public class Buildings {
     private String acronym;
 
     @OneToMany(mappedBy = "buildings")
-    private Set<Rooms> rooms= new HashSet<>();
+    private Set<Rooms> rooms = new HashSet<>();
 
 
     public Long getId(){

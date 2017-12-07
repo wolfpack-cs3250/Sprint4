@@ -31,20 +31,20 @@ public class CourseController {
 
         Course course = courseRepository.findOne(courseID);
         User user = userRepository.findOne(userId);
-            course.getCoreq();
-            String[] check = user.getDone();
-            for (int i = 0; i < check.length; i++) {
-                if (course.getPrereqs().contains(check[i])) {
-                    return true;
-                }
+        course.getCoreq();
+        String[] check = user.getDone();
+        for (int i = 0; i < check.length; i++) {
+            if (course.getPrereqs().contains(check[i])) {
+                return true;
             }
-            return false;
+        }
+        return false;
 
     }
     // Create
     @RequestMapping(method = RequestMethod.POST)
     public void addNewCourse(@RequestParam final long userID,
-                              @RequestParam final long coursename) {
+                             @RequestParam final long coursename) {
         Course course = courseRepository.findOne(coursename);
         if (compDirtyToME(coursename, userID)) {
 
@@ -63,10 +63,10 @@ public class CourseController {
     }
     // Delete
     @GetMapping(path = "/delete")
-    public ModelAndView removeCourse(@RequestParam final String coursename,
+    public ModelAndView removeCourse(@RequestParam final Long courseId,
                                      @RequestParam final long id) {
         User user = userRepository.findOne(id);
-        user.removeInprgoress(coursename);
+        user.removeInProgress(courseId);
         return new ModelAndView("redirect:/course");
     }
 

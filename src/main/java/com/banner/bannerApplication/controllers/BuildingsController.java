@@ -29,13 +29,13 @@ public class BuildingsController {
     @RequestMapping("/create")
     String newBuildings() {
         return "create-buildings";
-        }
+    }
 
     // Create
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView addNewBuilding(@RequestParam final String buildingName,
-                                        @RequestParam final String address,
-                                        @RequestParam final String acronym) {
+                                       @RequestParam final String address,
+                                       @RequestParam final String acronym) {
         Buildings n = new Buildings();
         n.setBuildingName(buildingName);
         n.setAddress(address);
@@ -61,11 +61,11 @@ public class BuildingsController {
 
     @GetMapping(path = "/view/{id}")
     public String showOne(@PathVariable final Long id, final Model model) {
-         Buildings buildings = buildingRepository.findOne(id);
-         Collection<Rooms> rooms = roomsRepository.findByBuildingsId(id);
-         model.addAttribute("buildings", buildings);
+        Buildings buildings = buildingRepository.findOne(id);
+        Collection<Rooms> rooms = roomsRepository.findByBuildingsId(id);
+        model.addAttribute("buildings", buildings);
         model.addAttribute("rooms", rooms);
-         return "buildings-view";
+        return "buildings-view";
     }
 
     // UPDATE

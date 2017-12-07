@@ -14,7 +14,7 @@ public class BuildingsTest {
     /** Initial setup of our Building object */
     @Before
     public void setUP(){
-        buildings= new Buildings();
+        buildings = new Buildings();
         buildings.setAcronym("Belle");
         buildings.setAddress("Fairtytale");
         buildings.setBuildingName("princess");
@@ -36,7 +36,7 @@ public class BuildingsTest {
     @Test
     public void getRooms() throws Exception {
 
-   }
+    }
 
     @Test
     public void setRooms() throws Exception {
@@ -67,6 +67,10 @@ public class BuildingsTest {
     public void setAcronym() throws Exception {
     buildings.setAcronym("touch");
     assertEquals("touch",buildings.getAcronym());
+    }
+
+    @Test
+    public void getId() throws Exception {
     }
 
 }

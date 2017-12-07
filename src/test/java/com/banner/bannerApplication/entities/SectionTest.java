@@ -20,13 +20,13 @@ public class SectionTest {
     /** performs our initial set up of our Section object */
     @Before
     public void setUp(){
-        professor = new Professor();
+        Long sectionNum = new Long(1);
         course = new Course();
         section = new Section();
-        course.setCourseName("CS3250");
-        section.setProfessor(professor);
         section.setCourse(course);
-        section.setSectionNumber(1);
+        course.setCourseName("CS3250");
+        section.setSectionNumber(sectionNum);
+
     }
 
     /** Make sure we can access the Section objects course name */
@@ -44,7 +44,7 @@ public class SectionTest {
 
     @Test
     public void setSectionNumber() throws Exception{
-        section.setSectionNumber(1);
+        section.setSectionNumber(1L);
     }
 
     @Test
