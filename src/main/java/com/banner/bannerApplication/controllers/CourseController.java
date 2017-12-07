@@ -72,7 +72,7 @@ public class CourseController {
     }
     // Delete
     @GetMapping(path="/delete")
-    public ModelAndView RemoveCourse(@RequestParam String coursename,@RequestParam long id) {
+    public ModelAndView removeCourse(@RequestParam String coursename,@RequestParam long id) {
         User user= userRepository.findOne(id);
         user.removeInprgoress(coursename);
         return new ModelAndView("redirect:/course");

@@ -50,7 +50,7 @@ public class FacultyCourse {
 
     // Delete
     @GetMapping(path="/delete/{id}")
-    public ModelAndView RemoveCourse(@PathVariable Long id) {
+    public ModelAndView removeCourse(@PathVariable Long id) {
         courseRepository.delete(id);
         return new ModelAndView("redirect:/faculty");
     }
@@ -108,4 +108,6 @@ public class FacultyCourse {
         courseRepository.save(course);
         return new ModelAndView("redirect:/faculty");
     }
+
+
 }

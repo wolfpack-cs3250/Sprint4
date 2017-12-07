@@ -46,7 +46,7 @@ public class BuildingsController {
 
     // Delete
     @GetMapping(path="/delete/{id}")
-    public ModelAndView RemoveUser(@PathVariable Long id) {
+    public ModelAndView removeUser(@PathVariable Long id) {
         buildingRepository.delete(id);
         return new ModelAndView("redirect:/faculty");
     }
@@ -64,7 +64,7 @@ public class BuildingsController {
          Buildings buildings = buildingRepository.findOne(id);
          Collection<Rooms> rooms = roomsRepository.findByBuildingsId(id);
          model.addAttribute("buildings", buildings);
-        model.addAttribute("rooms", rooms);
+         model.addAttribute("rooms", rooms);
          return "buildings-view";
     }
 
