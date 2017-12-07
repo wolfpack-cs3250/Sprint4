@@ -32,8 +32,8 @@ public class SectionController {
     // Create
     // Section Controllers
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView addSection(@RequestParam Long courseId, @RequestParam Long sectionNumber,
-                                   @RequestParam Long professorId, @RequestParam Long roomId,
+    public ModelAndView addSection(@RequestParam long courseId, @RequestParam long sectionNumber,
+                                   @RequestParam long professorId, @RequestParam long roomId,
                                    @RequestParam String startDate, @RequestParam String endDate,
                                    @RequestParam String startTime, @RequestParam String endTime,
                                    @RequestParam String classDate) throws ParseException {
@@ -57,7 +57,7 @@ public class SectionController {
     }
 
     @GetMapping(path="/add/{id}")
-    public String createSection(@PathVariable Long id, Model model) {
+    public String createSection(@PathVariable long id, Model model) {
         Course course = courseRepository.findOne(id);
 
         Iterable<Professor> professors = professorRepository.findAll();
@@ -75,9 +75,9 @@ public class SectionController {
     // Delete
     //needs to be fixed
     @GetMapping(path="/delete/{id}")
-    public ModelAndView removeSection(@PathVariable Long id) {
+    public ModelAndView removeSection(@PathVariable long id) {
         Section section = sectionRepository.findOne(id);
-        Long courseId = section.getCourse().getCourseId();
+        long courseId = section.getCourse().getCourseId();
 
         sectionRepository.delete(id);
         return new ModelAndView("redirect:/faculty/view/"+ courseId);
@@ -108,8 +108,8 @@ public class SectionController {
 
     // UPDATE section
     @GetMapping(path="/update")
-    public ModelAndView updateCourse(@RequestParam Long sectionId, @RequestParam Long sectionNumber,
-                                     @RequestParam Long professorId,
+    public ModelAndView updateCourse(@RequestParam long sectionId, @RequestParam long sectionNumber,
+                                     @RequestParam long professorId,
                                      @RequestParam String startDate,
                                      @RequestParam String endDate, @RequestParam String startTime,
                                      @RequestParam String endTime, @RequestParam String classDate) throws ParseException
