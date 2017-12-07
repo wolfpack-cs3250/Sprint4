@@ -13,7 +13,7 @@ public class Semester {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_semester", unique = true)
-    private Long id;
+    private long id;
 
     /** For semester we will need both the year
      *  and season of semester (i.e. Spring 2018).
