@@ -23,7 +23,7 @@ public class Course{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_course", unique = true)
-    private Long id;
+    private long id;
 
     @OneToMany(mappedBy = "course")
     private Set<Section> sections = new HashSet<>();
@@ -61,6 +61,8 @@ public class Course{
     public long getCourseId() {
         return id;
     }
+
+    public void setCourseId(Long id){ this.id = id; }
 
     public String getCoreq() {
         return coreq;

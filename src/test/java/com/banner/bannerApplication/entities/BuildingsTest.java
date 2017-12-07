@@ -3,6 +3,8 @@ package com.banner.bannerApplication.entities;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Set;
+
 import static org.junit.Assert.*;
 
 /** Test class for the Buildings object */
@@ -10,14 +12,17 @@ import static org.junit.Assert.*;
 public class BuildingsTest {
 
     private Buildings buildings;
+    private Rooms rooms;
 
     /** Initial setup of our Building object */
     @Before
     public void setUP(){
-        buildings = new Buildings();
+        buildings= new Buildings();
         buildings.setAcronym("Belle");
         buildings.setAddress("Fairtytale");
         buildings.setBuildingName("princess");
+        Rooms room = new Rooms();
+        buildings.setRooms((Set<Rooms>) rooms);
     }
 
     /** make sure we can access the Building objects name */
@@ -35,11 +40,14 @@ public class BuildingsTest {
 
     @Test
     public void getRooms() throws Exception {
-
-    }
+        assertSame(rooms,buildings.getRooms());
+   }
 
     @Test
     public void setRooms() throws Exception {
+        Rooms room = new Rooms();
+        buildings.setRooms((Set<Rooms>) rooms);
+        assertSame(rooms,buildings.getRooms());
 
     }
 
@@ -69,8 +77,6 @@ public class BuildingsTest {
     assertEquals("touch",buildings.getAcronym());
     }
 
-    @Test
-    public void getId() throws Exception {
-    }
+
 
 }
