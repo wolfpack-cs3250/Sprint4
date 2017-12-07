@@ -1,38 +1,39 @@
 package com.banner.bannerApplication.entities;
 
-import org.springframework.stereotype.Controller;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-<<<<<<< Updated upstream
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
-=======
 import java.util.*;
->>>>>>> Stashed changes
 
-import com.banner.bannerApplication.entities.Course;
-import com.banner.bannerApplication.entities.Section;
+/** This is the class for Users
+ *  Users can have many Sections
+ *  If they are currently in classes,
+ *  their name, etc.
+ */
 
 @Entity
+@Table(name = "USER")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
-    @Column(name = "student_id", unique = true)
     private Long id;
 
-    @ManyToOne
-    private Section section;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            joinColumns = { @JoinColumn(name = "USER_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "SECTION_ID")}
+    )
+    private Set<Section> section = new HashSet<Section>();
 
+    /** Column in our database. */
     @Column(unique = false)
     private String firstName;
 
+    /** Column in our database. */
     @Column(unique = false)
     private String lastName;
 
@@ -55,7 +56,8 @@ public class User {
     //@Column(unique = false)
     //private long completedCredits = 666;
 
-    @Column(unique = true)
+    /** Column in our database. */
+    @Column(unique = false)
     private String[] done;
     private String Username;
     @NotNull
@@ -79,7 +81,12 @@ public class User {
     }
 
 
-    @Column(name="Registered", nullable = false)
+    /** We map a User to a section. */
+    @OneToMany(mappedBy = "user")
+    private Set<Section> sections = new HashSet<>();
+
+    /** Column in our database. */
+    @Column(name = "Registered", nullable = false)
     @ElementCollection(targetClass = long.class)
     private List<Long> inProgess;
 
@@ -87,24 +94,26 @@ public class User {
         inProgess.add(classId);
     }
 
-    public void removeInprgoress(String classname) {
-        inProgess.remove(classname);
+    public void removeInProgress(Long courseId) {
+        inProgess.remove(courseId);
+    }
+
+    public Set<Section> getSections(){
+        return sections;
+    }
+
+    public void setSection(Set<Section> section){
+        this.section = section;
     }
 
     public String[] getDone() {
         return Arrays.copyOf(done, done.length);
     }
 
-    public Long getStudentId() {
+    public Long getId() {
         return id;
     }
 
-    public Section getSection() {
-        return section;
-    }
-    public void setSection(Section section){
-        this.section = section;
-    }
     public String getFirstName() {
         return firstName;
     }
@@ -112,14 +121,14 @@ public class User {
         this.firstName = firstName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
     public String getLastName() {
         return lastName;
     }
     public void setPassword(String password){this.password=password;}
     public String getPassword(){return password;}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
     @Transient
     public String getPasswordConfirm() {

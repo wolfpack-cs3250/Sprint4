@@ -4,6 +4,12 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+/** This is the class for Buildings.
+ *  A building contains many rooms.
+ *  It also contains other basic info,
+ *  such as address, and name.
+ * */
+
 @Entity
 public class Buildings {
 
@@ -11,17 +17,17 @@ public class Buildings {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(unique=true)
+    @Column(unique=false)
     private String buildingName;
 
-    @Column(unique = true)
+    @Column(unique = false)
     private String address;
 
-    @Column(unique = true)
+    @Column(unique = false)
     private String acronym;
 
     @OneToMany(mappedBy = "buildings")
-    private Set<Rooms> rooms= new HashSet<>();
+    private Set<Rooms> rooms = new HashSet<>();
 
 
     public Long getId(){

@@ -10,19 +10,25 @@ import javax.persistence.Column;
 import java.util.Set;
 import java.util.HashSet;
 
+/** This is the class for Course
+ *  A course can have many Sections.
+ *  There is also more basic information,
+ *  such as credit hours, course name,
+ *  and learning objective.
+ */
 
 @Entity
-public class Course {
+public class Course{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_course", unique = true)
-    private Long id;
+    private long id;
 
     @OneToMany(mappedBy = "course")
     private Set<Section> sections = new HashSet<>();
 
-    @Column(unique = true)
+    @Column(unique = false)
     private String courseName;
 
     @Column(unique = false)
@@ -48,11 +54,15 @@ public class Course {
 
     public Set<Section> getSections(){
         return sections;
+
     }
 
-    public Long getCourseId() {
+
+    public long getCourseId() {
         return id;
     }
+
+    public void setCourseId(Long id){ this.id = id; }
 
     public String getCoreq() {
         return coreq;
@@ -125,7 +135,7 @@ public class Course {
         this.courseName = courseName;
     }
 
-    // jpa only
+    /** This should only be used by the JPA. */
     public Course (){
     }
 

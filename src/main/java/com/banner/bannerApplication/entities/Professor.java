@@ -5,6 +5,11 @@ import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
+/** This is the class fo Professors.
+ *  A professor can have many sections.
+ *  Also has a first and last name.
+ */
+
 @Entity
 public class Professor {
 

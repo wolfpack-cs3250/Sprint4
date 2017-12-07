@@ -5,6 +5,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/** This is the Global class.
+ *  It is used to hold information which
+ *  can be accessed from any of our other classes.
+ *  Info such as the school's name, and the amount
+ *  of credit hours for the various year levels,
+ *  (Freshman, Sophmore, etc.)
+ */
+
 @Entity
 public class Global {
     @Id
