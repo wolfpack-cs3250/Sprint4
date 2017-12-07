@@ -158,7 +158,7 @@ public class UserController {
 
         for(Section s: sections) {
             // test time to make sure it doesn't conflict with start.
-            if (s.getClassDate().equals(section.getClassDate())) {
+            //if (s.getClassDate().equals(section.getClassDate())) {
                 if ((s.getStartTime().isAfter(section.getStartTime()) && s.getStartTime().isBefore(section.getEndTime()))
                         ||
                         // test time to make sure it doesn't conflict with end.
@@ -166,8 +166,8 @@ public class UserController {
                     return false;
                 }
 
-            }
-            return true;
+            //}
+            //return true;
         }
         // If the student is registered to no classes, return true.
 
