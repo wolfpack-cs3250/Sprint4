@@ -13,10 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.banner.bannerApplication.entities.Course;
 import com.banner.bannerApplication.repositories.CourseRepository;
-
 import java.util.Collection;
 
 @Controller
@@ -41,8 +39,8 @@ public class ProfessorController {
 
     // Create
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView addNewProfessor (@RequestParam String firstname,
-                                         @RequestParam String lastname) {
+    public ModelAndView addNewProfessor(@RequestParam final String firstname,
+                                         @RequestParam final String lastname) {
         Professor n = new Professor();
         n.setFirstName(firstname);
         n.setLastName(lastname);
@@ -51,45 +49,46 @@ public class ProfessorController {
     }
 
     // Delete
-    @GetMapping(path="/delete/{id}")
-    public ModelAndView RemoveProfessor(@PathVariable Long id) {
+    @GetMapping(path = "/delete/{id}")
+    public ModelAndView removeProfessor(@PathVariable final Long id) {
         professorRepository.delete(id);
         return new ModelAndView("redirect:/professor");
     }
 
     // Read All
-    @GetMapping(path="")
-    public String showall(Model model) {
+    @GetMapping(path = "")
+    public String showall(final Model model) {
         Iterable<Professor> professors = professorRepository.findAll();
         model.addAttribute("professors", professors);
         return "professorpage";
     }
 
     // View One Professor
-    @GetMapping(path="/view/{id}")
-    public String showOne(@PathVariable Long id, Model model) {
+    @GetMapping(path = "/view/{id}")
+    public String showOne(@PathVariable final Long id, final Model model) {
         Professor professor = professorRepository.findOne(id);
-        Collection<Section> sections = sectionRepository.findByProfessorId((id));
-
+        Collection<Section> sections =
+                sectionRepository.findByProfessorId((id));
         model.addAttribute("professor", professor);
         model.addAttribute("sections", sections);
         return "professor-view";
     }
 
     // UPDATE
-    @GetMapping(path="/update/{id}")
-    public String updateProfessor(@PathVariable Long id, Model model) {
-        // Needs Error Checking!!
+    @GetMapping(path = "/update/{id}")
+    public String updateProfessor(@PathVariable final Long id,
+                                  final Model model) {
+
         Professor professor = professorRepository.findOne(id);
         model.addAttribute("professor", professor);
         return "update-professor";
     }
 
     // UPDATE
-    @GetMapping(path="/update")
-    public ModelAndView updateProfessorFinal(@RequestParam Long id,
-                                      @RequestParam String firstname,
-                                      @RequestParam String lastname) {
+    @GetMapping(path = "/update")
+    public ModelAndView updateProfessorFinal(@RequestParam final Long id,
+                                      @RequestParam final String firstname,
+                                      @RequestParam final String lastname) {
         Professor professor = professorRepository.findOne(id);
         professor.setFirstName(firstname);
         professor.setLastName(lastname);
@@ -98,8 +97,9 @@ public class ProfessorController {
     }
 
     // Register - Professor
-    @GetMapping(path="/register/{id}")
-    public String registerProfessor(@PathVariable Long id, Model model) {
+    @GetMapping(path = "/register/{id}")
+    public String registerProfessor(@PathVariable final Long id,
+                                    final Model model) {
         Iterable<Course> allcourses = courseRepository.findAll();
         model.addAttribute("allcourses", allcourses);
         model.addAttribute("professorid", id);

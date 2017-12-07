@@ -33,9 +33,9 @@ public class BuildingsController {
 
     // Create
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView addNewBuilding (@RequestParam String buildingName,
-                                        @RequestParam String address,
-                                        @RequestParam String acronym) {
+    public ModelAndView addNewBuilding(@RequestParam final String buildingName,
+                                        @RequestParam final String address,
+                                        @RequestParam final String acronym) {
         Buildings n = new Buildings();
         n.setBuildingName(buildingName);
         n.setAddress(address);
@@ -45,22 +45,22 @@ public class BuildingsController {
     }
 
     // Delete
-    @GetMapping(path="/delete/{id}")
-    public ModelAndView RemoveUser(@PathVariable Long id) {
+    @GetMapping(path = "/delete/{id}")
+    public ModelAndView removeUser(@PathVariable final Long id) {
         buildingRepository.delete(id);
         return new ModelAndView("redirect:/faculty");
     }
 
     // Read All
-    @GetMapping(path="")
-    public String showall(Model model) {
+    @GetMapping(path = "")
+    public String showall(final Model model) {
         Iterable<Buildings> allbuildings = buildingRepository.findAll();
         model.addAttribute("allbuildings", allbuildings);
         return "buildings";
     }
 
-    @GetMapping(path="/view/{id}")
-    public String showOne(@PathVariable Long id, Model model) {
+    @GetMapping(path = "/view/{id}")
+    public String showOne(@PathVariable final Long id, final Model model) {
          Buildings buildings = buildingRepository.findOne(id);
          Collection<Rooms> rooms = roomsRepository.findByBuildingsId(id);
          model.addAttribute("buildings", buildings);
@@ -69,19 +69,20 @@ public class BuildingsController {
     }
 
     // UPDATE
-    @GetMapping(path="/update/{id}")
-    public String updateUser(@PathVariable Long id,
-                             Model model) {
+    @GetMapping(path = "/update/{id}")
+    public String updateUser(@PathVariable final Long id,
+                             final Model model) {
         Buildings buildings = buildingRepository.findOne(id);
         model.addAttribute("buildings", buildings);
         return "update-buildings";
     }
 
     // UPDATE
-    @GetMapping(path="/update")
-    public ModelAndView updateStudent(@RequestParam Long id, @RequestParam String acronym,
-                                      @RequestParam String buildingName,
-                                      @RequestParam String address) {
+    @GetMapping(path = "/update")
+    public ModelAndView updateStudent(@RequestParam final Long id,
+                                      @RequestParam final String acronym,
+                                      @RequestParam final String buildingName,
+                                      @RequestParam final String address) {
         Buildings buildings = buildingRepository.findOne(id);
         buildings.setBuildingName(buildingName);
         buildings.setAddress(address);
