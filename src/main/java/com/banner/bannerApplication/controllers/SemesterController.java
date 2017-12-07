@@ -41,14 +41,14 @@ public class SemesterController {
 
     // Delete
     @GetMapping(path="/delete/{id}")
-    public ModelAndView RemoveSemester(@PathVariable Long id) {
+    public ModelAndView removeSemester(@PathVariable Long id) {
         semesterRepository.delete(id);
         return new ModelAndView("redirect:/semester");
     }
 
     // Read All
     @GetMapping(path="")
-    public String showall(Model model) {
+    public String showAll(Model model) {
         Iterable<Semester> allsemesters = semesterRepository.findAll();
         model.addAttribute("allsemesters", allsemesters);
         return "semester";
