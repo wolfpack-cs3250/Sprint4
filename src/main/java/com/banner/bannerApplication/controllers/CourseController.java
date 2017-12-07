@@ -66,7 +66,7 @@ public class CourseController {
     public ModelAndView removeCourse(@RequestParam final Long courseId,
                                      @RequestParam final long id) {
         User user = userRepository.findOne(id);
-        user.removeInProgress(coursename);
+        user.removeInProgress(courseId);
         return new ModelAndView("redirect:/course");
     }
 
