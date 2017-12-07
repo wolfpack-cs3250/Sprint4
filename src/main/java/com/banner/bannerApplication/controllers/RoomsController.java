@@ -26,7 +26,7 @@ public class RoomsController {
 
     // Create - Get
     @GetMapping(path = "/{id}")
-    public String createRoom(@PathVariable final Long id, final Model model) {
+    public String createRoom(@PathVariable final long id, final Model model) {
         Buildings building = buildingRepository.findOne(id);
         model.addAttribute("building", building);
         return "create-room";
@@ -35,7 +35,7 @@ public class RoomsController {
     // Create - Post
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView addNewRooms(@RequestParam final String roomSize,
-                                    @RequestParam final Long buildingId,
+                                    @RequestParam final long buildingId,
                                     @RequestParam final String roomNumber) {
 
         Buildings building = buildingRepository.findOne(buildingId);
@@ -49,9 +49,9 @@ public class RoomsController {
 
     // Delete
     @GetMapping(path = "/delete/{id}")
-    public ModelAndView removeRooms(@PathVariable final Long id) {
+    public ModelAndView removeRooms(@PathVariable final long id) {
         Rooms room = roomsRepository.findOne(id);
-        Long buildingId = room.getBuildings().getId();
+        long buildingId = room.getBuildings().getId();
         roomsRepository.delete(id);
         return new ModelAndView("redirect:/buildings/view/" + buildingId);
     }
@@ -66,7 +66,7 @@ public class RoomsController {
 
     // UPDATE Page
     @GetMapping(path = "/update/{id}")
-    public String updateUser(@PathVariable final Long id,
+    public String updateUser(@PathVariable final long id,
                              final Model model) {
 
         Rooms rooms = roomsRepository.findOne(id);
@@ -76,13 +76,13 @@ public class RoomsController {
 
     // UPDATE
     @GetMapping(path = "/update")
-    public ModelAndView updateRooms(@RequestParam final Long id,
+    public ModelAndView updateRooms(@RequestParam final long id,
                                     @RequestParam final String roomSize,
                                     @RequestParam final String roomNumber) {
         Rooms rooms = roomsRepository.findOne(id);
         rooms.setRoomSize(roomSize);
         rooms.setRoomNumber(roomNumber);
-        Long buildingId = rooms.getBuildings().getId();
+        long buildingId = rooms.getBuildings().getId();
         roomsRepository.save(rooms);
         return new ModelAndView("redirect:/buildings/view/" + buildingId);
     }
