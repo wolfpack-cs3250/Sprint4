@@ -13,11 +13,13 @@ public class GlobalTest {
     @Before
     public void setUp(){
         global1 = new Global();
+        global1.setId("1");
         global1.setSchoolName("Wolfpack University");
         global1.setFreshmanCredits(32);
         global1.setSophmoreCredits(64);
         global1.setJuniorCredits(96);
         global1.setSeniorCredits(128);
+        global1.setCreditsCompleted();
     }
 
     /** make sure we can set the SchoolName field */
@@ -85,4 +87,26 @@ public class GlobalTest {
         assertEquals(128,global1.getSeniorCredits());
     }
 
+    @Test
+    public void setId() throws Exception{
+        Global global = new Global();
+        global.setId("1");
+        assertEquals("1", global.getId());
+    }
+
+    @Test
+    public void getId() throws Exception{
+        assertEquals("1", global1.getId());
+    }
+
+    @Test
+    public void setCreditsComplete() throws Exception{
+        Global global = new Global();
+        global.setCreditsCompleted();
+        assertEquals(0,global.getCompletedCredits());
+    }
+    @Test
+    public void getCreditsComplete() throws Exception{
+        assertEquals(320,global1.getCompletedCredits());
+    }
 }

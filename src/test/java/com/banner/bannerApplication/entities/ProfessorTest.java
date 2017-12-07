@@ -9,6 +9,7 @@ import org.junit.Test;
 public class ProfessorTest {
 
     private Professor professor;
+    private Section section;
 
     /** Performs our initial set up of our Professor object */
     @Before
@@ -18,6 +19,13 @@ public class ProfessorTest {
         professor.setLastName("Skywalker");
     }
 
+    @Test
+    public void testProfessor() throws Exception{
+        Professor professor = new Professor("Bruce", "Wayne");
+        assertEquals("Bruce", professor.getFirstName());
+        assertEquals("Wayne", professor.getLastName());
+
+    }
     /** try to get the professors first name */
     @Test
     public void getFirstName() throws Exception{

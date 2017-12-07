@@ -1,20 +1,24 @@
 package com.banner.bannerApplication.entities;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import static jdk.nashorn.internal.runtime.Debug.id;
 import static org.junit.Assert.*;
 
 /** Test class for Course objects */
 
 public class CourseTest {
 
+    private Section section;
     private Course course;
 
     /** Initial set up for our Course object */
     @Before
     public void setUp(){
         course= new Course();
+        course.setCourseId((long) 1234);
         course.setPrereqs("A");
         course.setCoreq("B");
         course.setCredits(4);
@@ -23,6 +27,7 @@ public class CourseTest {
         course.setCourseName("DEER");
         course.setDepartment("femalDEER");
         course.setDescription("Ray");
+        section = new Section();
 
     }
 
@@ -130,4 +135,8 @@ public class CourseTest {
         assertEquals("tested",course.getCourseName());
     }
 
+    @Test
+    public void getCourseId()throws Exception{
+        assertEquals(1234, course.getCourseId());
+    }
 }
