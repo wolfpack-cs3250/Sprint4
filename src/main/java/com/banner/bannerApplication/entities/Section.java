@@ -71,10 +71,10 @@ public class Section{
         this.user = user;
     }
 
-    public Long getSectionNumber (Long sectionNumber) {
+    public Long getSectionNumber () {
         return sectionNumber;
     }
-    public void setSectionNumber (Long sectionNumber) {
+    public void setSectionNumber (long sectionNumber) {
        this.sectionNumber = sectionNumber;
     }
     public Course getCourse(){
