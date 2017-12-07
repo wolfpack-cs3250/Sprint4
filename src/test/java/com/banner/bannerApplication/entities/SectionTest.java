@@ -23,6 +23,7 @@ public class SectionTest {
         Long sectionNum = new Long(1);
         course = new Course();
         section = new Section();
+        section.setCourse(course);
         course.setCourseName("CS3250");
         section.setSectionNumber(sectionNum);
 
