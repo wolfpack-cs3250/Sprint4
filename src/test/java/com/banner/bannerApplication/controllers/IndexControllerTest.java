@@ -1,63 +1,47 @@
 package com.banner.bannerApplication.controllers;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class IndexControllerTest {
+
     @Test
-    public void index() {
+    public void index() throws MalformedURLException, IOException {
+        URL u = new URL("http://localhost:8080/");
+        HttpURLConnection huc = (HttpURLConnection) u.openConnection();
+        HttpURLConnection.setFollowRedirects(false);
+        huc.setRequestMethod("HEAD");
+        huc.connect();
     }
 
     @Test
-   public void select() {
+    public void select() throws MalformedURLException, IOException {
+        URL u = new URL("http://localhost:8080/select?");
+        HttpURLConnection huc = (HttpURLConnection) u.openConnection();
+        HttpURLConnection.setFollowRedirects(false);
+        huc.setRequestMethod("HEAD");
+        huc.connect();
     }
 
     @Test
-    public void delete() {
+    public void schoolInformation() throws MalformedURLException, IOException {
+        URL u = new URL("http://localhost:8080/school-information");
+        HttpURLConnection huc = (HttpURLConnection) u.openConnection();
+        HttpURLConnection.setFollowRedirects(false);
+        huc.setRequestMethod("HEAD");
+        huc.connect();
     }
 
     @Test
-    public void create() {
+    public void buildings() throws MalformedURLException, IOException {
+        URL u = new URL("http://localhost:8080/buildings");
+        HttpURLConnection huc = (HttpURLConnection) u.openConnection();
+        HttpURLConnection.setFollowRedirects(false);
+        huc.setRequestMethod("HEAD");
+        huc.connect();
     }
-
-    @Test
-    public void update() {
-    }
-
-    @Test
-    public void deleteProfessor() {
-    }
-
-    @Test
-    public void createProfessor() {
-    }
-
-    @Test
-    public void updateProfessor()throws Exception {
-    }
-
-    @Test
-    public void professorChoices()throws Exception {
-    }
-
-    @Test
-    public void studentChoices() throws Exception{
-    }
-
-    @Test
-    public void editStudent()throws Exception {
-    }
-
-    @Test
-    public void pickStudent() throws Exception{
-    }
-
-    @Test
-    public void editProfessor() throws Exception{
-    }
-
-    @Test
-    public void pickProfessor() throws Exception{
-    }
-
 }
