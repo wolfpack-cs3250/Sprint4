@@ -58,7 +58,7 @@ public class FacultyCourse {
 
     // Delete
     @GetMapping(path = "/delete/{id}")
-    public ModelAndView removeCourse(@PathVariable final Long id) {
+    public ModelAndView removeCourse(@PathVariable final long id) {
         courseRepository.delete(id);
         return new ModelAndView("redirect:/faculty");
     }
@@ -79,7 +79,7 @@ public class FacultyCourse {
 
     // View One Course
     @GetMapping(path = "/view/{id}")
-    public String showOne(@PathVariable final Long id, final Model model) {
+    public String showOne(@PathVariable final long id, final Model model) {
         Course course = courseRepository.findOne(id);
         Collection<Section> sections =
                 sectionRepository.findByCourseNumber(course.getNumber());
@@ -91,7 +91,7 @@ public class FacultyCourse {
 
     // UPDATE page
     @GetMapping(path = "/update/{id}")
-    public String updateCourse(@PathVariable final Long id,
+    public String updateCourse(@PathVariable final long id,
                                final Model model) {
         Course course = courseRepository.findOne(id);
         model.addAttribute("course", course);
@@ -108,7 +108,7 @@ public class FacultyCourse {
                                      @RequestParam final String learningObjective,
                                      @RequestParam final String prereqs,
                                      @RequestParam final String coreqs,
-                                     @RequestParam final Long id) {
+                                     @RequestParam final long id) {
 
         Course course = courseRepository.findOne(id);
         course.setDepartment(department);
