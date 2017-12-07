@@ -1,10 +1,5 @@
 package com.banner.bannerApplication.controllers;
 
-/*
-*   CRUD operations for sprint 3
-*
-*/
-
 import com.banner.bannerApplication.entities.Course;
 import com.banner.bannerApplication.entities.User;
 import com.banner.bannerApplication.repositories.CourseRepository;
@@ -18,6 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+/** This is the controller for Courses.
+ *  This holds the CRUD operations for Courses.
+ * */
 
 @Controller
 @RequestMapping("course")
@@ -41,55 +40,57 @@ public class CourseController {
         return false;
 
     }
-    // Create
+
+    /** Create a Course */
     @RequestMapping(method = RequestMethod.POST)
     public void addNewCourse(@RequestParam final long userID,
-                             @RequestParam final long coursename) {
-        Course course = courseRepository.findOne(coursename);
-        if (compDirtyToME(coursename, userID)) {
+                             @RequestParam final long courseName) {
 
-            chooseSection(userID, coursename);
+        Course course = courseRepository.findOne(courseName);
+        if (compDirtyToME(courseName, userID)) {
+
+            chooseSection(userID, courseName);
         }
         else if (course.getPrereqs() == null) {
-            chooseSection(userID, coursename);
+            chooseSection(userID, courseName);
         }
     }
+
     public ModelAndView chooseSection(final long userID,
-                                      final long coursename) {
+                                      final long courseName) {
+
         User user = userRepository.findOne(userID);
-        user.setInProgress(coursename);
+        user.setInProgress(courseName);
         userRepository.save(user);
         return new ModelAndView("redirect:/student");
     }
-    // Delete
+
+    /** Delete a Course */
     @GetMapping(path = "/delete")
     public ModelAndView removeCourse(@RequestParam final Long courseId,
                                      @RequestParam final long id) {
+
         User user = userRepository.findOne(id);
         user.removeInProgress(courseId);
         return new ModelAndView("redirect:/course");
     }
 
-    // Read All
+    /** Read Course */
     @GetMapping(path = "")
-    public String showall(final Model model) {
+    public String showAll(final Model model) {
+
         Iterable<User> allUser = userRepository.findAll();
         model.addAttribute("UserAll", allUser);
         return "User";
     }
 
-
-    // Read by id
-    // @GetMapping(path="/{id}")
-
-
-    // UPDATE
+    /** Update Course */
     @GetMapping(path = "/update")
     public ModelAndView updateCourse(@RequestParam final Long id,
-                                     @RequestParam final String coursename) {
+                                     @RequestParam final String courseName) {
 
         Course course = courseRepository.findOne(id);
-        course.setCourseName(coursename);
+        course.setCourseName(courseName);
         courseRepository.save(course);
         return new ModelAndView("redirect:/course");
     }

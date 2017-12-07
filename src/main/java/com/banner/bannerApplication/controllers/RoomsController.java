@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+/** This is the controller for Rooms.
+ *  This holds the CRUD operations for Rooms.
+ * */
+
 @Controller
 @RequestMapping("rooms")
 
@@ -24,7 +28,7 @@ public class RoomsController {
     @Autowired
     private BuildingRepository buildingRepository;
 
-    // Create - Get
+    /** Create a Room w/ Get Request */
     @GetMapping(path = "/{id}")
     public String createRoom(@PathVariable final Long id, final Model model) {
         Buildings building = buildingRepository.findOne(id);
@@ -32,7 +36,7 @@ public class RoomsController {
         return "create-room";
     }
 
-    // Create - Post
+    /** Create a Room w/ Post Request */
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView addNewRooms(@RequestParam final String roomSize,
                                     @RequestParam final Long buildingId,
@@ -47,24 +51,26 @@ public class RoomsController {
         return new ModelAndView("redirect:/buildings/view/" + buildingId);
     }
 
-    // Delete
+    /** Delete a Room */
     @GetMapping(path = "/delete/{id}")
     public ModelAndView removeRooms(@PathVariable final Long id) {
+
         Rooms room = roomsRepository.findOne(id);
         Long buildingId = room.getBuildings().getId();
         roomsRepository.delete(id);
         return new ModelAndView("redirect:/buildings/view/" + buildingId);
     }
 
-    // Read All
+    /** Read all Rooms */
     @GetMapping(path = "")
-    public String showall(final Model model) {
+    public String showAll(final Model model) {
+
         Iterable<Rooms> allRooms = roomsRepository.findAll();
         model.addAttribute("allRooms", allRooms);
-        return "roomspage";
+        return "roomsPage";
     }
 
-    // UPDATE Page
+    /** Update a Room Page */
     @GetMapping(path = "/update/{id}")
     public String updateUser(@PathVariable final Long id,
                              final Model model) {
@@ -74,11 +80,12 @@ public class RoomsController {
         return "update-room";
     }
 
-    // UPDATE
+    /** Update a Room */
     @GetMapping(path = "/update")
     public ModelAndView updateRooms(@RequestParam final Long id,
                                     @RequestParam final String roomSize,
                                     @RequestParam final String roomNumber) {
+
         Rooms rooms = roomsRepository.findOne(id);
         rooms.setRoomSize(roomSize);
         rooms.setRoomNumber(roomNumber);

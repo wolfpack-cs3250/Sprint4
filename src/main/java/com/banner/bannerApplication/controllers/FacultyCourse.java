@@ -17,6 +17,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 import java.util.Collection;
 
+/** This is the controller for Faculty Courses.
+ *  This holds the CRUD operations for Faculty Courses.
+ * */
+
 @Controller
 @RequestMapping("faculty")
 public class FacultyCourse {
@@ -27,13 +31,13 @@ public class FacultyCourse {
     @Autowired
     private BuildingRepository buildingRepository;
 
-    // Create - w GET REQUEST
+    /** Create a Faculty Course w/ Get Request */
     @GetMapping(path = "/create")
     String newCourse() {
         return "create-course";
     }
 
-    // Create - w POST REQUEST
+    /** Create a Faculty Course w/ Post Request */
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView addNewCourse(@RequestParam final String department,
                                      @RequestParam final String courseName,
@@ -56,28 +60,28 @@ public class FacultyCourse {
         return new ModelAndView("redirect:/faculty");
     }
 
-    // Delete
+    /** Delete a Course */
     @GetMapping(path = "/delete/{id}")
     public ModelAndView removeCourse(@PathVariable final Long id) {
         courseRepository.delete(id);
         return new ModelAndView("redirect:/faculty");
     }
 
-    // Read All
+    /** Read All Courses */
     @GetMapping(path = "")
-    public String showall(final Model model) {
+    public String showAll(final Model model) {
         // View all Courses
-        Iterable<Course> allcourses = courseRepository.findAll();
-        model.addAttribute("allcourses", allcourses);
+        Iterable<Course> allCourses = courseRepository.findAll();
+        model.addAttribute("allCourses", allCourses);
 
         // View all Buildings
-        Iterable<Buildings> allbuildings = buildingRepository.findAll();
-        model.addAttribute("allbuildings", allbuildings);
+        Iterable<Buildings> allBuildings = buildingRepository.findAll();
+        model.addAttribute("allBuildings", allBuildings);
 
         return "faculty";
     }
 
-    // View One Course
+    /** View a Course */
     @GetMapping(path = "/view/{id}")
     public String showOne(@PathVariable final Long id, final Model model) {
         Course course = courseRepository.findOne(id);
@@ -89,7 +93,7 @@ public class FacultyCourse {
         return "course-view";
     }
 
-    // UPDATE page
+    /** Update Faculty Page */
     @GetMapping(path = "/update/{id}")
     public String updateCourse(@PathVariable final Long id,
                                final Model model) {
@@ -98,10 +102,10 @@ public class FacultyCourse {
         return "update-course";
     }
 
-    // UPDATE course
+    /** Update Faculty Course */
     @GetMapping(path = "/update")
     public ModelAndView updateCourse(@RequestParam final String department,
-                                     @RequestParam final String coursename,
+                                     @RequestParam final String courseName,
                                      @RequestParam final String number,
                                      @RequestParam final int credits,
                                      @RequestParam final String description,
@@ -112,7 +116,7 @@ public class FacultyCourse {
 
         Course course = courseRepository.findOne(id);
         course.setDepartment(department);
-        course.setCourseName(coursename);
+        course.setCourseName(courseName);
         course.setNumber(number);
         course.setCredits(credits);
         course.setDescription(description);
