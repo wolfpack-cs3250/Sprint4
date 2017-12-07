@@ -35,10 +35,12 @@ public class BuildingsTest {
 
     @Test
     public void getRooms() throws Exception {
+
     }
 
     @Test
     public void setRooms() throws Exception {
+
     }
 
     /** make sure we can get the address of the Building object */
