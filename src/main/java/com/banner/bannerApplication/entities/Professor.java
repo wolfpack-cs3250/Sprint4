@@ -22,6 +22,16 @@ public class Professor {
     @Column(unique = false)
     private String lastName;
 
+    public String getUsername() {
+        return Username;
+    }
+
+    public void setUsername(String username) {
+        Username = username;
+    }
+
+    private String Username;
+
     public Professor(){
     }
     public Professor(String firstName,String lastName){
