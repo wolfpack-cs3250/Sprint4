@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 import java.text.ParseException;
 
+/** This is the controller for Sections.
+ *  This holds the CRUD operations for Sections.
+ * */
+
 @Controller
 @RequestMapping("section")
 
@@ -29,8 +33,6 @@ public class SectionController {
     @Autowired
     private UserRepository userRepository;
 
-    // Create
-    // Section Controllers
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView addSection(@RequestParam Long courseId, @RequestParam Long sectionNumber,
                                    @RequestParam Long professorId, @RequestParam Long roomId,
@@ -56,8 +58,10 @@ public class SectionController {
         return new ModelAndView("redirect:/faculty/view/" + courseId);
     }
 
+    /** Create a Section */
     @GetMapping(path="/add/{id}")
     public String createSection(@PathVariable Long id, Model model) {
+
         Course course = courseRepository.findOne(id);
 
         Iterable<Professor> professors = professorRepository.findAll();
@@ -72,10 +76,11 @@ public class SectionController {
         return "create-section";
     }
 
-    // Delete
+    /** Delete a Section */
     //needs to be fixed
     @GetMapping(path="/delete/{id}")
     public ModelAndView removeSection(@PathVariable Long id) {
+
         Section section = sectionRepository.findOne(id);
         Long courseId = section.getCourse().getCourseId();
 
@@ -83,18 +88,18 @@ public class SectionController {
         return new ModelAndView("redirect:/faculty/view/"+ courseId);
     }
 
-    // Read All
+    /** Read All Sections */
     @GetMapping(path="")
-    public String showall(Model model) {
-        Iterable<Section> allsections = sectionRepository.findAll();
-        model.addAttribute("allsections", allsections);
-        return "sectionpage";
+    public String showAll(Model model) {
+
+        Iterable<Section> allSections = sectionRepository.findAll();
+        model.addAttribute("allSections", allSections);
+        return "sectionPage";
     }
 
-    // UPDATE page
+    /** Update Section Page */
     @GetMapping(path="/update/{id}")
-    public String updateSection(@PathVariable Long id,
-                               Model model) {
+    public String updateSection(@PathVariable Long id, Model model) {
 
         Section section = sectionRepository.findOne(id);
         Iterable<Professor> professors = professorRepository.findAll();
@@ -106,14 +111,16 @@ public class SectionController {
         return "update-section";
     }
 
-    // UPDATE section
+    /** Update Section */
     @GetMapping(path="/update")
-    public ModelAndView updateCourse(@RequestParam Long sectionId, @RequestParam Long sectionNumber,
+    public ModelAndView updateSection(@RequestParam Long sectionId,
+                                     @RequestParam Long sectionNumber,
                                      @RequestParam Long professorId,
                                      @RequestParam String startDate,
-                                     @RequestParam String endDate, @RequestParam String startTime,
-                                     @RequestParam String endTime, @RequestParam String classDate) throws ParseException
-    {
+                                     @RequestParam String endDate,
+                                     @RequestParam String startTime,
+                                     @RequestParam String endTime,
+                                     @RequestParam String classDate) throws ParseException {
 
         Professor professor = professorRepository.findOne(professorId);
         Section n = sectionRepository.findOne(sectionId);

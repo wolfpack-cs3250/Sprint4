@@ -17,6 +17,10 @@ import com.banner.bannerApplication.entities.Course;
 import com.banner.bannerApplication.repositories.CourseRepository;
 import java.util.Collection;
 
+/** This is the controller for Professors.
+ *  This holds the CRUD operations for Professors.
+ * */
+
 @Controller
 @RequestMapping("professor")
 
@@ -31,39 +35,39 @@ public class ProfessorController {
     @Autowired
     private SectionRepository sectionRepository;
 
-    // Create Professer html page
+    /** Create a Professor html */
     @RequestMapping("/create-professor")
     String createProfessor() {
         return "create-professor";
     }
 
-    // Create
+    /** Create a Professor */
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView addNewProfessor(@RequestParam final String firstname,
-                                        @RequestParam final String lastname) {
+    public ModelAndView addNewProfessor(@RequestParam final String firstName,
+                                        @RequestParam final String lastName) {
         Professor n = new Professor();
-        n.setFirstName(firstname);
-        n.setLastName(lastname);
+        n.setFirstName(firstName);
+        n.setLastName(lastName);
         professorRepository.save(n);
         return new ModelAndView("redirect:/professor");
     }
 
-    // Delete
+    /** Delete a Professor */
     @GetMapping(path = "/delete/{id}")
     public ModelAndView removeProfessor(@PathVariable final Long id) {
         professorRepository.delete(id);
         return new ModelAndView("redirect:/professor");
     }
 
-    // Read All
+    /** Read All Professors */
     @GetMapping(path = "")
-    public String showall(final Model model) {
+    public String showAll(final Model model) {
         Iterable<Professor> professors = professorRepository.findAll();
         model.addAttribute("professors", professors);
-        return "professorpage";
+        return "professorPage";
     }
 
-    // View One Professor
+    /** View a Professor */
     @GetMapping(path = "/view/{id}")
     public String showOne(@PathVariable final Long id, final Model model) {
         Professor professor = professorRepository.findOne(id);
@@ -74,7 +78,7 @@ public class ProfessorController {
         return "professor-view";
     }
 
-    // UPDATE
+    /** Update a Professor */
     @GetMapping(path = "/update/{id}")
     public String updateProfessor(@PathVariable final Long id,
                                   final Model model) {
@@ -84,28 +88,27 @@ public class ProfessorController {
         return "update-professor";
     }
 
-    // UPDATE
+    /** Update Professor Final */
     @GetMapping(path = "/update")
     public ModelAndView updateProfessorFinal(@RequestParam final Long id,
-                                             @RequestParam final String firstname,
-                                             @RequestParam final String lastname) {
+                                             @RequestParam final String firstName,
+                                             @RequestParam final String lastName) {
 
         Professor professor = professorRepository.findOne(id);
-        professor.setFirstName(firstname);
-        professor.setLastName(lastname);
+        professor.setFirstName(firstName);
+        professor.setLastName(lastName);
         professorRepository.save(professor);
         return new ModelAndView("redirect:/professor");
     }
 
-    // Register - Professor
+    /** Register a Professor */
     @GetMapping(path = "/register/{id}")
     public String registerProfessor(@PathVariable final Long id,
                                     final Model model) {
-        Iterable<Course> allcourses = courseRepository.findAll();
-        model.addAttribute("allcourses", allcourses);
-        model.addAttribute("professorid", id);
+        Iterable<Course> allCourses = courseRepository.findAll();
+        model.addAttribute("allCourses", allCourses);
+        model.addAttribute("professorId", id);
         return "pick-professor";
     }
-
 
 }

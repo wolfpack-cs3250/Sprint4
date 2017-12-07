@@ -3,7 +3,8 @@ package com.banner.bannerApplication.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-// Homepage controller
+/** This is the controller for the Homepage.
+ * */
 
 @Controller
 public class IndexController {
@@ -11,6 +12,7 @@ public class IndexController {
     String index() {
         return "index";
     }
+
     @RequestMapping("/select")
     String select() {
         return "select";

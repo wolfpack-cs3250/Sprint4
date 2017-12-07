@@ -16,6 +16,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Collection;
 
+/** This is the controller for Buildings.
+ *  This holds the CRUD operations for Buildings.
+ * */
+
 @Controller
 @RequestMapping("buildings")
 
@@ -31,11 +35,12 @@ public class BuildingsController {
         return "create-buildings";
     }
 
-    // Create
+    /** Create a Building*/
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView addNewBuilding(@RequestParam final String buildingName,
                                        @RequestParam final String address,
                                        @RequestParam final String acronym) {
+
         Buildings n = new Buildings();
         n.setBuildingName(buildingName);
         n.setAddress(address);
@@ -44,23 +49,26 @@ public class BuildingsController {
         return new ModelAndView("redirect:/faculty");
     }
 
-    // Delete
+    /** Delete a Building */
     @GetMapping(path = "/delete/{id}")
-    public ModelAndView removeUser(@PathVariable final Long id) {
+    public ModelAndView removeBuilding(@PathVariable final Long id) {
+
         buildingRepository.delete(id);
         return new ModelAndView("redirect:/faculty");
     }
 
-    // Read All
+    /** Read All Buildings */
     @GetMapping(path = "")
-    public String showall(final Model model) {
-        Iterable<Buildings> allbuildings = buildingRepository.findAll();
-        model.addAttribute("allbuildings", allbuildings);
+    public String showAll(final Model model) {
+
+        Iterable<Buildings> allBuildings = buildingRepository.findAll();
+        model.addAttribute("allBuildings", allBuildings);
         return "buildings";
     }
 
     @GetMapping(path = "/view/{id}")
     public String showOne(@PathVariable final Long id, final Model model) {
+
         Buildings buildings = buildingRepository.findOne(id);
         Collection<Rooms> rooms = roomsRepository.findByBuildingsId(id);
         model.addAttribute("buildings", buildings);
@@ -68,21 +76,23 @@ public class BuildingsController {
         return "buildings-view";
     }
 
-    // UPDATE
+    /** Update Building */
     @GetMapping(path = "/update/{id}")
     public String updateUser(@PathVariable final Long id,
                              final Model model) {
+
         Buildings buildings = buildingRepository.findOne(id);
         model.addAttribute("buildings", buildings);
         return "update-buildings";
     }
 
-    // UPDATE
+    /** Update Building */
     @GetMapping(path = "/update")
-    public ModelAndView updateStudent(@RequestParam final Long id,
+    public ModelAndView updateBuilding(@RequestParam final Long id,
                                       @RequestParam final String acronym,
                                       @RequestParam final String buildingName,
                                       @RequestParam final String address) {
+
         Buildings buildings = buildingRepository.findOne(id);
         buildings.setBuildingName(buildingName);
         buildings.setAddress(address);
