@@ -7,7 +7,11 @@ import com.banner.bannerApplication.repositories.RoomsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -21,19 +25,19 @@ public class RoomsController {
     private BuildingRepository buildingRepository;
 
     // Create - Get
-    @GetMapping(path="/{id}")
-    public String createRoom(@PathVariable Long id, Model model) {
+    @GetMapping(path = "/{id}")
+    public String createRoom(@PathVariable final Long id, final Model model) {
         Buildings building = buildingRepository.findOne(id);
-        model.addAttribute("building",building);
+        model.addAttribute("building", building);
         return "create-room";
     }
 
     // Create - Post
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView addNewRooms (@RequestParam String roomSize, @RequestParam Long buildingId,
-                                     @RequestParam String roomNumber) {
+    public ModelAndView addNewRooms(@RequestParam final String roomSize,
+                                    @RequestParam final Long buildingId,
+                                    @RequestParam final String roomNumber) {
         Buildings building = buildingRepository.findOne(buildingId);
-
         Rooms n = new Rooms();
         n.setRoomSize(roomSize);
         n.setRoomNumber(roomNumber);
@@ -43,8 +47,8 @@ public class RoomsController {
     }
 
     // Delete
-    @GetMapping(path="/delete/{id}")
-    public ModelAndView removeRooms(@PathVariable Long id) {
+    @GetMapping(path = "/delete/{id}")
+    public ModelAndView removeRooms(@PathVariable final Long id) {
         Rooms room = roomsRepository.findOne(id);
         Long buildingId = room.getBuildings().getId();
         roomsRepository.delete(id);
@@ -52,17 +56,17 @@ public class RoomsController {
     }
 
     // Read All
-    @GetMapping(path="")
-    public String showall(Model model) {
+    @GetMapping(path = "")
+    public String showall(final Model model) {
         Iterable<Rooms> allRooms = roomsRepository.findAll();
         model.addAttribute("allRooms", allRooms);
         return "roomspage";
     }
 
     // UPDATE Page
-    @GetMapping(path="/update/{id}")
-    public String updateUser(@PathVariable Long id,
-                             Model model) {
+    @GetMapping(path = "/update/{id}")
+    public String updateUser(@PathVariable final Long id,
+                             final Model model) {
 
         Rooms rooms = roomsRepository.findOne(id);
         model.addAttribute("rooms", rooms);
@@ -70,10 +74,10 @@ public class RoomsController {
     }
 
     // UPDATE
-    @GetMapping(path="/update")
-    public ModelAndView updateRooms(@RequestParam Long id, @RequestParam String roomSize,
-                                      @RequestParam String roomNumber) {
-
+    @GetMapping(path = "/update")
+    public ModelAndView updateRooms(@RequestParam final Long id,
+                                    @RequestParam final String roomSize,
+                                    @RequestParam final String roomNumber) {
         Rooms rooms = roomsRepository.findOne(id);
         rooms.setRoomSize(roomSize);
         rooms.setRoomNumber(roomNumber);
