@@ -43,7 +43,7 @@ public class SectionTest {
 
     @Test
     public void setSectionNumber() throws Exception{
-        section.setSectionNumber(1);
+        section.setSectionNumber(1L);
     }
 
     @Test
