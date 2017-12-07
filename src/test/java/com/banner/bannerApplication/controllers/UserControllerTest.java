@@ -40,7 +40,7 @@ public class UserControllerTest {
         UserController uC = new UserController();
         long id = 333;
         uC.removeUser(id);
-        assertEquals(333, uC.removeUser)
+        assertEquals(333, uC.removeUser);
     }
 
     @Test
