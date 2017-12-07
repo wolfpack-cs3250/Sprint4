@@ -17,8 +17,12 @@ public class IndexController {
     }
 
     @RequestMapping("/school-information")
-    String schoolInformation() {return "school-information";}
+    String schoolInformation() {
+        return "school-information";
+    }
 
     @RequestMapping("/buildings")
-    String buildings() {return "buildings";}
+    String buildings() {
+        return "buildings";
+    }
 }

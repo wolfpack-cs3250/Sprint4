@@ -37,6 +37,7 @@ public class RoomsController {
     public ModelAndView addNewRooms(@RequestParam final String roomSize,
                                     @RequestParam final Long buildingId,
                                     @RequestParam final String roomNumber) {
+
         Buildings building = buildingRepository.findOne(buildingId);
         Rooms n = new Rooms();
         n.setRoomSize(roomSize);

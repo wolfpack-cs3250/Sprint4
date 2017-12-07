@@ -89,6 +89,7 @@ public class ProfessorController {
     public ModelAndView updateProfessorFinal(@RequestParam final Long id,
                                              @RequestParam final String firstname,
                                              @RequestParam final String lastname) {
+
         Professor professor = professorRepository.findOne(id);
         professor.setFirstName(firstname);
         professor.setLastName(lastname);
