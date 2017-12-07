@@ -18,21 +18,6 @@ import static org.junit.Assert.assertEquals;
 
 public class CourseControllerTest {
 
-    @Test(expected = NullPointerException.class)
-    public void removeCourse() throws MalformedURLException, IOException {
-        CourseController cC = new CourseController();
-        Long id = 123L;
-        String courseName = "Testing";
-        cC.removeCourse(courseName, id);
-        assertEquals("Testing", 123L, cC.removeCourse(courseName, id));
-
-        URL u = new URL("http://localhost:8080/faculty");
-        HttpURLConnection huc = (HttpURLConnection) u.openConnection();
-        HttpURLConnection.setFollowRedirects(false);
-        huc.setRequestMethod("HEAD");
-        huc.connect();
-    }
-
     @Test
     public void showAll() throws IOException {
         Model model = new Model() {
