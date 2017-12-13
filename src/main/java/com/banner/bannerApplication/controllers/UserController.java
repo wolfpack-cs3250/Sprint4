@@ -10,6 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import java.util.List;
+import java.util.Random;
+
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -43,11 +46,12 @@ public class UserController {
     // Create
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView addNewUser (@RequestParam String firstname,
-                                            @RequestParam String lastname) {
+                                            @RequestParam String lastname,@RequestParam String password) {
         User n = new User();
         Global g = new Global();
         n.setFirstName(firstname);
         n.setLastName(lastname);
+        n.setPassword(password);
         // initializes default global values for student
         g.setSchoolName("Wolfpack University");
         g.setSeniorCredits(0);
@@ -55,6 +59,11 @@ public class UserController {
         g.setSophmoreCredits(0);
         g.setFreshmanCredits(0);
         g.setCreditsCompleted();
+        //randomly generates username
+        Random randy= new Random();
+        int candy= randy.nextInt(100)+1;
+        String username=(firstname.charAt(1)+lastname+candy);
+        n.setUsername(username);
         // saves to db
         userRepository.save(n);
         globalRepository.save(g);
@@ -163,11 +172,14 @@ public class UserController {
                         ||
                         // test time to make sure it doesn't conflict with end.
                         (s.getEndTime().isAfter(section.getStartTime()) && s.getEndTime().isBefore(section.getEndTime()))) {
+
                     return false;
+
                 }
 
             //}
-            //return true;
+
+            return true;
         }
         // If the student is registered to no classes, return true.
 

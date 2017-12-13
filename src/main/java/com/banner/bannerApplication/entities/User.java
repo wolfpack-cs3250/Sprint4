@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.*;
 
 /** This is the class for Users
@@ -36,12 +37,49 @@ public class User {
     @Column(unique = false)
     private String lastName;
 
+    @NotNull
+    private String password;
+    private String Username;
+    private String passwordConfirm;
+    private Set<Position> positions;
+
+    public String getUsername() {
+        return Username;
+    }
+
+    public void setUsername(String username) {
+        Username = username;
+    }
+
+
+
     //@Column(unique = false)
     //private long completedCredits = 666;
 
     /** Column in our database. */
     @Column(unique = false)
     private String[] done;
+    private String Username;
+    @NotNull
+    private String password;
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+
+
+    public String getUsername() {
+        return Username;
+    }
+
+    public void setUsername(String username) {
+        Username = username;
+    }
+
 
     /** We map a User to a section. */
     @OneToMany(mappedBy = "user")
@@ -86,9 +124,28 @@ public class User {
     public String getLastName() {
         return lastName;
     }
+    public void setPassword(String password){this.password=password;}
+    public String getPassword(){return password;}
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
+    @Transient
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
 
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
+    }
+
+    @ManyToMany
+    @JoinTable(name="user_position", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "position_id"))
+    public Set<Position> getPositions() {
+        return positions;
+    }
+
+    public void setPositions(Set<Position> positions) {
+        this.positions = positions;
+    }
 }
