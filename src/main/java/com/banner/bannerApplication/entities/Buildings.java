@@ -15,7 +15,7 @@ public class Buildings {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private long id;
 
     @Column(unique=false)
     private String buildingName;
@@ -30,7 +30,7 @@ public class Buildings {
     private Set<Rooms> rooms = new HashSet<>();
 
 
-    public Long getId(){
+    public long getId(){
         return id;
     }
 

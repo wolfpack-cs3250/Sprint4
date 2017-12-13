@@ -16,7 +16,7 @@ public class Rooms {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private long id;
 
     private String roomSize;
 
@@ -30,7 +30,7 @@ public class Rooms {
     private Set<Section> sections = new HashSet<>();
 
 
-    public Long getId(){
+    public long getId(){
         return id;
     }
 

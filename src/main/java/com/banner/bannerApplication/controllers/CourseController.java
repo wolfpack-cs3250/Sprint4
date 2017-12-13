@@ -63,7 +63,7 @@ public class CourseController {
     }
     // Delete
     @GetMapping(path = "/delete")
-    public ModelAndView removeCourse(@RequestParam final Long courseId,
+    public ModelAndView removeCourse(@RequestParam final long courseId,
                                      @RequestParam final long id) {
         User user = userRepository.findOne(id);
         user.removeInProgress(courseId);
@@ -85,7 +85,7 @@ public class CourseController {
 
     // UPDATE
     @GetMapping(path = "/update")
-    public ModelAndView updateCourse(@RequestParam final Long id,
+    public ModelAndView updateCourse(@RequestParam final long id,
                                      @RequestParam final String coursename) {
 
         Course course = courseRepository.findOne(id);

@@ -50,7 +50,7 @@ public class ProfessorController {
 
     // Delete
     @GetMapping(path = "/delete/{id}")
-    public ModelAndView removeProfessor(@PathVariable final Long id) {
+    public ModelAndView removeProfessor(@PathVariable final long id) {
         professorRepository.delete(id);
         return new ModelAndView("redirect:/professor");
     }
@@ -65,7 +65,7 @@ public class ProfessorController {
 
     // View One Professor
     @GetMapping(path = "/view/{id}")
-    public String showOne(@PathVariable final Long id, final Model model) {
+    public String showOne(@PathVariable final long id, final Model model) {
         Professor professor = professorRepository.findOne(id);
         Collection<Section> sections =
                 sectionRepository.findByProfessorId((id));
@@ -76,7 +76,7 @@ public class ProfessorController {
 
     // UPDATE
     @GetMapping(path = "/update/{id}")
-    public String updateProfessor(@PathVariable final Long id,
+    public String updateProfessor(@PathVariable final long id,
                                   final Model model) {
 
         Professor professor = professorRepository.findOne(id);
@@ -86,7 +86,7 @@ public class ProfessorController {
 
     // UPDATE
     @GetMapping(path = "/update")
-    public ModelAndView updateProfessorFinal(@RequestParam final Long id,
+    public ModelAndView updateProfessorFinal(@RequestParam final long id,
                                              @RequestParam final String firstname,
                                              @RequestParam final String lastname) {
 
@@ -99,7 +99,7 @@ public class ProfessorController {
 
     // Register - Professor
     @GetMapping(path = "/register/{id}")
-    public String registerProfessor(@PathVariable final Long id,
+    public String registerProfessor(@PathVariable final long id,
                                     final Model model) {
         Iterable<Course> allcourses = courseRepository.findAll();
         model.addAttribute("allcourses", allcourses);

@@ -19,7 +19,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
-    private Long id;
+    private long id;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
@@ -56,7 +56,7 @@ public class User {
         inProgess.add(classId);
     }
 
-    public void removeInProgress(Long courseId) {
+    public void removeInProgress(long courseId) {
         inProgess.remove(courseId);
     }
 
@@ -72,7 +72,7 @@ public class User {
         return Arrays.copyOf(done, done.length);
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
