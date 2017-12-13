@@ -20,13 +20,25 @@ public class SectionTest {
     /** performs our initial set up of our Section object */
     @Before
     public void setUp(){
-        Long sectionNum = new Long(1);
+        professor = new Professor();
         course = new Course();
         section = new Section();
-        section.setCourse(course);
         course.setCourseName("CS3250");
-        section.setSectionNumber(sectionNum);
+        section.setProfessor(professor);
+        section.setCourse(course);
+        section.setSectionNumber(1);
+    }
 
+    @Test
+    public void getSectionNumber() throws Exception{
+        assertEquals(1, (long) section.getSectionNumber());
+    }
+
+    @Test
+    public void setSectionNumber() throws Exception{
+        Section section = new Section();
+        section.setSectionNumber(1);
+        assertEquals(1, (long)section.getSectionNumber());
     }
 
     /** Make sure we can access the Section objects course name */
@@ -40,11 +52,6 @@ public class SectionTest {
     public void setCourseName() throws Exception{
         course.setCourseName("CS1050");
         assertEquals("CS1050",course.getCourseName());
-    }
-
-    @Test
-    public void setSectionNumber() throws Exception{
-        section.setSectionNumber(1L);
     }
 
     @Test
