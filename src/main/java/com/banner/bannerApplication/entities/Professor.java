@@ -15,7 +15,7 @@ public class Professor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(unique=true)
-    private Long id;
+    private long id;
 
     @OneToMany(mappedBy = "professor")
     private Set<Section> sections = new HashSet<>();

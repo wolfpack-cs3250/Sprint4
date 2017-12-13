@@ -26,9 +26,9 @@ import java.time.LocalDateTime;
 public class Section{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private long id;
 
-    private Long sectionNumber;
+    private long sectionNumber;
 
     private LocalDate startDate, endDate;
     private LocalTime startTime, endTime;
@@ -56,7 +56,7 @@ public class Section{
         this.sectionNumber = sectionNumber;
         this.course = course;
     }
-    public Long getId () {
+    public long getId () {
         return id;
     }
     public void setProfessor(Professor professor){
@@ -71,7 +71,7 @@ public class Section{
         this.user = user;
     }
 
-    public Long getSectionNumber () {
+    public long getSectionNumber (long sectionNumber) {
         return sectionNumber;
     }
     public void setSectionNumber (long sectionNumber) {
